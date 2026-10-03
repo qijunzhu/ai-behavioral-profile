@@ -22,7 +22,6 @@ import os
 import re
 import shutil
 import sys
-import tempfile
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
@@ -31,7 +30,9 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 from markupsafe import Markup
 
 SITE = Path(__file__).resolve().parent
-DEFAULT_OUT = Path(os.environ.get("LOCALAPPDATA", tempfile.gettempdir())) / "llm_behavioral_profile_site" / "dist"
+# the home folder: one place for every tool on this computer, outside OneDrive (a packaged app may see a private copy
+# of the usual local app data folder, so that folder is not used)
+DEFAULT_OUT = Path.home() / "llm_behavioral_profile_site" / "dist"
 LANGS = ("en", "zh")
 HTML_LANG = {"en": "en", "zh": "zh-CN"}
 AUTONYM = {"en": "English", "zh": "中文"}
