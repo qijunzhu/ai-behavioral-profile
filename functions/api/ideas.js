@@ -73,8 +73,15 @@ export async function onRequest({ request, env }) {
   if (Number(request.headers.get('Content-Length') || 0) > MAX_BYTES) return reply(413, { error: 'too_large' });
   // optional Cloudflare rate-limiting binding; the address is only the counting key here and is never stored
   if (env.IDEA_RATE_LIMIT) {
-    const { success } = await env.IDEA_RATE_LIMIT.limit({ key: request.headers.get('CF-Connecting-IP') || 'unknown' });
-    if (!success) return reply(429, { error: 'too_many' });
+    let limited;
+    try {
+      limited = !(await env.IDEA_RATE_LIMIT.limit({ key: request.headers.get('CF-Connecting-IP') || 'unknown' })).success;
+    } catch (e) {
+      // the limiter itself failed: refuse this time rather than store without the check (the page keeps the text)
+      console.warn('ideas: rate limit check failed:', e && e.message ? e.message : String(e));
+      return reply(503, { error: 'temporarily_unavailable' });
+    }
+    if (limited) return reply(429, { error: 'too_many' });
   }
   let text;
   try {
