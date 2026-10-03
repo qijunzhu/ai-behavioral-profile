@@ -1,5 +1,5 @@
 {
- "release_id": "eight-model-comparison-20260923-v1",
+ "release_id": "nine-model-comparison-20261003-v1",
  "measures": {
   "common": {
    "en": {
@@ -1611,7 +1611,7 @@
     "research_lead": "You see not just the results, but where they come from.",
     "research": "Each measure documents its task design, the literature it builds on, how answers are scored, and the model settings and versions behind it. Structured choices, self-descriptions and conversation ratings are labeled separately, because they provide different kinds of evidence.",
     "updates_title": "Results and updates",
-    "update_research": "23 September 2026 · The saved research comparison contains eight models and 30 measures per model, alongside the separate stability checks.",
+    "update_research": "3 October 2026 · The saved research comparison contains nine models and 30 measures per model, alongside the separate stability checks.",
     "update_meaning": "This is the date of the saved research results, not the date the website was published.",
     "team_title": "People behind the project",
     "contact_title": "Contact me",
@@ -1634,7 +1634,7 @@
     "research_lead": "你看到的不只是结果，也可以看到它从哪里来。",
     "research": "每项测量都会说明任务设计、文献依据、评分方法，以及对应的模型设置与版本。结构化选择、自我描述和对话评价也会分别标明，因为它们提供的是不同类型的证据。",
     "updates_title": "结果与更新",
-    "update_research": "2026 年 9 月 23 日 · 已保存的研究对照包含八个模型、每个模型 30 项指标，以及独立稳定性检查。",
+    "update_research": "2026 年 10 月 3 日 · 已保存的研究对照包含九个模型、每个模型 30 项指标，以及独立稳定性检查。",
     "update_meaning": "这是研究结果的日期，不是网站的发布日期。",
     "team_title": "项目团队",
     "contact_title": "联系我",

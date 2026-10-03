@@ -17,7 +17,7 @@
   </div>
   <section class="about-updates" aria-labelledby="upd-h">
     <h2 id="upd-h">{{ A.updates_title }}</h2>
-    <ol class="timeline"><li><p>{{ A.update_research }}</p><p class="fine">{{ A.update_meaning }}</p></li></ol>
+    <ol class="timeline"><li><p>{{ A.update_research }}</p><p class="fine">{{ A.update_meaning }}</p></li>{% for earlier in A.get("update_history", []) %}<li class="earlier"><p>{{ earlier }}</p></li>{% endfor %}</ol>
   </section>
   {% if cfg.byline %}<section class="about-item"><h2>{{ A.team_title }}</h2><p>{{ cfg.byline }}</p></section>{% endif %}
   {% if cfg.contact %}

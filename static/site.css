@@ -701,6 +701,9 @@ details[open] > summary .chev-i { transform: rotate(180deg); }
 .about-grid .about-item { padding: 18px 20px; border-top: 3px solid var(--ink); background: var(--surface); border-radius: 0 0 12px 12px; }
 .about-updates, .about > .about-item { margin-top: 36px; }
 .timeline li { padding-left: 16px; border-left: 3px solid var(--accent); }
+/* earlier results versions: same text, a quieter rule so the current one leads */
+.timeline li + li { margin-top: 14px; }
+.timeline li.earlier { border-left-color: var(--rule); color: var(--muted); }
 .citation { margin-top: 8px; font-family: var(--mono); font-size: 13px; }
 .about > .about-item .facts { margin-top: 12px; max-width: 520px; }
 .status-card { max-width: 760px; padding: 26px 28px; border: 1px solid var(--rule); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }

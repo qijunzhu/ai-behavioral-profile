@@ -1,0 +1,306 @@
+{
+ "schema_version": "gr-format-details-1.0",
+ "release_id": "nine-model-comparison-20261003-v1",
+ "source_comparison_sha256": "068c9d0295c2b7833d4dfd7b3fcc9d643ad341c77a278c23da25eaeb8cdba4db",
+ "format_rule": "gr-choice-format-v2",
+ "population": "adopted_first_valid_outputs",
+ "model_order": [
+  "sol56",
+  "sol6",
+  "luna56",
+  "luna6",
+  "opus5",
+  "opus55",
+  "sonnet55",
+  "gemini",
+  "deepseek"
+ ],
+ "branch_order": [
+  "open_ended",
+  "binary"
+ ],
+ "models": {
+  "sol56": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "sol6": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "luna56": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "luna6": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "opus5": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 200,
+    "not_strictly_compliant": 490,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 186,
+     "not_strictly_compliant": 114,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 14,
+     "not_strictly_compliant": 376,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": [
+    "added-explanation"
+   ]
+  },
+  "opus55": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 286,
+    "not_strictly_compliant": 404,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 272,
+     "not_strictly_compliant": 28,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 14,
+     "not_strictly_compliant": 376,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": [
+    "formatting-marks"
+   ]
+  },
+  "sonnet55": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 343,
+    "not_strictly_compliant": 347,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 5,
+     "not_strictly_compliant": 295,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 338,
+     "not_strictly_compliant": 52,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "gemini": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  },
+  "deepseek": {
+   "summary": {
+    "denominator": 690,
+    "strictly_compliant": 690,
+    "not_strictly_compliant": 0,
+    "outcome_valid": 690,
+    "population": "adopted_first_valid_outputs"
+   },
+   "branches": [
+    {
+     "branch": "open_ended",
+     "condition_count": 10,
+     "denominator": 300,
+     "strictly_compliant": 300,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 300
+    },
+    {
+     "branch": "binary",
+     "condition_count": 13,
+     "denominator": 390,
+     "strictly_compliant": 390,
+     "not_strictly_compliant": 0,
+     "outcome_valid": 390
+    }
+   ],
+   "example_ids": []
+  }
+ },
+ "examples": [
+  {
+   "example_id": "formatting-marks",
+   "model_key": "opus55",
+   "condition_id": "BI-REF",
+   "language": "en",
+   "requested_reply_literal": "Respond with A or B.",
+   "reply_literal": "**B**",
+   "is_excerpt": false,
+   "format_compliant": false,
+   "outcome_valid": true,
+   "choice_label": "B"
+  },
+  {
+   "example_id": "added-explanation",
+   "model_key": "opus5",
+   "condition_id": "BI-REF",
+   "language": "en",
+   "requested_reply_literal": "Respond with A or B.",
+   "reply_literal": "**B**\n\nI'll split it evenly — $5 for me, $5 for the other participant.",
+   "is_excerpt": true,
+   "format_compliant": false,
+   "outcome_valid": true,
+   "choice_label": "B"
+  }
+ ]
+}

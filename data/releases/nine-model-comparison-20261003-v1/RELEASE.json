@@ -1,0 +1,39 @@
+{
+ "release_id": "nine-model-comparison-20261003-v1",
+ "website_data_revision": "2026-10-03-v1",
+ "schema_version": "website-results-1.0",
+ "status": "local_release_for_site_build_not_published",
+ "results_file": "results.json",
+ "results_sha256": "d03863ab27d19666d2fa2b57acf0b845da537d8cfa732cb27f5e90b925a3a3a1",
+ "source_comparison_sha256": "068c9d0295c2b7833d4dfd7b3fcc9d643ad341c77a278c23da25eaeb8cdba4db",
+ "candidate_sha256": "01ff5989e3d72b7c16586c2384f1de5085f9a12fa544c8157e2aab3da6107068",
+ "contract_schema": "website-data-contract-1.0",
+ "counts": {
+  "models": 9,
+  "af_rows": 270,
+  "af_display_numbers": 1350,
+  "gr_comparisons": 189,
+  "gr_conditions": 207,
+  "gr_references": 18,
+  "generation_changes": 90
+ },
+ "range_interpretation": "Fixed-design observed ranges, not confidence intervals.",
+ "field_policy": "Only the fields the pages use are included; every number is copied unchanged from the research comparison.",
+ "supplements": {
+  "gr_format": {
+   "schema_version": "gr-format-details-1.0",
+   "population": "adopted_first_valid_outputs",
+   "json_file": "gr-format.json",
+   "json_sha256": "606f2e143d6da192bf7ae3e4318fa083b60bdc09b592c6701d56eca95a9354fc",
+   "source": "GR_FORMAT_DETAILS.json",
+   "source_sha256": "11c5c2bac64890ee2c658f3b4cc7525b75ebdbd73fd5f64e123bad785d039038",
+   "left_out": "per-version counts (condition_order, models.*.conditions) and the per-version CSV; kept with the research records, available on request",
+   "csv_checked": {
+    "source": "GR_FORMAT_CONDITIONS.csv",
+    "sha256": "52f096b626330a428c975b0a770f302fbcaecc0197b20cf6ad8b50883706ec03",
+    "rows": 207,
+    "copied": false
+   }
+  }
+ }
+}
