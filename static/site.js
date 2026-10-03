@@ -320,6 +320,7 @@
     var view = qs('[data-view]'), loading = qs('[data-loading]');
     var DATA = null, models = {}, order = [], items = {}, changes = {};
     var selected = [], pair = null, notices = [];
+    var early = false, focusLater = false;   /* a choice made before the data arrived, and whether it opened a view */
     var measureById = {}; P.measures.forEach(function (m) { measureById[m.id] = m; });
 
     /* chooser */
@@ -341,13 +342,19 @@
         var t = qs('[data-toggle-model]', c); if (t) t.setAttribute('aria-pressed', String(on));
       });
       chips.innerHTML = selected.map(function (id, i) {
-        var name = models[id] ? models[id].name : id;
+        var name = nameOf(id);
         return '<li class="chip"><span class="ord">' + (i + 1) + '</span><span>' + esc(name) + '</span><button type="button" data-remove="' + esc(id) + '" aria-label="' + esc(fill(X.remove_model, { model: name })) + '">×</button></li>';
       }).join('');
       selection.hidden = selected.length === 0;
       selCount.textContent = '';
     }
     function announce(t) { selStatus.textContent = t; }
+    // a model's name: from the data, else from its card, which is in the page before the data arrives
+    function nameOf(id) {
+      if (models[id]) return models[id].name;
+      var c = qs('.model-card[data-model="' + id + '"] .mc-title');
+      return c ? c.textContent : id;
+    }
     function writeUrl(push) {
       var q = pair ? query([['pair', pair.pair]]) : query([['models', selected.join(',')]]);
       setUrl(q, undefined, push);
@@ -357,15 +364,15 @@
       if (!t) return;
       if (t.hasAttribute('data-open-model')) {
         e.preventDefault(); pair = null; selected = [t.getAttribute('data-open-model')];
-        announce(fill(X.selected_status, { model: models[selected[0]].name })); update(true, true);
+        announce(fill(X.selected_status, { model: nameOf(selected[0]) })); update(true, true);
       } else if (t.hasAttribute('data-toggle-model')) {
         var id = t.getAttribute('data-toggle-model'), i = selected.indexOf(id); pair = null;
-        if (i >= 0) { selected.splice(i, 1); announce(fill(X.removed_status, { model: models[id].name })); }
-        else { selected.push(id); announce(fill(X.selected_status, { model: models[id].name })); }
+        if (i >= 0) { selected.splice(i, 1); announce(fill(X.removed_status, { model: nameOf(id) })); }
+        else { selected.push(id); announce(fill(X.selected_status, { model: nameOf(id) })); }
         update(false, false);
       } else if (t.hasAttribute('data-remove')) {
         var rid = t.getAttribute('data-remove'), at = selected.indexOf(rid); selected = selected.filter(function (x) { return x !== rid; }); pair = null;
-        announce(fill(X.removed_status, { model: models[rid] ? models[rid].name : rid })); update(false, false);
+        announce(fill(X.removed_status, { model: nameOf(rid) })); update(false, false);
         // the chip list was rebuilt: keep focus on the neighbouring chip's remove button, else on the search box
         var next = qsa('[data-remove]', chips)[Math.min(at, selected.length - 1)];
         if (next) next.focus(); else { grid.open = true; search.focus(); }
@@ -552,7 +559,9 @@
       if (MEASURE.test(h)) { var t = doc.getElementById(h); if (t) t.scrollIntoView({ block: 'start' }); }
     }
     function update(push, scroll) {
-      syncChooser(); writeUrl(push); render();
+      syncChooser(); writeUrl(push);
+      if (!DATA) { early = true; if (scroll) focusLater = true; return; }
+      render();
       if (scroll) { var head = qs('#x-title', view); if (head) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); view.scrollIntoView({ block: 'start' }); } }
     }
     function readUrl() {
@@ -580,9 +589,14 @@
           items[id] = {}; (m.items || []).forEach(function (it) { items[id][it.item] = it; });
         });
         (d.generation_changes || []).forEach(function (g) { (changes[g.pair] = changes[g.pair] || {})[g.item] = g; });
-        readUrl(); syncChooser(); grid.open = selected.length === 0; render(); carryLanguage();
+        readUrl(); syncChooser(); if (!early) grid.open = selected.length === 0; render(); carryLanguage();
         el.setAttribute('data-state', 'ready');
-        if (retry) { var head = qs('#x-title', view); if (head) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); } else search.focus({ preventScroll: true }); }
+        var opened = focusLater; early = focusLater = false;   /* a profile or version view asked for while loading */
+        if (retry || opened) {
+          var head = qs('#x-title', view);
+          if (head) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); if (opened) view.scrollIntoView({ block: 'start' }); }
+          else if (retry) search.focus({ preventScroll: true });
+        }
       }).catch(function () {
         loading.hidden = true; el.setAttribute('data-state', 'error');
         view.innerHTML = '<div class="notice load" role="alert"><p>' + esc(X.load_error) + '</p><p><button type="button" class="btn-pill" data-retry>' + esc(X.retry) + '</button></p></div>';
