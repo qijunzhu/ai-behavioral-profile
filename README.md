@@ -53,4 +53,4 @@ See [CITATION.cff](CITATION.cff). Each archived release will have its own DOI; w
 
 ## Contact
 
-Raw model responses, research records and the full research materials are not stored in this repository. To request them, please e-mail zqj0966522453@gmail.com. Feedback, suggestions and research conversations are also welcome by e-mail.
+The full set of raw model responses, the research records and the full research materials are not stored in this repository. To request them, please e-mail zqj0966522453@gmail.com. Feedback, suggestions and research conversations are also welcome by e-mail.
