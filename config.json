@@ -1,0 +1,25 @@
+{
+ "brand": "AI Behavioral Profile",
+ "release": "eight-model-comparison-20260923-v1",
+ "languages": [
+  "en",
+  "zh"
+ ],
+ "fallback_language": "en",
+ "byline": null,
+ "contact": "zqj0966522453@gmail.com",
+ "citation": null,
+ "public_base_url": null,
+ "idea_collection": {
+  "enabled": false,
+  "endpoint": null,
+  "preview": false,
+  "copy_revision": "20261001-ideas-v2",
+  "timeout_ms": 15000
+ },
+ "katex": {
+  "css": "katex/katex.min.css",
+  "js": "katex/katex.min.js",
+  "auto_render": "katex/contrib/auto-render.min.js"
+ }
+}

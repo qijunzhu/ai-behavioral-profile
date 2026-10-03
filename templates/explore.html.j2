@@ -1,0 +1,57 @@
+{% extends "base.html.j2" %}
+{% import "macros.html.j2" as ui with context %}
+{% block title %}{{ S.explore.page_title }} · {{ cfg.brand }}{% endblock %}
+{% block main %}
+<div class="wrap page-narrow explore" data-explore>
+  <header class="page-head">
+    <h1>{{ S.explore.page_title }}</h1>
+    <p class="page-intro">{{ S.explore.page_intro }}</p>
+  </header>
+
+  <section class="chooser" aria-labelledby="choose-title" data-chooser data-js-only>
+    <div class="chooser-head">
+      <h2 id="choose-title">{{ S.explore.choose_heading }}</h2>
+      <p>{{ S.explore.choose_hint | fill(measure_count=measures|length) }}</p>
+    </div>
+    <details class="chooser-grid" data-chooser-grid open>
+    <summary>{{ S.explore.change_model }} · {{ S.explore.add_model }}{{ ui.chev() }}</summary>
+    <div class="chooser-tools">
+      <label class="search">
+        <span>{{ S.explore.search_label }}</span>
+        <input type="search" data-search placeholder="{{ S.explore.search_placeholder }}" autocomplete="off">
+      </label>
+      <button type="button" class="btn-text" data-clear-search hidden>{{ S.explore.clear_search }}</button>
+    </div>
+    <p class="search-empty" data-search-empty role="status" hidden>{{ S.explore.search_empty }}</p>
+    <ul class="model-list" data-model-list>
+      {% for m in models %}
+      <li class="model-card" data-model="{{ m.id }}" data-search-text="{{ (m.name ~ ' ' ~ m.provider) | lower }}">
+        <div class="mc-name"><span class="mc-title">{{ m.name }}</span><span class="mc-prov">{{ m.provider }}</span></div>
+        <div class="mc-actions">
+          <a class="btn-pill" href="?models={{ m.id }}" data-open-model="{{ m.id }}" aria-label="{{ S.explore.link_profile_label | fill(model=m.name) }}">{{ S.extra.view_profile_short }}</a>
+          <button type="button" class="btn-pill btn-quiet" data-toggle-model="{{ m.id }}" aria-pressed="false"
+            aria-label="{{ S.explore.link_compare_label | fill(model=m.name) }}"><span class="when-off">{{ S.extra.add_short }}</span><span class="when-on">{{ S.extra.added_short }}</span></button>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    </details>
+    <div class="selection" data-selection hidden>
+      <p class="selection-title">{{ S.explore.selected_models }} <span data-selection-count></span></p>
+      <ul class="chips" data-chips></ul>
+      <div class="selection-actions">
+        <button type="button" class="btn-text" data-clear-selection>{{ S.extra.clear_selection }}</button>
+      </div>
+      <p class="fine selection-note">{{ S.explore.language_state_note }}</p>
+    </div>
+    <p class="status" role="status" aria-live="polite" data-selection-status></p>
+  </section>
+
+  {# The loading line sits outside the view (which is re-rendered) so a retry can show it again; the view itself is
+     not a live region: the short selection status above carries the announcements. #}
+  <p class="loading" data-loading role="status" hidden>{{ S.extra.loading }}</p>
+  <div class="view" data-view></div>
+  <noscript><p class="notice">{{ S.explore.noscript_note }}{{ '' if lang == 'zh' else ' ' }}<a href="{{ url('home') }}">{{ S.common.nav_home }} →</a></p></noscript>
+</div>
+<script type="application/json" id="explore-payload">{{ payload | tojson_script }}</script>
+{% endblock %}

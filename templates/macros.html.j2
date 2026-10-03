@@ -1,0 +1,71 @@
+{# Shared pieces, imported "with context" (S, url, colon, lang available).
+   The Explore page draws the same row markup in static/site.js; keep both in step. #}
+
+{% macro chev() %}<svg class="chev-i" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endmacro %}
+
+{% macro glyph(r) -%}
+{% if r.outer %}<i class="g-out{% if r.outer_zero %} is-zero{% endif %}" style="left:{{ r.ol }}%;width:{{ r.ow }}%"></i>{% endif %}<i class="g-in{% if r.inner_zero %} is-zero{% endif %}" style="left:{{ r.il }}%;width:{{ r.iw }}%"></i><i class="g-dot" style="left:{{ r.c }}%"></i>
+{%- endmacro %}
+
+{% macro axis_head(m) -%}
+<div class="axis-head" aria-hidden="true">
+  <span class="h-m">{{ S.extra.col_model }}</span>
+  <div class="h-plot">
+    <div class="ends"><span>{{ m.text.axis_low }}</span><span>{{ m.text.axis_high }}</span></div>
+    <div class="ticks">{% for t in m.ax.ticks %}<span class="{{ 'minor' if t.minor else '' }}" style="left:{{ t.pos }}%">{{ t.label }}</span>{% endfor %}</div>
+  </div>
+  <span class="h-c">{{ S.common.average }}</span>
+  <span class="h-r">{{ S.extra.col_ranges }}</span>
+</div>
+{%- endmacro %}
+
+{% macro row(m, r, i) -%}
+<li class="row{% if r.missing %} is-missing{% endif %}" data-model="{{ r.model }}" data-i="{{ i }}"{% if not r.missing %} data-center="{{ r.center }}"{% endif %}>
+  <p class="sr">{{ r.sr }}{% for n in r.notes %}{{ '' if lang == 'zh' else ' ' }}{{ S.extra.note_marker }}{{ colon }}{{ n }}{% endfor %}</p>
+  <div class="m">
+    <a class="m-name" href="{{ url('explore', 'models=' ~ r.model) }}" aria-label="{{ S.explore.link_profile_label | fill(model=r.name) }}">{{ r.name }}</a>{% if r.notes %}<sup class="note-mark" aria-hidden="true">†</sup>{% endif %}
+    <span class="m-prov" aria-hidden="true">{{ r.provider }}</span>
+  </div>
+  <div class="plot{% if m.ax.signed %} is-signed{% endif %}" aria-hidden="true">{% if m.ax.ref_pos is not none %}<i class="ref" style="left:{{ m.ax.ref_pos }}%"></i>{% endif %}{% if r.missing %}<span class="missing-text">{{ S.common.unavailable }}</span>{% else %}{{ glyph(r) }}{% endif %}</div>
+  <div class="c" aria-hidden="true">{% if r.missing %}—{% else %}<span class="c-num">{{ r.center_text }}</span>{% if r.unit_suffix %}<small>{{ r.unit_suffix }}</small>{% endif %}{% if r.type_letter %}<span class="type-letter{% if r.type_boundary %} is-boundary{% endif %}">{{ r.type_letter }}{% if r.type_boundary %}<sup>*</sup>{% endif %}</span>{% endif %}{% endif %}</div>
+  <div class="r" aria-hidden="true">{% if not r.missing %}<span><i class="k-in"></i>{{ r.inner_text }}</span><span class="{{ 'is-unavailable' if r.outer_missing else '' }}"><i class="k-out"></i>{{ r.outer_text }}</span>{% endif %}</div>
+</li>
+{%- endmacro %}
+
+{% macro evidence(m) -%}
+{% if m.kind == 'self_description' %}
+<p class="evidence"><span class="pill pill-e">{{ S.common.self_description }}</span><span class="evidence-help">{{ S.common.self_description_help }}</span></p>
+{% elif m.kind == 'rated_conversation' %}
+<p class="evidence"><span class="pill pill-f">{{ S.common.conversation_evidence }}</span><span class="evidence-help">{{ S.common.judges_label }}{{ colon }}{{ S.common.judges }}</span><span class="pill pill-status">{{ S.common.human_review }}</span></p>
+{% endif %}
+{%- endmacro %}
+
+{% macro foot(m) -%}
+<div class="measure-foot">
+  <p>{{ S.common.range_note }}{% if m.ax.signed %}{{ '' if lang == 'zh' else ' ' }}{{ S.common.signed_difference_note }}{% endif %}</p>
+  {% if m.kind == 'rated_conversation' %}<p>{{ S.common.human_review_help }}</p>{% endif %}
+  {% if m.ax.poles and m.boundary %}<p><span class="type-letter is-boundary" aria-hidden="true">*</span> {{ S.common.type_boundary }}</p>{% endif %}
+  {% if m.ax.poles and m.type_tie %}<p>{{ S.common.type_tie }}</p>{% endif %}
+  {% if m.ax.poles and m.type_inner_only %}<p>{{ S.common.type_inner_only }}</p>{% endif %}
+  {% for n in m.notes %}<p class="deploy-note"><span aria-hidden="true">†</span> {{ n }}</p>{% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro explain(m) -%}
+<details class="explain">
+  <summary><span class="when-closed">{{ S.common.show_explanation }}</span><span class="when-open">{{ S.common.hide_explanation }}</span>{{ chev() }}</summary>
+  <div class="explain-grid">
+    <section><h4>{{ S.common.section_meaning }}</h4><p>{{ m.text.explanation }}</p></section>
+    <section><h4>{{ S.common.section_reading }}</h4><p>{{ m.text.reading }}</p>{% if m.text.interpretation_note %}<p class="note">{{ m.text.interpretation_note }}</p>{% endif %}</section>
+    <section class="ex"><h4>{{ S.common.section_example }}</h4><p>{{ m.text.example }}</p></section>
+    <section class="ex"><h4>{{ S.common.section_everyday }}</h4><p>{{ m.text.everyday }}</p></section>
+  </div>
+  <p class="illustration-note">{{ S.common.illustration_note }}</p>
+</details>
+{%- endmacro %}
+
+{% macro key_symbols() -%}
+<span class="key-item"><i class="k-dot" aria-hidden="true"></i>{{ S.common.average }}</span>
+<span class="key-item"><i class="k-in" aria-hidden="true"></i>{{ S.common.inner_range }}</span>
+<span class="key-item"><i class="k-out" aria-hidden="true"></i>{{ S.common.outer_range }}</span>
+{%- endmacro %}

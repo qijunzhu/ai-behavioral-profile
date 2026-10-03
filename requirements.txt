@@ -1,0 +1,4 @@
+# exact versions this site is built and checked with (Python 3.13)
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+Markdown==3.8

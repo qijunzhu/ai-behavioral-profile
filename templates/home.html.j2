@@ -1,0 +1,166 @@
+{% extends "base.html.j2" %}
+{% import "macros.html.j2" as ui with context %}
+{% block title %}{{ cfg.brand }} · {{ S.home.slogan }}{% endblock %}
+{% block main %}
+<div class="wrap home-layout">
+  <aside class="toc" aria-labelledby="toc-title">
+    <div class="toc-inner">
+      <p class="toc-title" id="toc-title">{{ S.common.find_measure }}</p>
+      {% for g in groups %}
+      <p class="toc-group cat-{{ g.id }}"><span class="g-code">{{ g.id }}</span>{{ g.title }}</p>
+      <ul>{% for m in g.measures %}<li><a href="#{{ m.id }}" data-toc="{{ m.id }}"><span class="toc-code">{{ m.id }}</span><span>{{ m.text.title }}</span></a></li>{% endfor %}</ul>
+      {% endfor %}
+      <p class="toc-foot"><a href="{{ url('robustness') }}">{{ S.common.nav_robustness }}</a></p>
+    </div>
+  </aside>
+
+  <div class="home-main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">{{ S.home.slogan }}</h1>
+      {# phones get the two-sentence version; wider screens the full three paragraphs #}
+      <p class="hero-intro hero-short">{{ S.extra.home_intro_short }}</p>
+      <div class="hero-full">
+        <p class="hero-intro">{{ S.extra.home_intro_lead }}</p>
+        <p class="hero-intro">{{ S.extra.home_intro_more }}</p>
+        {% set about = S.extra.home_intro_about.split('{link}') %}
+        <p class="hero-intro">{{ about[0] }}<a href="{{ url('about') }}">{{ S.extra.home_about_link }}</a>{{ about[1] if about | length > 1 else '' }}</p>
+      </div>
+      <p class="hero-count">{{ S.common.counts | fill(models=models|length, measures=measures|length) }}</p>
+    </section>
+
+    <label class="jump" data-js-only>
+      <span>{{ S.common.find_measure }}</span>
+      <select data-jump>
+        <option value="">{{ S.common.find_measure }}</option>
+        {% for g in groups %}<optgroup label="{{ g.id }} · {{ g.title }}">{% for m in g.measures %}<option value="{{ m.id }}">{{ m.id }} · {{ m.text.title }}</option>{% endfor %}</optgroup>{% endfor %}
+      </select>
+    </label>
+
+    {# Open by default and fixed open on wide screens; phones start folded with a one-line key (site.js). #}
+    <details class="legend" open data-legend>
+      <summary class="legend-head">
+        <h2 id="legend-title">{{ S.home.legend_title }}</h2>
+        <span class="legend-hint">{{ S.home.results_hint }}</span>
+        <span class="legend-mini" aria-hidden="true"><span><i class="k-dot"></i>{{ S.common.average }}</span><span><i class="k-in"></i>{{ S.common.inner_range }}</span><span><i class="k-out"></i>{{ S.common.outer_range }}</span></span>
+        <span class="legend-chev">{{ ui.chev() }}</span>
+      </summary>
+      <ul class="legend-key">
+        <li><i class="k-dot" aria-hidden="true"></i><p><b>{{ S.common.average }}</b> {{ S.common.point_help }}</p></li>
+        <li><i class="k-in" aria-hidden="true"></i><p><b>{{ S.common.inner_range }}</b> {{ S.common.inner_help }}</p></li>
+        <li><i class="k-out" aria-hidden="true"></i><p><b>{{ S.common.outer_range }}</b> {{ S.common.outer_help }}</p></li>
+      </ul>
+      <p class="legend-note">{{ S.common.range_note }}{{ '' if lang == 'zh' else ' ' }}{{ S.common.wider_range }}{{ '' if lang == 'zh' else ' ' }}<a href="{{ url('methods', 'from=home', 'reading-results') }}" data-carry="methods" data-anchor="reading-results">{{ S.home.ranges_link }}</a></p>
+      <details class="demo">
+        <summary>{{ S.extra.see_example }}{{ ui.chev() }}</summary>
+        {% set d = demo.row %}
+        <div class="demo-body">
+          <p>{{ S.home.demo_intro }}</p>
+          <figure class="demo-fig">
+            <div class="demo-plot" aria-hidden="true"><i class="demo-base"></i>{{ ui.glyph(d) }}<span class="demo-val" style="left:{{ d.c }}%">{{ d.center_text }}</span></div>
+            <div class="demo-ticks" aria-hidden="true">{% for t in demo.ticks %}<span style="left:{{ t.pos }}%">{{ t.label }}</span>{% endfor %}</div>
+            <figcaption>{{ S.extra.zoomed_example | fill(low=demo.zoom[0], high=demo.zoom[1]) }} · {{ d.name }}</figcaption>
+          </figure>
+          <dl class="demo-values">
+            <div><dt><i class="k-dot" aria-hidden="true"></i>{{ S.common.average }}</dt><dd>{{ d.center_text }}</dd></div>
+            <div><dt><i class="k-in" aria-hidden="true"></i>{{ S.common.inner_range }}</dt><dd>{{ d.inner_text }}</dd></div>
+            <div><dt><i class="k-out" aria-hidden="true"></i>{{ S.common.outer_range }}</dt><dd>{{ d.outer_text }}</dd></div>
+          </dl>
+          <p>{{ S.home.demo_explanation }}</p>
+        </div>
+      </details>
+    </details>
+
+    <section class="controls" aria-labelledby="results-title">
+      <h2 id="results-title" class="controls-title">{{ S.home.results_title }}</h2>
+      <div class="controls-row">
+        <label class="ctl" data-js-only><span>{{ S.common.highlight_model }}</span>
+          <select data-highlight>
+            <option value="">{{ S.explore.choose_model }}</option>
+            {% for m in models %}<option value="{{ m.id }}">{{ m.name }}</option>{% endfor %}
+          </select>
+        </label>
+        <button type="button" class="btn-text" data-clear-highlight hidden>{{ S.common.clear_highlight }}</button>
+        <label class="ctl" data-js-only><span>{{ S.common.model_order }}</span>
+          <select data-sort>
+            <option value="">{{ S.common.sort_default }}</option>
+            <option value="high">{{ S.common.sort_high }}</option>
+            <option value="low">{{ S.common.sort_low }}</option>
+          </select>
+        </label>
+        <div class="ctl-buttons" data-js-only>
+          <button type="button" class="btn-text" data-expand="all">{{ S.common.expand_all }}</button>
+          <button type="button" class="btn-text" data-expand="none">{{ S.common.collapse_all }}</button>
+        </div>
+        <div class="ctl-links">
+          <a class="btn-pill" href="{{ url('explore') }}" data-profile-link data-base="{{ url('explore') }}">{{ S.common.open_profile }}</a>
+          <a class="btn-pill" href="{{ url('explore') }}">{{ S.common.compare_models }}</a>
+        </div>
+      </div>
+      <p class="status" role="status" aria-live="polite" data-hl-status data-template="{{ S.extra.highlighted_status }}" data-row-label="{{ S.extra.highlighted_row }}"></p>
+    </section>
+
+    <div class="results" aria-label="{{ S.extra.results_region }}">
+    {% for g in groups %}
+      <section class="group cat-{{ g.id }}" id="group-{{ g.id }}" aria-labelledby="g-{{ g.id }}">
+        <header class="group-head">
+          <h2 id="g-{{ g.id }}"><span class="g-code">{{ g.id }}</span>{{ g.title }}</h2>
+          <p>{{ g.description }}</p>
+        </header>
+        {% if g.blocks %}
+          {% for b in g.blocks %}
+          <h3 class="block-title">{{ b.title }}</h3>
+          {% for m in b.measures %}{{ measure_card(m, g) }}{% endfor %}
+          {% endfor %}
+        {% else %}
+          {% for m in g.measures %}{{ measure_card(m, g) }}{% endfor %}
+        {% endif %}
+      </section>
+    {% endfor %}
+    </div>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">{{ S.common.source_link }}</h2>
+      <dl class="facts">
+        <div><dt>{{ S.common.release_label }}</dt><dd class="mono">{{ results.release_id }}</dd></div>
+        <div><dt>{{ S.extra.research_date }}</dt><dd>{{ S.about.update_research }}</dd></div>
+        <div><dt>{{ S.materials.title }}</dt><dd>{{ S.materials.preparing }}</dd></div>
+      </dl>
+      <p class="sources-links"><a href="{{ url('methods', '', 'versions') }}">{{ S.versions.title }}</a> · <a href="{{ url('methods', '', 'materials') }}">{{ S.materials.title }}</a> · <a href="{{ url('robustness') }}">{{ S.robustness.title }}</a></p>
+    </section>
+  </div>
+</div>
+{% endblock %}
+
+{% macro measure_card(m, g) -%}
+<details class="measure cat-{{ m.cat }}" id="{{ m.id }}" data-measure="{{ m.id }}"{% if m.id == 'A1' %} open{% endif %}>
+  <summary>
+    <span class="code">{{ m.id }}</span>
+    <span class="head">
+      <span class="title" role="heading" aria-level="3">{{ m.text.title }}</span>
+      <span class="question">{{ m.text.question }}</span>
+    </span>
+    <span class="peek" aria-hidden="true">
+      <span class="peek-label">{{ S.extra.models_count | fill(count=m.rows|length) }}</span>
+      <span class="peek-fig">{{ m.mini }}<span class="peek-ax"><i>{{ m.ax.ticks[0].label }}</i><i>{{ m.ax.ticks[-1].label }}</i></span></span>
+    </span>
+    <span class="chev">{{ ui.chev() }}</span>
+  </summary>
+  <div class="measure-body">
+    <div class="measure-meta">
+      <p class="axis-label">{{ m.text.axis_label }}</p>
+      {{ ui.evidence(m) }}
+    </div>
+    <div class="chart">
+      {{ ui.axis_head(m) }}
+      <ol class="rows">{% for r in m.rows %}{{ ui.row(m, r, loop.index0) }}{% endfor %}</ol>
+    </div>
+    {{ ui.foot(m) }}
+    <div class="measure-end">
+      {{ ui.explain(m) }}
+      <p class="measure-links"><a class="methods-link" href="{{ url('methods', 'from=home', m.id) }}" data-carry="methods" data-anchor="{{ m.id }}">{{ S.common.methods_link }}<span aria-hidden="true"> →</span></a></p>
+    </div>
+  </div>
+</details>
+{%- endmacro %}
+
+{% block scripts %}{% endblock %}

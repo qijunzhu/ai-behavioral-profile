@@ -1,0 +1,81 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ S.ratings.title }} · {{ cfg.brand }}{% endblock %}
+{% block main %}
+{% set T = S.ratings %}{% set I = S.ideas %}
+<div class="wrap page-narrow ratings">
+  <header class="page-head">
+    <h1>{{ T.title }}</h1>
+  </header>
+
+  {% if ideas %}
+  {# Visitor experiences and test ideas. live posts to the configured receiver; preview shows the form
+     with submitting switched off; closed shows only the not-open notice. Visitor text is never written into the page. #}
+  <section class="ideas" aria-labelledby="ideas-title" data-ideas data-mode="{{ ideas.mode }}"{% if ideas.endpoint %} data-endpoint="{{ ideas.endpoint }}"{% endif %}
+           data-revision="{{ ideas.revision }}" data-timeout="{{ ideas.timeout }}">
+    <h2 id="ideas-title">{{ I.title }}</h2>
+    <p class="ideas-question">{{ I.intro }}</p>
+    <p>{{ I.examples }}</p>
+    <p>{{ I.next_steps }}</p>
+    {% if ideas.mode == 'closed' %}
+    <div class="ideas-closed">
+      <p class="ideas-closed-title">{{ I.unavailable_title }}</p>
+      <p>{{ I.unavailable_body }}</p>
+    </div>
+    {% else %}
+    <p class="actions"><button type="button" class="btn-pill btn-strong" data-idea-open aria-controls="share-idea" aria-expanded="true">{{ I.entry_label }}</button></p>
+    <section class="idea-panel" id="share-idea" aria-labelledby="share-idea-title" data-idea-panel>
+      <h3 id="share-idea-title" tabindex="-1">{{ I.form_title }}</h3>
+      <p class="idea-intro">{{ I.form_intro }}</p>
+      {% if ideas.mode == 'preview' %}<p class="notice idea-preview" data-idea-preview>{{ I.preview_note }}</p>{% endif %}
+      {% if ideas.mode == 'live' %}<noscript><p class="notice">{{ I.script_required }}</p></noscript>{% endif %}
+      <form class="idea-form" data-idea-form method="post" novalidate>
+        {% for f in (('scenario', I.scenario_label, I.required, I.scenario_hint, I.scenario_placeholder, 7), ('focus', I.focus_label, I.optional, I.focus_hint, I.focus_placeholder, 3)) %}
+        {% set name, label, tag, hint, placeholder, rows = f %}
+        <div class="field" data-field="{{ name }}">
+          <label for="idea-{{ name }}">{{ label }} <span class="field-tag">{{ tag }}</span></label>
+          <p class="field-hint" id="idea-{{ name }}-hint">{{ hint }}</p>
+          <textarea id="idea-{{ name }}" name="{{ name }}" rows="{{ rows }}" data-limit="{{ ideas.limits[name] }}" placeholder="{{ placeholder }}"
+                    aria-describedby="idea-{{ name }}-hint idea-{{ name }}-count idea-{{ name }}-error"{% if name == 'scenario' %} aria-required="true"{% endif %}></textarea>
+          <p class="field-meta">
+            <span class="field-error" id="idea-{{ name }}-error" hidden></span>
+            <span class="field-count" id="idea-{{ name }}-count">{{ I.counter | fill(count=0, limit=ideas.limits[name]) }}</span>
+          </p>
+        </div>
+        {% endfor %}
+        <p class="idea-notes">{{ I.use_note }}{{ '' if lang == 'zh' else ' ' }}{{ I.privacy_note }}</p>
+        <p class="idea-submit">
+          {% if ideas.mode == 'live' %}<button type="submit" class="btn-pill btn-strong" data-idea-submit disabled>{{ I.submit }}</button>
+          {% else %}<button type="submit" class="btn-pill" data-idea-submit disabled>{{ I.preview_submit }}</button>{% endif %}
+        </p>
+        <p class="idea-status" role="status" data-idea-status></p>
+        <p class="idea-alert" role="alert" data-idea-alert></p>
+      </form>
+      <div class="idea-done" data-idea-done hidden>
+        <h3 tabindex="-1" data-idea-done-title>{{ I.success_title }}</h3>
+        <p>{{ I.success_body }}</p>
+        <p class="actions">
+          <button type="button" class="btn-pill btn-strong" data-idea-another>{{ I.another }}</button>
+          <a class="btn-pill" href="{{ url('home') }}">{{ I.back }}</a>
+        </p>
+      </div>
+      <script type="application/json" data-idea-text>{{ ideas.text | safe }}</script>
+    </section>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <section class="status-card" aria-labelledby="rate-status">
+    <p class="status-pill"><span class="dot" aria-hidden="true"></span><span id="rate-status">{{ T.status }}</span></p>
+    <p class="lead">{{ T.intro }}</p>
+    <ul class="plain-list">
+      <li>{{ T.separate }}</li>
+      <li>{{ T.current }}</li>
+      <li>{{ T.voluntary }}</li>
+    </ul>
+    <p class="actions">
+      <a class="btn-pill btn-strong" href="{{ url('home') }}">{{ T.back }}</a>
+      <a class="btn-pill" href="{{ url('methods', 'from=ratings', 'F0') }}">{{ T.methods }}</a>
+    </p>
+  </section>
+</div>
+{% endblock %}

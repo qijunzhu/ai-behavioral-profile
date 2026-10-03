@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use AI Behavioral Profile, please cite it as below. When citing a specific result, please also give the model, the measure and the results version shown on the site."
+title: "AI Behavioral Profile"
+type: software
+authors:
+  - family-names: "Zhu"
+    given-names: "Qijun"
+    affiliation: "George Mason University"
+license: MIT
+abstract: "A bilingual (English and Chinese) website that compares how AI models make choices, share, cooperate and respond to people's needs, beyond capability scores. It shows saved research results for eight models on 30 measures in six categories, each with an average and two observed ranges, plus separate stability checks, and documents every task, scoring formula and worked example on its Methods page."
+keywords:
+  - large language models
+  - AI behavior
+  - economic games
+  - behavioral profile
+  - robustness

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · {{ cfg.brand }}</title>
+<meta name="color-scheme" content="light dark">
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fbfaf7;color:#24221f;font:16px/1.6 system-ui,sans-serif}@media(prefers-color-scheme:dark){:root:not([data-theme=light]) body{background:#111a27;color:#ecede9}}:root[data-theme=dark] body{background:#111a27;color:#ecede9}section{margin:2rem;text-align:center}h1,h2{margin:0 0 .5rem;font:500 2rem/1.2 Georgia,serif}a{color:inherit}</style>
+<script>try{var t=localStorage.getItem('bp-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body>
+<main>
+{# one page heading: with the language unknown both messages show, the second as a sub-heading #}
+{% for l in langs %}
+<section lang="{{ 'zh-CN' if l == 'zh' else 'en' }}" data-lang-block="{{ l }}">
+  {% if loop.first %}<h1>{{ S[l].extra.page_not_found }}</h1>{% else %}<h2>{{ S[l].extra.page_not_found }}</h2>{% endif %}
+  <p><a href="/{{ l }}/">{{ S[l].extra.go_home }}</a></p>
+</section>
+{% endfor %}
+</main>
+<script>
+(function(){var l=/^\/zh(\/|$)/.test(location.pathname)?'zh':(/^\/en(\/|$)/.test(location.pathname)?'en':null);
+if(!l){try{l=localStorage.getItem('bp-lang');}catch(e){}}
+if(l==='en'||l==='zh'){document.documentElement.lang=l==='zh'?'zh-CN':'en';document.querySelectorAll('[data-lang-block]').forEach(function(s){if(s.getAttribute('data-lang-block')!==l)s.hidden=true;else{var h=s.querySelector('h2');if(h)h.setAttribute('aria-level','1');}});}})();
+</script>
+</body>
+</html>

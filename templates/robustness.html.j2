@@ -1,0 +1,282 @@
+{% extends "base.html.j2" %}
+{% import "macros.html.j2" as ui with context %}
+{% block title %}{{ S.robustness.title }} · {{ cfg.brand }}{% endblock %}
+
+{# One reading per side: 30 answer cells for the two-choice task, a $0–$10 bar for amounts. #}
+{% macro side(s, label, branch) -%}
+<div class="gc-side">
+  <span class="gc-when">{{ label }}</span>
+  <span class="gc-read">
+    {%- if branch == 'binary' %}{% if s.n %}<span class="strip" style="--n:{{ s.n }};--on:{{ s.equal }}" aria-hidden="true"></span>{% endif %}
+    {%- elif s.bar is not none %}<span class="abar" aria-hidden="true"><i style="width:{{ s.bar }}%"></i></span>{% endif %}
+    <span class="gc-val">{{ s.text }}</span>
+  </span>
+</div>
+{%- endmacro %}
+
+{% macro compare(c) -%}
+<div class="gc-compare">{{ side(c.before, S.extra.gr_original, c.branch) }}{{ side(c.after, S.extra.gr_changed, c.branch) }}</div>
+{%- endmacro %}
+
+{% macro ci_chart(mt) -%}
+<div class="ci" aria-hidden="true">
+  <i class="ci-zero" style="left:{{ mt.zero }}%"></i>
+  {% if mt.ci %}<i class="ci-line{% if mt.cw < 0.35 %} is-zero{% endif %}" style="left:{{ mt.cl }}%;width:{{ mt.cw }}%"></i>{% endif %}
+  {% if mt.p is not none %}<i class="ci-dot" style="left:{{ mt.p }}%"></i>{% endif %}
+</div>
+{% set lo, hi = mt.dom %}
+<div class="ci-ticks" aria-hidden="true"><span class="t-lo">{{ ('−' ~ (-lo)|int) if lo < 0 else lo|int }}</span>{% if lo < 0 < hi %}<span class="t-0" style="left:{{ mt.zero }}%">0</span>{% endif %}<span class="t-hi">{{ ('+' if lo < 0 else '') ~ hi|int }}</span></div>
+{%- endmacro %}
+
+{# The saved change and its 95% interval, exactly as recorded. #}
+{% macro change(c) -%}
+<div class="gc-change">
+  {% if c.share %}<p class="gc-share">{{ c.share }}</p>{% endif %}
+  {% for mt in c.metrics %}
+  <div class="gr-metric">
+    <p class="gr-mname">{{ mt.label }} · {{ mt.unit }}</p>
+    <p class="gr-val"><span class="v"{% if mt.small %} title="{{ mt.exact }}"{% endif %}>{{ mt.value_text }}</span><span class="ci-text">[{{ S.common.range_template | fill(low=mt.low_text, high=mt.high_text) }}]</span></p>
+    {{ ci_chart(mt) }}
+  </div>
+  {% endfor %}
+  {% for h in c.help %}<p class="fine">{{ h }}</p>{% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro dist_table(c) -%}
+{% set R = S.robustness %}
+<div class="table-wrap">
+<table class="dist-table{% if c.branch == 'binary' %} is-binary{% endif %}">
+  <caption>{{ R.answer_count }}{% if c.branch == 'open_ended' %} · {{ R.amount_given }}{% endif %}</caption>
+  <thead><tr><th scope="col"></th>{% for k in c.answer_keys %}<th scope="col">{% if c.branch == 'open_ended' %}${{ k }}{% else %}{{ R[k] }}{% endif %}</th>{% endfor %}</tr></thead>
+  <tbody>
+    {% for label, d, cls in [(S.extra.gr_original, c.ref_dist, ''), (S.extra.gr_changed, c.dist, ' is-variant')] %}
+    <tr><th scope="row">{{ label }}</th>{% for k in c.answer_keys %}{% set n = d[k] if k in d else none %}<td>{% if n is not none %}<span class="bar{{ cls }}" style="height:{{ (n / 30 * 36) | round(1) }}px"></span><span class="n">{{ n }}</span>{% else %}<span class="n">—</span>{% endif %}</td>{% endfor %}</tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{%- endmacro %}
+
+{# A check whose answers changed: before → after up front, the change and the counts on request. #}
+{% macro card(c) -%}
+<article class="gc" data-condition="{{ c.id }}" data-state="{{ c.state }}" data-evidence="{{ 'secondary' if c.secondary else 'core' }}">
+  <h5 class="gc-title">{{ c.label }}</h5>
+  {{ compare(c) }}
+  <details class="gc-more"><summary>{{ S.extra.gr_see_change }}{{ ui.chev() }}</summary>{{ change(c) }}</details>
+  <details class="gc-more"><summary>{{ S.extra.gr_see_counts }}{{ ui.chev() }}</summary>{{ dist_table(c) }}</details>
+</article>
+{%- endmacro %}
+
+{# A matching (or incomplete) check inside the grouped list: its own full record behind one toggle. #}
+{% macro item(c) -%}
+<li class="gl-item" data-condition="{{ c.id }}" data-state="{{ c.state }}" data-evidence="{{ 'secondary' if c.secondary else 'core' }}">
+  <details>
+    <summary><span>{{ c.label }}</span>{{ ui.chev() }}</summary>
+    <div class="gl-body">{{ compare(c) }}{{ change(c) }}{{ dist_table(c) }}</div>
+  </details>
+</li>
+{%- endmacro %}
+
+{# Checks of one state, per task, with the six wording checks gathered under one label. #}
+{% macro grouped(m, key, render, level=4) -%}
+{% for b in m.branches if b[key] %}
+<h{{ level }} class="gm-branch">{{ b.title }}</h{{ level }}>
+{% set main = b[key] | rejectattr('secondary') | list %}{% set extra = b[key] | selectattr('secondary') | list %}
+{% if render == 'card' %}
+  {% for c in main %}{{ card(c) }}{% endfor %}
+  {% if extra %}<p class="gm-group">{{ S.extra.gr_wording }}</p>{% for c in extra %}{{ card(c) }}{% endfor %}{% endif %}
+{% else %}
+  {% if main %}<ul class="gl">{% for c in main %}{{ item(c) }}{% endfor %}</ul>{% endif %}
+  {% if extra %}<p class="gm-group">{{ S.extra.gr_wording }}</p><ul class="gl">{% for c in extra %}{{ item(c) }}{% endfor %}</ul>{% endif %}
+{% endif %}
+{% endfor %}
+{%- endmacro %}
+
+{% block main %}
+{% set R = S.robustness %}{% set E = S.extra %}{% set F = S.gr_format %}
+<div class="wrap page-narrow robustness">
+  <header class="page-head">
+    <p class="kicker">{{ R.title }}</p>
+    <h1>{{ E.gr_title }}</h1>
+    <p class="page-intro">{{ E.gr_intro }}</p>
+  </header>
+
+  <section class="gr-how" aria-labelledby="gr-how-h">
+    <h2 id="gr-how-h">{{ E.gr_how_title }}</h2>
+    <p>{{ E.gr_how_ways }}</p>
+    <dl class="gr-ways">
+      <div><dt>{{ E.gr_branch_open }}</dt><dd>{{ R.open_intro }}</dd></div>
+      <div><dt>{{ E.gr_branch_binary }}</dt><dd>{{ E.gr_how_binary }}</dd></div>
+    </dl>
+    <p>{{ E.gr_how_versions }}</p>
+    <p class="fine">{{ E.gr_scope_clear }}</p>
+  </section>
+
+  <section class="gr-example" aria-labelledby="gr-ex-h">
+    <div class="gr-example-copy">
+      <p class="gr-example-label">{{ E.gr_example_label }}</p>
+      <h2 id="gr-ex-h">{{ E.gr_example_title }}</h2>
+      <p>{{ E.gr_example_text }}</p>
+    </div>
+    {% if gr.example %}
+    <figure class="gr-example-fig" data-gr-example="{{ gr.example.check.id }}">
+      {% set cap = E.gr_example_result_title.split('{model}') %}<figcaption>{{ cap[0] }}<span class="as-is">{{ gr.example.model }}</span>{{ cap[1] if cap|length > 1 else '' }}</figcaption>
+      {{ compare(gr.example.check) }}
+      <p class="gr-example-result">{{ E.gr_example_result }}</p>
+    </figure>
+    {% endif %}
+  </section>
+
+  <p class="notice" data-gr-unknown role="status" hidden>{{ S.explore.model_unavailable }}</p>
+
+  <section class="gr-overview" aria-labelledby="gr-ov-h">
+    <header class="gr-overview-head">
+      <h2 id="gr-ov-h">{{ E.gr_overview_title }}</h2>
+      <p class="gr-key">{{ E.gr_overview_key }}</p>
+    </header>
+    <div class="gm-head" aria-hidden="true">
+      <span>{{ E.col_model }}</span>
+      {% for h in gr.heads %}<span>{{ h.title }}{% if h.count %}<small>{{ h.count }}</small>{% endif %}</span>{% endfor %}
+    </div>
+    {% for m in gr.models %}
+    <details class="gm{% if m.all_same %} is-all-same{% endif %}" id="gr-{{ m.id }}" data-gr-model="{{ m.id }}">
+      <summary>
+        <span class="gm-name"><b>{{ m.name }}</b><span class="gm-prov">{{ m.provider }}</span></span>
+        {% for b in m.branches %}
+        <span class="gm-cell" data-branch="{{ b.id }}">
+          <span class="gm-label">{{ b.title }}</span>
+          <span class="sq-row" aria-hidden="true">{% for st in b.states %}<i class="sq is-{{ st }}"></i>{% endfor %}</span>
+          <span class="gm-text">{{ b.cell }}</span>
+        </span>
+        {% endfor %}
+        <span class="gm-more-hint"><span class="gm-details">{{ E.gr_details }}</span>{{ ui.chev() }}</span>
+      </summary>
+      <div class="gm-body">
+      {% if m.unavailable %}
+        <p class="notice">{{ R.load_error }}</p>
+      {% elif m.all_same %}
+        <p class="gm-summary">{{ m.all_same_text }}</p>
+        <details class="gm-list"><summary>{{ E.gr_view_all }}{{ ui.chev() }}</summary>{{ grouped(m, 'matching', 'item', 3) }}</details>
+      {% else %}
+        {% if m.different %}
+        <h3 class="gm-h">{{ m.diff_heading }}</h3>
+        {{ grouped(m, 'changed', 'card') }}
+        {% endif %}
+        {% if m.missing %}
+        <h3 class="gm-h">{{ m.missing_heading }}</h3>
+        <ul class="gl">{% for b in m.branches %}{% for c in b.incomplete %}{{ item(c) }}{% endfor %}{% endfor %}</ul>
+        {% endif %}
+        {% if m.same %}
+        <p class="gm-summary">{{ m.other_same_text }}</p>
+        <details class="gm-list"><summary>{{ E.gr_see_these }}{{ ui.chev() }}</summary>{{ grouped(m, 'matching', 'item') }}</details>
+        {% endif %}
+      {% endif %}
+      </div>
+    </details>
+    {% endfor %}
+    <p class="gr-key gr-key-ci"><span class="key-item"><i class="k-ci" aria-hidden="true"></i><b>{{ R.interval }}</b></span> <span>{{ R.interval_help }}</span></p>
+  </section>
+
+  {% if fmt %}
+  {# Answer format, beside the choice changes above: one row per model in the saved order (not ranked), opening to its two question types #}
+  <section class="gr-format" id="answer-format" aria-labelledby="gr-fmt-h">
+    <header class="gr-overview-head">
+      <h2 id="gr-fmt-h">{{ F.title }}</h2>
+    </header>
+    {% if fmt.intro %}<p class="gr-format-intro">{{ fmt.intro }}</p>{% endif %}
+    <div class="fm-head" aria-hidden="true"><span>{{ E.col_model }}</span><span>{{ F.compliant }}</span></div>
+    {% for r in fmt.rows %}
+    {% if r.branches %}
+    <details class="fm" data-gr-format="{{ r.id }}">
+      <summary>
+        <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span></span>
+        <span class="fm-bar" aria-hidden="true"><i style="width:{{ r.width }}%"></i></span>
+        <span class="fm-count" aria-hidden="true">{{ r.count }}</span>
+        <span class="sr">{{ r.sr }}</span>
+        <span class="gm-more-hint"><span class="gm-details">{{ F.details }}</span>{{ ui.chev() }}</span>
+      </summary>
+      <div class="fm-body">
+        {% for x in r.branches %}
+        <div class="fm-type" data-branch="{{ x.id }}">
+          <p class="fm-type-name"><b>{{ x.title }}</b><span>{{ x.help }}</span></p>
+          <span class="fm-bar" aria-hidden="true"><i style="width:{{ x.width }}%"></i></span>
+          <span class="fm-count">{{ x.count }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </details>
+    {% else %}
+    <div class="fm fm-plain" data-gr-format="{{ r.id }}">
+      <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span></span>
+      {% if r.unavailable %}<span class="fm-text">{{ r.text }}</span>
+      {% else %}<span class="fm-bar" aria-hidden="true"><i style="width:{{ r.width }}%"></i></span><span class="fm-count" aria-hidden="true">{{ r.count }}</span><span class="sr">{{ r.sr }}</span>{% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% if fmt.details %}<p class="fine fm-denominators">{{ F.denominators }}</p>{% endif %}
+    <p class="fm-note">{{ F.choice_note }}</p>
+    {% if fmt.examples %}
+    <details class="fm-examples">
+      <summary>{{ F.examples_title }}{{ ui.chev() }}</summary>
+      <div class="fm-ex-body">
+        <p>{{ F.examples_intro }}</p>
+        <div class="fm-ex-grid">
+        {% for e in fmt.examples %}
+          <article class="fm-ex" data-format-example="{{ e.id }}">
+            <h3>{{ e.title }}</h3>
+            <p class="fm-ex-who">{{ e.model }} · {{ e.condition }}</p>
+            <dl>
+              <div><dt>{{ F.original_instruction }}</dt><dd><pre class="fm-literal" lang="{{ e.lang }}">{{ e.instruction }}</pre></dd></div>
+              <div><dt>{{ e.reply_label }}</dt><dd><pre class="fm-literal" lang="{{ e.lang }}">{{ e.reply }}</pre></dd></div>
+              {% if e.translation %}<div><dt>{{ F.translation }}</dt><dd>{{ e.translation }}</dd></div>{% endif %}
+            </dl>
+            <p>{{ e.explanation }}</p>
+          </article>
+        {% endfor %}
+        </div>
+      </div>
+    </details>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <details class="gr-records" id="records" data-gr-records>
+    <summary><h2>{{ F.records_title if fmt else E.gr_records }}</h2>{{ ui.chev() }}</summary>
+    <div class="gr-records-body">
+      {% if gr.coverage_text %}<p>{{ gr.coverage_text }}</p>{% endif %}
+      {% if not fmt %}<p>{{ R.format_help }}</p>{% endif %}
+      <div class="table-wrap">
+      <table class="gr-rec">
+        <thead><tr>
+          <th scope="col">{{ E.col_model }}</th>
+          {% if not fmt %}<th scope="col">{{ R.format_title }}</th>{% endif %}
+          {% if not gr.coverage_text %}<th scope="col">{{ R.complete }}</th>{% endif %}
+          <th scope="col">{{ S.versions.model_id }}</th>
+          <th scope="col">{{ S.versions.reasoning }}</th>
+          <th scope="col">{{ E.max_output }}</th>
+          <th scope="col">{{ E.transport }}</th>
+          <th scope="col">{{ S.versions.recorded_date }}</th>
+        </tr></thead>
+        <tbody>
+        {% for r in gr.records %}
+          <tr data-gr-record="{{ r.id }}">
+            <th scope="row">{{ r.name }}</th>
+            {% if not fmt %}<td data-label="{{ R.format_title }}">{% if r.format %}<span class="fmt-count" aria-hidden="true">{{ r.format }}</span><span class="sr">{{ r.format_sr }}</span>{% else %}{{ r.format_sr }}{% endif %}</td>{% endif %}
+            {% if not gr.coverage_text %}<td data-label="{{ R.complete }}">{{ r.coverage }}</td>{% endif %}
+            <td data-label="{{ S.versions.model_id }}" class="mono">{{ r.model_id or '—' }}</td>
+            <td data-label="{{ S.versions.reasoning }}">{{ r.reasoning or '—' }}</td>
+            <td data-label="{{ E.max_output }}">{{ r.max_output or '—' }}</td>
+            <td data-label="{{ E.transport }}">{{ r.transport or '—' }}</td>
+            <td data-label="{{ S.versions.recorded_date }}">{{ r.dates or '—' }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      <p class="fine">{{ S.versions.date_help }}</p>
+      <p><a href="{{ url('methods', 'from=robustness', 'general-robustness') }}" data-carry="methods" data-anchor="general-robustness">{{ R.methods }}<span aria-hidden="true"> →</span></a></p>
+    </div>
+  </details>
+</div>
+{% endblock %}

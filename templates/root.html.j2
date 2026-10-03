@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ cfg.brand }}</title>
+<meta name="color-scheme" content="light dark">
+{% for l in langs %}<link rel="alternate" hreflang="{{ l.html_lang }}" href="{{ l.code }}/">
+{% endfor %}
+<script>
+/* Open the home page in the saved language, else the browser's language. Keeps any query or anchor. */
+(function(){var l=null;try{l=localStorage.getItem('bp-lang');}catch(e){}
+if(l!=='en'&&l!=='zh'){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';l=/^zh/i.test(n)?'zh':'{{ cfg.fallback_language }}';}
+location.replace(l+'/'+location.search+location.hash);})();
+</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fbfaf7;color:#24221f;font:16px/1.6 system-ui,sans-serif}@media(prefers-color-scheme:dark){body{background:#111a27;color:#ecede9}}a{color:inherit;margin:0 .6em}</style>
+</head>
+<body>
+<p>{% for l in langs %}<a href="{{ l.code }}/" lang="{{ l.html_lang }}">{{ l.name }}</a>{% endfor %}</p>
+</body>
+</html>

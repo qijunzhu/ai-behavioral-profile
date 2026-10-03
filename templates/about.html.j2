@@ -1,0 +1,37 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ S.about.title }} · {{ cfg.brand }}{% endblock %}
+{% block main %}
+{% set A = S.about %}
+<div class="wrap page-narrow about">
+  <header class="page-head">
+    <p class="kicker">{{ A.title }}</p>
+    <h1 class="slogan">{{ A.slogan }}</h1>
+  </header>
+  <div class="about-story">{{ S.extra.about_story | story }}</div>
+  <div class="about-grid">
+    {# each card: title, a one-line takeaway, then the explanation #}
+    <section class="about-item"><h2>{{ A.profiles_title }}</h2><p class="about-lead">{{ A.profiles_lead }}</p><p>{{ A.profiles }}</p></section>
+    <section class="about-item"><h2>{{ A.explanations_title }}</h2><p class="about-lead">{{ A.explanations_lead }}</p><p>{{ A.explanations }}</p></section>
+    <section class="about-item"><h2>{{ A.research_title }}</h2><p class="about-lead">{{ A.research_lead }}</p><p>{{ A.research }}</p>
+      <p><a href="{{ url('methods', 'from=about') }}">{{ A.methods }}<span aria-hidden="true"> →</span></a></p></section>
+  </div>
+  <section class="about-updates" aria-labelledby="upd-h">
+    <h2 id="upd-h">{{ A.updates_title }}</h2>
+    <ol class="timeline"><li><p>{{ A.update_research }}</p><p class="fine">{{ A.update_meaning }}</p></li></ol>
+  </section>
+  {% if cfg.byline %}<section class="about-item"><h2>{{ A.team_title }}</h2><p>{{ cfg.byline }}</p></section>{% endif %}
+  {% if cfg.contact %}
+  <section class="about-item" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">{{ A.contact_title }}</h2>
+    <p>{{ A.contact_help }}</p>
+    <p><a class="contact-email" href="mailto:{{ cfg.contact }}">{{ cfg.contact }}</a></p>
+  </section>
+  {% endif %}
+  <section class="about-item" aria-labelledby="cite-h">
+    <h2 id="cite-h">{{ A.cite_title }}</h2>
+    <p>{{ A.cite_help }}</p>
+    {% if cfg.citation %}<p class="citation">{{ cfg.citation }}</p>{% endif %}
+    <dl class="facts"><div><dt>{{ S.common.release_label }}</dt><dd class="mono">{{ results.release_id }}</dd></div></dl>
+  </section>
+</div>
+{% endblock %}

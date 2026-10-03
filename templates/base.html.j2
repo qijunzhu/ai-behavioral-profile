@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="{{ html_lang }}" data-page="{{ page }}" data-lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ cfg.brand }}{% endblock %}</title>
+<meta name="description" content="{{ S.extra.get('description_' ~ page) or S.extra.home_intro_lead }}">
+<meta name="color-scheme" content="light dark">
+{% for l in langs %}<link rel="alternate" hreflang="{{ l.html_lang }}" href="{{ l.href }}">
+{% endfor %}
+<link rel="icon" href="{{ base }}assets/favicon.svg" type="image/svg+xml">
+{# the fonts are served with the site (assets/fonts.css), not from an outside service #}
+<link rel="preload" href="{{ base }}assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+{% if lang == 'zh' %}<link rel="preload" href="{{ base }}assets/fonts/noto-sans-sc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ base }}assets/fonts-zh.css">
+{% endif %}<link rel="stylesheet" href="{{ base }}assets/fonts.css">
+<link rel="stylesheet" href="{{ base }}assets/site.css">
+{% block head %}{% endblock %}
+<script>
+/* Apply a saved light/dark choice before the first paint. */
+document.documentElement.classList.add('js');
+(function(){try{var t=localStorage.getItem('bp-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);localStorage.setItem('bp-lang','{{ lang }}');}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">{{ S.extra.skip_to_content }}</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="{{ url('home') }}">
+      <svg class="brand-mark" viewBox="0 0 30 16" width="30" height="16" aria-hidden="true" focusable="false"><path d="M2 3v10M28 3v10M2 8h26" stroke="currentColor" stroke-width="2" fill="none"/><rect x="9" y="3.5" width="14" height="9" rx="4.5" fill="currentColor"/><circle cx="18" cy="8" r="3.3" class="brand-dot" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span>{{ cfg.brand }}</span>
+    </a>
+    <nav class="site-nav" aria-label="{{ S.extra.site_navigation }}">
+      <ul>
+      {% for n in nav %}<li><a href="{{ n.href }}"{% if n.current %} aria-current="page"{% endif %}>{{ n.label }}</a></li>
+      {% endfor %}
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="tool theme-toggle" data-theme-toggle data-js-only
+        data-label-light="{{ S.common.theme_light }}" data-label-dark="{{ S.common.theme_dark }}"
+        data-switch-light="{{ S.common.theme_switch_light }}" data-switch-dark="{{ S.common.theme_switch_dark }}"
+        aria-label="{{ S.common.theme_switch_dark }}">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path class="i-moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><g class="i-sun" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></g></svg>
+        <span data-theme-text>{{ S.common.theme_dark }}</span>
+      </button>
+      <div class="lang-switch" role="group" aria-label="{{ S.common.language_label }}">
+        {% for l in langs %}<a href="{{ l.href }}" lang="{{ l.html_lang }}" hreflang="{{ l.html_lang }}" data-lang-link="{{ l.code }}"{% if l.current %} aria-current="true"{% endif %}>{{ l.name }}</a>{% endfor %}
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+{% block main %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <p class="footer-brand">{{ cfg.brand }}</p>
+      <p class="footer-slogan">{{ S.home.slogan }}</p>
+    </div>
+    <div class="footer-meta">
+      <p>{{ S.common.release_label }}{{ colon }}<span class="mono">{{ results.release_id }}</span>{% if fixture %} · TEST FIXTURE{% endif %}</p>
+      <p>{{ S.common.source_link }}{{ colon }}<a href="{{ url('methods', '', 'materials') }}">{{ S.materials.preparing }}</a></p>
+      <p><a href="{{ url('methods') }}">{{ S.common.nav_methods }}</a> · <a href="{{ url('about') }}">{{ S.common.nav_about }}</a>{% if cfg.contact %} · <a href="{{ url('about', '', 'contact') }}">{{ S.about.contact_title }}</a>{% endif %}</p>
+    </div>
+  </div>
+</footer>
+<script src="{{ base }}assets/site.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

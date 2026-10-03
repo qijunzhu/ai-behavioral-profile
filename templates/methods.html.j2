@@ -1,0 +1,131 @@
+{% extends "base.html.j2" %}
+{% import "macros.html.j2" as ui with context %}
+{% block title %}{{ mv.title }} · {{ cfg.brand }}{% endblock %}
+{% block head %}
+{# the four KaTeX faces this page uses, fetched early: one arriving part-way through the typesetting would reflow the formulas already set #}
+{% for f in ['Main-Regular', 'Math-Italic', 'Size1-Regular', 'Size2-Regular'] %}<link rel="preload" href="{{ base }}assets/katex/fonts/KaTeX_{{ f }}.woff2" as="font" type="font/woff2" crossorigin>
+{% endfor %}<link rel="stylesheet" href="{{ base }}assets/{{ katex.css }}">
+<script defer src="{{ base }}assets/{{ katex.js }}"></script>
+<script defer src="{{ base }}assets/{{ katex.auto_render }}"></script>
+{% endblock %}
+
+{# Section codes (M01, A0, GR3, R01 …) stay visible: the text refers to sections by these codes. #}
+{% macro code(c) %}<span class="m-code">{{ c }}</span>{% endmacro %}
+
+{% block main %}
+<div class="wrap methods-layout">
+  <aside class="toc toc-methods" aria-labelledby="mtoc-title">
+    <div class="toc-inner">
+      <p class="toc-title" id="mtoc-title">{{ S.extra.on_this_page }}</p>
+      <ul>
+        {% for x in mv.study %}<li><a href="#{{ x.id }}" data-toc="{{ x.id }}"><span class="toc-code">{{ x.code }}</span><span>{{ x.title }}</span></a></li>{% endfor %}
+      </ul>
+      {% for c in mv.categories %}
+      <p class="toc-group cat-{{ c.code }}"><a href="#{{ c.id }}" data-toc="{{ c.id }}"><span class="g-code">{{ c.code }}</span>{{ c.title }}</a></p>
+      <ul class="toc-measures">
+        <li><a href="#{{ c.shared.id }}" data-toc="{{ c.shared.id }}"><span class="toc-code">{{ c.shared.code }}</span><span>{{ c.shared.title }}</span></a></li>
+        {% for x in c.measures %}<li><a href="#{{ x.id }}" data-toc="{{ x.id }}"><span class="toc-code">{{ x.id }}</span><span>{{ x.title }}</span></a></li>{% endfor %}
+      </ul>
+      {% endfor %}
+      <ul>
+        <li><a href="#{{ mv.gr.id }}" data-toc="{{ mv.gr.id }}"><span class="toc-code">{{ mv.gr.code }}</span><span>{{ mv.gr.title }}</span></a></li>
+        {% for r in mv.records %}<li><a href="#{{ r.id }}" data-toc="{{ r.id }}"><span class="toc-code">{{ r.code }}</span><span>{{ r.title }}</span></a></li>{% endfor %}
+      </ul>
+    </div>
+  </aside>
+
+  <article class="methods-body" data-methods data-home="{{ url('home') }}" data-explore="{{ url('explore') }}" data-robustness="{{ url('robustness') }}" data-about="{{ url('about') }}" data-ratings="{{ url('ratings') }}">
+    <header class="page-head" id="overview">
+      <h1>{{ mv.title }}</h1>
+      {% for p in mv.intro %}<p class="page-intro">{{ p }}</p>{% endfor %}
+      <p class="back-row" data-back-row data-label-previous="{{ S.common.back_to_previous }}" data-label-checks="{{ S.robustness.back }}" hidden><a class="back-link" href="{{ url('home') }}" data-back-link>← {{ S.common.back_to_result }}</a></p>
+      {# phones and tablets: the sidebar is hidden, so offer the same contents as a menu #}
+      <label class="jump m-jump" data-js-only>
+        <span>{{ S.extra.on_this_page }}</span>
+        <select data-m-jump>
+          <option value="">{{ S.extra.on_this_page }}</option>
+          {% for x in mv.study %}<option value="{{ x.id }}">{{ x.code }} · {{ x.title }}</option>{% endfor %}
+          {% for c in mv.categories %}
+          <optgroup label="{{ c.code }} · {{ c.title }}">
+            <option value="{{ c.shared.id }}">{{ c.shared.code }} · {{ c.shared.title }}</option>
+            {% for x in c.measures %}<option value="{{ x.id }}">{{ x.id }} · {{ x.title }}</option>{% endfor %}
+          </optgroup>
+          {% endfor %}
+          <option value="{{ mv.gr.id }}">{{ mv.gr.code }} · {{ mv.gr.title }}</option>
+          {% for r in mv.records %}<option value="{{ r.id }}">{{ r.code }} · {{ r.title }}</option>{% endfor %}
+        </select>
+      </label>
+    </header>
+
+    {% for x in mv.study %}
+    <section class="m-section" id="{{ x.id }}" aria-labelledby="h-{{ x.id }}">
+      <h2 id="h-{{ x.id }}">{{ code(x.code) }}{{ x.title }}</h2>
+      <div class="prose">{{ x.html }}</div>
+    </section>
+    {% endfor %}
+
+    {% for c in mv.categories %}
+    <section class="m-section m-category cat-{{ c.code }}" id="{{ c.id }}" aria-labelledby="h-{{ c.id }}">
+      <h2 id="h-{{ c.id }}"><span class="g-code">{{ c.code }}</span>{{ c.title }}</h2>
+      <div class="prose">{{ c.html }}</div>
+      <section class="m-shared" id="{{ c.shared.id }}" aria-labelledby="h-{{ c.shared.id }}">
+        <h3 id="h-{{ c.shared.id }}">{{ code(c.shared.code) }}{{ c.shared.title }}</h3>
+        <div class="prose">{{ c.shared.html }}</div>
+      </section>
+      {% for x in c.measures %}
+      <section class="m-measure" id="{{ x.id }}" aria-labelledby="mh-{{ x.id }}">
+        <h3 id="mh-{{ x.id }}">{{ code(x.id) }}{{ x.title }}</h3>
+        <div class="prose">{{ x.html }}</div>
+        {% if x.rubric %}
+        <details class="m-table m-rubric" id="{{ x.rubric.id }}" open>
+          <summary>{{ x.rubric.code }} · {{ x.rubric.title }}{{ ui.chev() }}</summary>
+          <div class="prose">{{ x.rubric.html }}</div>
+        </details>
+        {% endif %}
+        <p class="back-row"><a class="back-link" href="{{ url('home', '', x.id) }}" data-back-link data-anchor="{{ x.id }}">← {{ S.common.back_to_result }}</a></p>
+      </section>
+      {% endfor %}
+      {% for t in c.schedules %}
+      <details class="m-table m-schedule" id="{{ t.id }}">
+        <summary>{{ t.code }} · {{ t.title }}{{ ui.chev() }}</summary>
+        <div class="prose">{{ t.html }}</div>
+      </details>
+      {% endfor %}
+    </section>
+    {% endfor %}
+
+    <section class="m-section" id="{{ mv.gr.id }}" aria-labelledby="h-{{ mv.gr.id }}">
+      <h2 id="h-{{ mv.gr.id }}">{{ code(mv.gr.code) }}{{ mv.gr.title }}</h2>
+      <div class="prose">{{ mv.gr.html }}</div>
+      {% for x in mv.gr.parts %}
+      <section class="m-part" id="{{ x.id }}" aria-labelledby="h-{{ x.id }}">
+        <h3 id="h-{{ x.id }}">{{ code(x.code) }}{{ x.title }}</h3>
+        <div class="prose">{{ x.html }}</div>
+      </section>
+      {% endfor %}
+      <p class="back-row"><a class="back-link" href="{{ url('robustness') }}" data-back-link data-anchor="general-robustness">← {{ S.robustness.back }}</a></p>
+    </section>
+
+    {% for r in mv.records %}
+    <section class="m-section" id="{{ r.id }}" aria-labelledby="h-{{ r.id }}">
+      <h2 id="h-{{ r.id }}">{{ code(r.code) }}{{ r.title }}</h2>
+      <div class="prose">{{ r.html }}</div>
+      {% if r.id == 'versions' %}
+      <dl class="facts">
+        <div><dt>{{ S.versions.results_version }}</dt><dd class="mono">{{ results.release_id }}</dd></div>
+        <div><dt>{{ S.extra.data_revision }}</dt><dd class="mono">{{ results.website_data_revision }}</dd></div>
+        <div><dt>{{ S.extra.research_date }}</dt><dd>{{ S.about.update_research }}</dd></div>
+        <div class="fact-wide"><dt>{{ S.extra.source_checksum }}</dt><dd class="mono hash">{{ results.source_comparison_sha256 }}</dd></div>
+      </dl>
+      <p class="fine">{{ S.versions.pair_help }}{{ '' if lang == 'zh' else ' ' }}{{ S.versions.reproduce_help }}</p>
+      {% elif r.id == 'materials' %}
+      <h3>{{ S.materials.title }}</h3>
+      {% if cfg.contact %}<p>{{ S.materials.intro }}{{ '' if lang == 'zh' else ' ' }}<a class="contact-email" href="mailto:{{ cfg.contact }}">{{ cfg.contact }}</a></p>{% endif %}
+      <p class="fine">{{ S.materials.scope }}</p>
+      <p><a href="{{ url('about', '', 'cite-h') }}" data-project-citation>{{ S.materials.cite_link }} →</a></p>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </article>
+</div>
+{% endblock %}

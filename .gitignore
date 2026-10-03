@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+# generated pages are built, never committed
+dist/
+# local tools and checks stay on the maintainer's computer
+tests/
+tools/
+# credentials and local state (Cloudflare wrangler keeps a local D1 copy that can hold test submissions)
+.env
+.env.*
+.dev.vars
+.wrangler/
+node_modules/
+*.key
+secrets/
+.claude/
+# system files
+.DS_Store
+Thumbs.db
+desktop.ini

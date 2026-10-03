@@ -1,0 +1,6 @@
+# Text files use LF in the repository and on checkout.
+* text=auto eol=lf
+# The released data are checked byte for byte against RELEASE.json: Git must not change them.
+data/** -text
+# fonts are binary
+*.woff2 binary

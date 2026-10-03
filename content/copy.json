@@ -1,0 +1,1870 @@
+{
+ "release_id": "eight-model-comparison-20260923-v1",
+ "measures": {
+  "common": {
+   "en": {
+    "section_meaning": "What it shows",
+    "section_example": "An example",
+    "section_everyday": "The everyday connection",
+    "section_reading": "Reading the result",
+    "methods_link": "View methods",
+    "back_to_result": "Back to this result",
+    "back_to_previous": "Back to the previous page",
+    "show_explanation": "Show explanation and examples",
+    "hide_explanation": "Hide explanation and examples",
+    "show_models": "Show all models",
+    "hide_details": "Collapse",
+    "expand_all": "Expand all measures",
+    "collapse_all": "Collapse all measures",
+    "find_measure": "Find a measure",
+    "highlight_model": "Highlight a model",
+    "clear_highlight": "Clear highlight",
+    "model_order": "Model order",
+    "sort_default": "Original order",
+    "sort_high": "Highest value first",
+    "sort_low": "Lowest value first",
+    "open_profile": "View model profile",
+    "compare_models": "Compare models",
+    "average": "Average result",
+    "inner_range": "When we ask differently",
+    "outer_range": "With extra checks",
+    "range_note": "Ranges reflect results from these tests.",
+    "scale_hint": "Check what the two ends of the scale mean before comparing the numbers.",
+    "wider_range": "On the same chart, a wider range means bigger changes across our tests.",
+    "point_help": "The average across the different ways we asked.",
+    "inner_help": "How much results vary when we change the wording or emphasis.",
+    "outer_help": "Includes the first range and additional checks, such as changing how questions or answer options are shown.",
+    "illustration_note": "These examples explain the idea. The Methods page describes the actual tests.",
+    "self_description": "How the AI describes itself",
+    "self_description_help": "These results come from how the AI rated statements about its own response style.",
+    "conversation_evidence": "Two AI models scored these replies",
+    "judges_label": "AI judges",
+    "judges": "GPT-5.6 Sol and Claude Opus 5 (both at the high reasoning setting)",
+    "human_review": "Human review: not yet assessed",
+    "human_review_help": "Human reviewers have not yet assessed these AI ratings. Future visitor ratings will appear separately.",
+    "type_boundary": "This range reaches the midpoint, so the type label may change across the tested questions or checks.",
+    "type_tie": "The average is exactly at the midpoint. X means neither side is selected.",
+    "type_inner_only": "Only the question-variation range is available for this boundary check.",
+    "unavailable": "No result available",
+    "outer_unavailable": "Additional-check range unavailable",
+    "human_reference_label": "Human study reference",
+    "source_link": "Data and sources",
+    "release_label": "Results version",
+    "updated_label": "Last updated",
+    "range_template": "{low} to {high}",
+    "chart_text": "{model}. {measure}. Average {center}. Range when asked differently: {inner_min} to {inner_max}. With extra checks: {outer_min} to {outer_max}. {scale}",
+    "signed_difference_note": "Positive and negative numbers show the direction of the change. Zero means no average difference between these two situations.",
+    "nav_home": "Home",
+    "nav_explore": "Explore models",
+    "nav_robustness": "Stability checks",
+    "nav_rate": "Rate responses",
+    "nav_methods": "Methods",
+    "nav_about": "About",
+    "language_label": "Language",
+    "language_en": "English",
+    "language_zh": "Chinese",
+    "theme_label": "Appearance",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "theme_switch_light": "Switch to light appearance",
+    "theme_switch_dark": "Switch to dark appearance",
+    "counts": "{models} models · {measures} measures"
+   },
+   "zh": {
+    "section_meaning": "这一项看什么",
+    "section_example": "举个例子",
+    "section_everyday": "和日常有什么联系",
+    "section_reading": "怎么看结果",
+    "methods_link": "查看研究方法",
+    "back_to_result": "返回这项结果",
+    "back_to_previous": "返回上一页",
+    "show_explanation": "展开解释与例子",
+    "hide_explanation": "收起解释与例子",
+    "show_models": "展开全部模型",
+    "hide_details": "收起",
+    "expand_all": "展开全部指标",
+    "collapse_all": "收起全部指标",
+    "find_measure": "找到想看的指标",
+    "highlight_model": "高亮一个模型",
+    "clear_highlight": "取消高亮",
+    "model_order": "模型排列方式",
+    "sort_default": "原始顺序",
+    "sort_high": "数值从高到低",
+    "sort_low": "数值从低到高",
+    "open_profile": "查看模型档案",
+    "compare_models": "对比模型",
+    "average": "平均结果",
+    "inner_range": "换种问法后的范围",
+    "outer_range": "进一步检查后的范围",
+    "range_note": "范围来自本次测试的实际结果。",
+    "scale_hint": "先看图上两端各代表什么，再比较数字。",
+    "wider_range": "在同一张图中，范围越宽，表示结果在这些测试中变动越大。",
+    "point_help": "同一个问题换几种问法来问，得到的平均结果。",
+    "inner_help": "只改变问题的表述方式或侧重点时，结果的变动范围。",
+    "outer_help": "在换种问法的基础上，再改变题目排版、选项呈现方式等，结果的变动范围。",
+    "illustration_note": "这些例子帮助理解含义；实际测试内容见研究方法页。",
+    "self_description": "模型对自己的描述",
+    "self_description_help": "这些结果来自模型对自身回答风格的描述。",
+    "conversation_evidence": "由两个 AI 阅读回复并打分",
+    "judges_label": "AI 评审",
+    "judges": "GPT-5.6 Sol、Claude Opus 5（均为高推理设置）",
+    "human_review": "真人复核：尚未评估",
+    "human_review_help": "这些 AI 评分尚未经过真人复核。之后收集的访客评分会单独呈现。",
+    "type_boundary": "这条范围触及中点，类型标签可能随测试中的问法或检查方式变化。",
+    "type_tie": "平均结果恰好在中点，X 表示没有选定其中一侧。",
+    "type_inner_only": "此处只能根据换种问法后的范围判断是否触及中点。",
+    "unavailable": "暂无结果",
+    "outer_unavailable": "暂无进一步检查后的范围",
+    "human_reference_label": "真人研究参考",
+    "source_link": "数据与来源",
+    "release_label": "结果版本",
+    "updated_label": "最近更新",
+    "range_template": "{low} 至 {high}",
+    "chart_text": "{model}，{measure}。平均结果 {center}；换种问法后的范围 {inner_min} 至 {inner_max}；进一步检查后的范围 {outer_min} 至 {outer_max}。{scale}",
+    "signed_difference_note": "正数和负数表示变化的方向；0 表示这两种情境下的平均结果没有差别。",
+    "nav_home": "首页",
+    "nav_explore": "探索模型",
+    "nav_robustness": "稳定性检查",
+    "nav_rate": "评价回答",
+    "nav_methods": "研究方法",
+    "nav_about": "关于项目",
+    "language_label": "语言",
+    "language_en": "英文",
+    "language_zh": "中文",
+    "theme_label": "显示模式",
+    "theme_light": "浅色",
+    "theme_dark": "深色",
+    "theme_switch_light": "切换为浅色显示",
+    "theme_switch_dark": "切换为深色显示",
+    "counts": "{models} 个模型 · {measures} 项指标"
+   }
+  },
+  "groups": [
+   {
+    "id": "A",
+    "en": {
+     "title": "Sharing and cooperation",
+     "description": "What does it choose when its own interests and other people’s interests meet?"
+    },
+    "zh": {
+     "title": "分享与合作",
+     "description": "自己的利益与别人的利益放在一起时，它会怎样选择？"
+    }
+   },
+   {
+    "id": "B",
+    "en": {
+     "title": "Responding to others",
+     "description": "How do other people’s actions change its next move?"
+    },
+    "zh": {
+     "title": "对他人行为的反应",
+     "description": "别人怎么做，会怎样影响它下一步的选择？"
+    }
+   },
+   {
+    "id": "C",
+    "en": {
+     "title": "Risk and waiting",
+     "description": "How does it choose when outcomes are uncertain or rewards come later?"
+    },
+    "zh": {
+     "title": "风险与等待",
+     "description": "结果不确定，或者需要等一等时，它会怎样选择？"
+    }
+   },
+   {
+    "id": "D",
+    "en": {
+     "title": "How choices fit together",
+     "description": "Do its choices follow a consistent pattern as the options change?"
+    },
+    "zh": {
+     "title": "选择是否前后一致",
+     "description": "选项发生变化时，它的选择是否仍有一致的规律？"
+    }
+   },
+   {
+    "id": "E",
+    "en": {
+     "title": "How it describes itself",
+     "description": "The AI’s own description of its style, using two sets of personality questions.",
+     "first_block": "Five broad traits",
+     "second_block": "MBTI-related type preferences"
+    },
+    "zh": {
+     "title": "它怎样描述自己",
+     "description": "通过两套人格问题，看看 AI 如何描述自己的风格。",
+     "first_block": "五项人格特点",
+     "second_block": "与 MBTI 相关的类型倾向"
+    }
+   },
+   {
+    "id": "F",
+    "en": {
+     "title": "What conversation feels like",
+     "description": "How does it respond, take part, and use what you have said?"
+    },
+    "zh": {
+     "title": "与你交流时的表现",
+     "description": "它怎样回应你、参与聊天，并在后续回答中运用你前面说过的信息？"
+    }
+   }
+  ],
+  "measures": [
+   {
+    "id": "A1",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 50
+    },
+    "methods_anchor": "A1",
+    "en": {
+     "title": "Generosity",
+     "question": "When there is something to share, how much does it give?",
+     "explanation": "We ask the AI to divide money between itself and another person. This chart summarizes how much it gives or offers to the other person.",
+     "example": "Imagine there is $100 to split. The AI could keep $70 and give the other person $30, or split it $50 each. Giving the other person more produces a higher reading.",
+     "everyday": "You sell some old books you no longer need and make $100. You can keep it all or share some with a friend. Put the AI in your place: how much would it choose to share?",
+     "reading": "The scale runs from 0 to 100. Zero means keeping everything, 50 is an even split, and 100 means giving everything to the other person. The dot averages the sharing choices across our tests.",
+     "axis_label": "How much it gives · 0–100",
+     "axis_low": "Keeps everything",
+     "axis_high": "Gives everything to the other person",
+     "interpretation_note": "This combines two sharing situations, including one where the other person can refuse the proposed split."
+    },
+    "zh": {
+     "title": "慷慨程度",
+     "question": "有东西可以分时，它会给对方多少？",
+     "explanation": "我们让 AI 把一笔钱分给自己和另一个人。图上汇总的是，它给对方或提议给对方多少。",
+     "example": "假设有 100 美元可以分。AI 可以给自己留 70、给对方 30，也可以一人 50。给对方越多，图上的数字就越高。",
+     "everyday": "你卖掉了一些不再看的旧书，挣了 100 美元。你可以把钱全留着，也可以分一些给朋友。如果让 AI 站在你的位置上，它会愿意分出多少？",
+     "reading": "图上从 0 到 100：0 表示全部留给自己，50 表示一人一半，100 表示全部给对方。圆点表示这些分享测试中的平均结果。",
+     "axis_label": "给对方多少 · 0–100",
+     "axis_low": "全部留给自己",
+     "axis_high": "全部分给对方",
+     "interpretation_note": "这里合并了两种分钱情境，其中一种允许对方拒绝提出的分法。"
+    }
+   },
+   {
+    "id": "A2",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "A2",
+    "en": {
+     "title": "Cooperation",
+     "question": "Will it do its part when people can benefit together?",
+     "explanation": "We look at whether the AI chooses actions that help people benefit together, including putting some of its own money into a shared pot.",
+     "example": "Four neighbors can each put money toward a shared garden. Everyone can enjoy the garden, including someone who pays nothing. How much would the AI put in?",
+     "everyday": "Friends are arranging a picnic. Each can bring food and help set up, or leave the work to everyone else. This is the kind of tension cooperation is about: doing your part costs something, while the group can benefit.",
+     "reading": "Higher numbers mean more cooperative choices or larger contributions across three kinds of situation. The number combines those choices on a 0–100 scale.",
+     "axis_label": "Cooperative choices and contributions · 0–100",
+     "axis_low": "Less cooperation",
+     "axis_high": "More cooperation",
+     "interpretation_note": "The result records what the AI chooses to do. Other participants still have their own choices."
+    },
+    "zh": {
+     "title": "合作倾向",
+     "question": "大家可以一起受益时，它愿意出自己那一份吗？",
+     "explanation": "我们看 AI 是否会选择有助于大家共同受益的做法，包括从自己的钱里拿出一部分给大家共同使用。",
+     "example": "四位邻居一起出钱布置公共花园。每个人都能享受花园，包括一分钱没出的人。如果 AI 是其中一位，它会出多少？",
+     "everyday": "朋友们准备去野餐。每个人都可以带点吃的、帮忙布置，也可以把事情都留给别人。合作面对的就是这类取舍：自己要付出一些，大家则可能一起受益。",
+     "reading": "数字越高，表示在三类情境中，AI 更常选择合作，或拿出更大一份共同投入。这些选择合并到 0–100 的尺度上。",
+     "axis_label": "合作选择与共同投入 · 0–100",
+     "axis_low": "较少合作",
+     "axis_high": "较多合作",
+     "interpretation_note": "结果记录的是 AI 自己的选择；其他参与者仍然各自决定怎么做。"
+    }
+   },
+   {
+    "id": "A3",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "A3",
+    "en": {
+     "title": "Trust",
+     "question": "How much will it put in someone else’s hands?",
+     "explanation": "The AI can send some money to another person. The amount grows, but that person decides how much to send back. We measure how much the AI sends before knowing the return.",
+     "example": "The AI has $100. If it sends $20, the other person receives $60 and decides how much to return. Sending more means leaving more of the outcome in that person’s hands.",
+     "everyday": "A neighbor offers to buy produce in bulk and sell it at a stall with you. You would pay some money upfront, and what comes back depends on how they handle it. How much would you be willing to entrust to them?",
+     "reading": "Higher numbers mean sending a larger share of the starting money. Zero means sending nothing; 100 means sending it all.",
+     "axis_label": "Share entrusted to the other person · 0–100",
+     "axis_low": "Sends nothing",
+     "axis_high": "Sends everything",
+     "interpretation_note": "This is trust in a money-sharing situation."
+    },
+    "zh": {
+     "title": "信任程度",
+     "question": "它愿意把多少交到别人手里？",
+     "explanation": "AI 可以把一部分钱交给另一个人。这笔钱会增加，但对方自己决定返还多少。我们看 AI 在不知道回报时，愿意先交出多少。",
+     "example": "AI 有 100 美元。如果交给对方 20，对方会收到 60，再决定返还多少。交出越多，结果就越取决于对方怎么做。",
+     "everyday": "一位邻居提议一起批发水果去摆摊。你要先出一部分钱，之后能拿回多少，取决于对方怎样处理。你愿意把多少交给他？",
+     "reading": "数字越高，表示它交出的起始资金占比越大。0 表示一分不交，100 表示全部交出。",
+     "axis_label": "交给对方的份额 · 0–100",
+     "axis_low": "一分不交",
+     "axis_high": "全部交出",
+     "interpretation_note": "这里看的是涉及钱与回报的情境中的信任。"
+    }
+   },
+   {
+    "id": "A4",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "A4",
+    "en": {
+     "title": "Reciprocation",
+     "question": "After someone puts trust in it, how much does it give back?",
+     "explanation": "Someone sends money to the AI, and that money grows before it arrives. The AI then decides how much of the amount it received to return.",
+     "example": "A person sends $10, which becomes $30 for the AI. If the AI returns $6, it has returned 20% of what it received.",
+     "everyday": "A friend gives you money to help you start a small second-hand stall. The stall brings in money, and you are free to decide how much to share back. The question is how you respond after someone has helped you get started.",
+     "reading": "Higher numbers mean returning more of the money received. Zero means returning nothing; 100 means returning all of that amount.",
+     "axis_label": "Share of received money returned · 0–100",
+     "axis_low": "Returns nothing",
+     "axis_high": "Returns everything received",
+     "interpretation_note": "The share is measured against what arrives after the money grows."
+    },
+    "zh": {
+     "title": "回报他人的倾向",
+     "question": "别人先信任它之后，它会回报多少？",
+     "explanation": "别人先交给 AI 一笔钱，这笔钱会增加后再到它手里。AI 随后决定，从收到的金额里返还多少。",
+     "example": "对方交出 10 美元，AI 收到的是 30 美元。如果返还 6 美元，就返还了收到金额的 20%。",
+     "everyday": "朋友给你一笔钱，帮你开始摆二手小摊。摊子有了收入，你可以自己决定分回多少。这里关心的是：别人先帮了你一把，你会怎样回报？",
+     "reading": "数字越高，表示它返还了收到金额中更大的一份。0 表示完全不返还，100 表示把收到的金额全部返还。",
+     "axis_label": "收到后返还的份额 · 0–100",
+     "axis_low": "完全不返还",
+     "axis_high": "返还收到的全部金额",
+     "interpretation_note": "这里的份额以钱增加后实际收到的金额为准。"
+    }
+   },
+   {
+    "id": "A5",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "A5",
+    "en": {
+     "title": "Fairness enforcement",
+     "question": "Will it give something up to push back against an unequal split?",
+     "explanation": "We look at whether the AI accepts a personal cost to reject a split that leaves it with less, or to reduce the payoff of someone who has given another person a much smaller share.",
+     "example": "Someone offers the AI $20 out of $100 and keeps $80. Accepting pays both amounts. Rejecting means neither gets anything. Would it reject the offer?",
+     "everyday": "At a market, you see a seller short-change another customer. Speaking up could cost you time or the discount you were offered. Would you still do it? This is an everyday example of standing up for fairness at a cost.",
+     "reading": "Higher numbers mean more frequent costly rejection or intervention in the tested situations. The chart combines both kinds of choice.",
+     "axis_label": "Costly rejection and intervention · 0–100",
+     "axis_low": "Less frequent",
+     "axis_high": "More frequent",
+     "interpretation_note": "The number describes its response to these particular unequal splits."
+    },
+    "zh": {
+     "title": "维护公平的倾向",
+     "question": "面对不平等的分法，它愿意付出代价来反对吗？",
+     "explanation": "我们看 AI 是否愿意让自己付出一些代价，拒绝自己拿得较少的分法，或者减少一个给别人分得很少的人的所得。",
+     "example": "一共 100 美元，对方留 80，只给 AI 20。接受就按这个分法拿钱；拒绝则双方都拿不到。它会拒绝吗？",
+     "everyday": "在菜市场，你发现摊主少找了另一位顾客的钱。站出来提醒，可能耽误自己的时间，或失去刚谈好的优惠。你还会说吗？这就是日常生活里，为公平付出代价的一种情形。",
+     "reading": "数字越高，表示在这些测试情境中，它更常选择需要自己付出代价的拒绝或干预。图上合并了这两类选择。",
+     "axis_label": "付出代价的拒绝与干预 · 0–100",
+     "axis_low": "较少发生",
+     "axis_high": "较常发生",
+     "interpretation_note": "这个数字描述的是它对测试中这些具体分法的反应。"
+    }
+   },
+   {
+    "id": "B1",
+    "unit": "percentage_points",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": -100,
+     "max": 100,
+     "reference": 0
+    },
+    "methods_anchor": "B1",
+    "en": {
+     "title": "Conditional cooperation",
+     "question": "Does it contribute more after seeing others do more?",
+     "explanation": "We compare its next contribution after other people have recently contributed a lot versus a little.",
+     "example": "If it gives 70% of its money after others contribute more, and 40% after they contribute less, the difference is +30 percentage points.",
+     "everyday": "Neighbors share the cost of flowers for the building entrance. Last time, everyone chipped in generously—or most paid very little. Would seeing that change what the AI puts in this time?",
+     "reading": "Positive numbers mean it contributes more after others contribute more. Negative numbers mean it contributes less. Zero means the average contribution is the same in the two situations.",
+     "axis_label": "Change in contribution · percentage points",
+     "axis_low": "Contributes less after others do more",
+     "axis_high": "Contributes more after others do more",
+     "interpretation_note": "This shows a change in cooperation. Read A2 to see the separate measure of cooperation itself."
+    },
+    "zh": {
+     "title": "随他人调整合作",
+     "question": "看到别人多出一份，它也会多出吗？",
+     "explanation": "别人刚刚投入得多，或投入得少，会怎样影响它下一次的投入？我们比较的是这两种情况下的差别。",
+     "example": "如果别人投入多时，它拿出自己资金的 70%；别人投入少时，它拿出 40%，差值就是 +30 个百分点。",
+     "everyday": "邻居们一起出钱买鲜花，布置楼门口。上次大家都出了不少，或者大部分人只出了一点点。看到这些之后，AI 这次会改变自己出的那一份吗？",
+     "reading": "正数表示别人多出之后，它也多出；负数表示它反而少出；0 表示两种情况下的平均投入一样。",
+     "axis_label": "投入份额的变化 · 百分点",
+     "axis_low": "别人多出后，自己少出",
+     "axis_high": "别人多出后，自己也多出",
+     "interpretation_note": "这里看合作发生了多大变化；合作程度本身另见 A2。"
+    }
+   },
+   {
+    "id": "B2",
+    "unit": "percentage_points",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": -100,
+     "max": 100,
+     "reference": 0
+    },
+    "methods_anchor": "B2",
+    "en": {
+     "title": "Retaliation",
+     "question": "If someone stops cooperating, does it stop too?",
+     "explanation": "We compare what the AI does next when the other person stops cooperating versus when that person keeps cooperating.",
+     "example": "Suppose it stops cooperating 70% of the time after the other person stops, but 20% after the other person continues. The change is +50 percentage points.",
+     "everyday": "You and a classmate have been sharing useful revision notes. This week, the classmate takes your notes but stops sharing theirs. Would you still send yours next time?",
+     "reading": "Positive numbers mean the other person’s non-cooperation makes the AI more likely to stop cooperating. Negative numbers mean the opposite response.",
+     "axis_label": "Change in non-cooperation · percentage points",
+     "axis_low": "Less likely to stop cooperating",
+     "axis_high": "More likely to stop cooperating",
+     "interpretation_note": "Zero means no average change between the two situations; it can occur when the AI behaves the same way in both."
+    },
+    "zh": {
+     "title": "对不合作的反应",
+     "question": "别人不再合作时，它也会停下来吗？",
+     "explanation": "对方停止合作，或者继续合作，AI 下一步会有什么不同？我们比较它在这两种情况下的选择。",
+     "example": "假设对方停止合作后，它有 70% 的时候也不合作；对方继续合作时，它有 20% 的时候不合作。变化就是 +50 个百分点。",
+     "everyday": "你和同学一直互相分享复习笔记。这周对方拿走了你的笔记，却不再分享自己的。下次你还会把笔记发过去吗？",
+     "reading": "正数表示对方不合作之后，AI 也更容易停止合作；负数表示它的反应方向相反。",
+     "axis_label": "不合作次数占比的变化 · 百分点",
+     "axis_low": "更少停止合作",
+     "axis_high": "更常停止合作",
+     "interpretation_note": "0 表示两种情况下平均没有变化，也可能是它在两边一直采取同样的做法。"
+    }
+   },
+   {
+    "id": "B3",
+    "unit": "percentage_points",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": -100,
+     "max": 100,
+     "reference": 0
+    },
+    "methods_anchor": "B3",
+    "en": {
+     "title": "Forgiveness",
+     "question": "If the other person starts cooperating again, does it respond?",
+     "explanation": "After cooperation has broken down, we compare the AI’s next move when the other person starts cooperating again versus when they still do not.",
+     "example": "If it cooperates 80% of the time after the other person returns to cooperation, and 30% when they do not, the difference is +50 percentage points.",
+     "everyday": "A housemate stopped doing their share of the washing-up, and you stopped helping too. Now they have started washing dishes again. Would that make you more willing to return to the shared routine?",
+     "reading": "Positive numbers mean renewed cooperation from the other person makes the AI more likely to cooperate. Negative numbers mean it becomes less likely.",
+     "axis_label": "Response to renewed cooperation · percentage points",
+     "axis_low": "Cooperates less after the other person returns",
+     "axis_high": "Cooperates more after the other person returns",
+     "interpretation_note": "Zero means no average change. It could come from cooperating in both situations or from cooperating in neither."
+    },
+    "zh": {
+     "title": "恢复合作的反应",
+     "question": "对方重新开始合作时，它会跟着恢复吗？",
+     "explanation": "合作中断之后，对方重新开始合作，或者仍不合作，AI 接下来会作出什么不同的选择？",
+     "example": "如果对方恢复合作后，它有 80% 的时候选择合作；对方仍不合作时，它有 30% 的时候合作，差值就是 +50 个百分点。",
+     "everyday": "室友不再分担洗碗，你也停止帮忙。现在对方又开始洗碗了，这会让你更愿意恢复原来一起分担的做法吗？",
+     "reading": "正数表示对方重新合作后，AI 更愿意合作；负数表示它反而更少合作。",
+     "axis_label": "对恢复合作的反应 · 百分点",
+     "axis_low": "对方恢复后，自己更少合作",
+     "axis_high": "对方恢复后，自己更多合作",
+     "interpretation_note": "0 表示平均没有变化，既可能是两边都合作，也可能是两边都不合作。"
+    }
+   },
+   {
+    "id": "B4",
+    "unit": "percent",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "B4",
+    "en": {
+     "title": "Adaptation",
+     "question": "When the other person’s pattern changes, can it adjust?",
+     "explanation": "The AI and another player need to choose the same option to benefit. The other player changes their pattern partway through. We look at how often the AI matches them after seeing the change.",
+     "example": "Both have been choosing the left entrance. The other player switches to the right entrance. After that new choice becomes visible, does the AI begin choosing the right entrance too?",
+     "everyday": "You usually meet a friend at the front entrance of a market. They begin arriving at the back entrance instead. After seeing where they went, can you adjust your next meeting choice?",
+     "reading": "Higher numbers mean matching the other player’s new pattern more often in the later rounds we score. A reading of 80 means matching in 80% of those choices.",
+     "axis_label": "Matching after the change · %",
+     "axis_low": "Never matches",
+     "axis_high": "Always matches",
+     "interpretation_note": "The score starts after feedback about the change is available."
+    },
+    "zh": {
+     "title": "适应变化",
+     "question": "对方的做法变了，它能跟着调整吗？",
+     "explanation": "AI 和另一位参与者需要选中同一个选项，才能一起受益。对方中途改变了做法，我们看 AI 得到这个变化的信息后，有多常跟上。",
+     "example": "双方之前都选左边入口，对方后来改选右边。看到对方的新选择后，AI 会不会也开始选右边？",
+     "everyday": "你习惯和朋友在菜市场正门碰面，朋友后来开始从后门到。看到他去了哪里之后，接下来约见时，你能相应调整吗？",
+     "reading": "数字越高，表示在计分的后几轮中，它更常跟上对方的新做法。80 表示这些选择中有 80% 与对方一致。",
+     "axis_label": "变化后选到一起的次数占比 · %",
+     "axis_low": "从未选到一起",
+     "axis_high": "每次都选到一起",
+     "interpretation_note": "计分从已经能看到对方改变做法的信息之后开始。"
+    }
+   },
+   {
+    "id": "C1",
+    "unit": "percent",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "C1",
+    "en": {
+     "title": "Risk taking",
+     "question": "Will it choose a bigger possible win with a bigger possible loss?",
+     "explanation": "We offer two choices with known chances. One has outcomes closer together; the other can pay much more or much less. We count how often the AI chooses the wider spread.",
+     "example": "Two prize draws each give a 50% chance of their higher prize. One pays $40 or $32; the other pays $77 or $2. Which would the AI choose?",
+     "everyday": "At a school fair, two raffle stalls display their prizes and the odds. One offers two modest prizes; the other offers a large prize or very little. Would you take the bigger swing?",
+     "reading": "Higher numbers mean choosing the option with the wider spread more often across the tests. A reading of 60 means choosing it in 60% of the choices.",
+     "axis_label": "Choices of the wider spread · %",
+     "axis_low": "Never chooses it",
+     "axis_high": "Always chooses it",
+     "interpretation_note": "The possible amounts and chances matter to each choice."
+    },
+    "zh": {
+     "title": "冒险倾向",
+     "question": "可能赚得更多、也可能拿得更少时，它愿意冒险吗？",
+     "explanation": "我们给出两个选项，各种结果的概率都写清楚。一个选项的结果比较接近，另一个可能拿得多很多，也可能少很多。我们看 AI 多常选后者。",
+     "example": "两个抽奖都有 50% 的机会拿到较高奖额。一个是 40 或 32 美元，另一个是 77 或 2 美元。AI 会选哪个？",
+     "everyday": "学校义卖有两个抽奖摊位，都公开了奖品和中奖概率。一个无论抽到哪档，奖品都差不多；另一个可能中大奖，也可能只拿到很少。你会选择起伏更大的吗？",
+     "reading": "数字越高，表示它更常选择结果差距较大的选项。60 表示在这些选择中，有 60% 选了这一类。",
+     "axis_label": "选择起伏较大选项的次数占比 · %",
+     "axis_low": "从不选择",
+     "axis_high": "每次都选择",
+     "interpretation_note": "每道题里可能拿到多少、概率多大，都与这个选择有关。"
+    }
+   },
+   {
+    "id": "C2",
+    "unit": "percent",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "C2",
+    "en": {
+     "title": "Comfort with unknown odds",
+     "question": "Will it choose an option when the chances are not stated?",
+     "explanation": "The prize is the same, but one option tells the AI its chance of winning and the other leaves that chance unknown. We count how often it chooses the unknown one.",
+     "example": "One draw says that 50 of its 100 tickets win. Another offers the same prize but does not say how many tickets win. Which draw would the AI choose?",
+     "everyday": "Two shops offer the same prize in a promotion. One clearly lists the chance of winning; the other does not publish it. Would you enter the promotion with undisclosed odds?",
+     "reading": "Higher numbers mean choosing the unknown-odds option more often. Zero means always choosing the stated odds; 100 means always choosing the unknown odds.",
+     "axis_label": "Choices with unknown odds · %",
+     "axis_low": "Always chooses stated odds",
+     "axis_high": "Always chooses unknown odds",
+     "interpretation_note": "Unknown odds stay unknown; we do not assume they are fifty-fifty."
+    },
+    "zh": {
+     "title": "对未知概率的接受程度",
+     "question": "不知道机会有多大时，它还会选吗？",
+     "explanation": "奖品相同，一个选项写清中奖概率，另一个没有说明。我们看 AI 有多常选择概率未知的那个。",
+     "example": "一个抽奖说，100 张券里有 50 张中奖。另一个奖品一样，但不说多少张券能中。AI 会选哪个？",
+     "everyday": "两家店都在做抽奖活动，奖品相同。一家明确写出了中奖概率，另一家没有公开。你会选择没有说清机会大小的那家吗？",
+     "reading": "数字越高，表示它更常选择概率未知的选项。0 表示总选概率写清楚的那个；100 表示总选概率未知的那个。",
+     "axis_label": "选择未知概率选项的次数占比 · %",
+     "axis_low": "总选概率已知的",
+     "axis_high": "总选概率未知的",
+     "interpretation_note": "不知道的概率仍然未知，不能直接当成一半一半。"
+    }
+   },
+   {
+    "id": "C3",
+    "unit": "percent",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "C3",
+    "en": {
+     "title": "Willingness to wait",
+     "question": "Will it wait to receive more?",
+     "explanation": "The AI chooses between a smaller amount now and a larger amount later. Both amounts are certain in the question.",
+     "example": "Would it take $100 today or $110 in a month? Choosing the later amount is the kind of waiting counted here.",
+     "everyday": "A shop offers you cashback: a smaller amount paid today, or a larger amount paid next month. Assume both payments are certain. Would you wait for the larger one?",
+     "reading": "Higher numbers mean choosing the later, larger payment more often. A reading of 80 means doing so in 80% of the tested choices.",
+     "axis_label": "Choices of the later payment · %",
+     "axis_low": "Always takes the earlier payment",
+     "axis_high": "Always takes the later payment",
+     "interpretation_note": "Here, patience means waiting to receive a payment."
+    },
+    "zh": {
+     "title": "等待的意愿",
+     "question": "多等一等能拿到更多，它愿意等吗？",
+     "explanation": "AI 要在现在拿较少的钱、以后拿更多的钱之间选择。题目中的两笔金额都确定可以拿到。",
+     "example": "今天拿 100 美元，还是一个月后拿 110 美元？这里记录的，就是它是否选择多等一等。",
+     "everyday": "买完东西，商店让你选返现金额：今天收到一笔较少的，或者下个月收到一笔较多的。假设两笔钱都保证能收到，你会等更多的那笔吗？",
+     "reading": "数字越高，表示它更常选择晚一点拿更多的钱。80 表示在这些测试选择中，有 80% 选择了后面的付款。",
+     "axis_label": "选择较晚付款的次数占比 · %",
+     "axis_low": "总选较早的付款",
+     "axis_high": "总选较晚的付款",
+     "interpretation_note": "这里的耐心，指的是为了拿到一笔钱而愿意等待。"
+    }
+   },
+   {
+    "id": "C4",
+    "unit": "percentage_points",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": -100,
+     "max": 100,
+     "reference": 0
+    },
+    "methods_anchor": "C4",
+    "en": {
+     "title": "The pull of now",
+     "question": "Does getting something today change its willingness to wait?",
+     "explanation": "We compare the same two payments before and after moving both dates later. The amounts and the time between them stay the same.",
+     "example": "First choose between $100 today and $110 in a month. Then choose between $100 in a month and $110 in two months. Does removing the option to get money today make waiting for the larger amount more attractive?",
+     "everyday": "A shop shifts both of its cashback payment dates back by a month. The amounts do not change. Would that change which offer you choose?",
+     "reading": "Positive numbers mean the AI chooses the later payment more often once neither payment is immediate. Going from 40% to 70% gives +30 percentage points. Negative numbers mean the change goes the other way.",
+     "axis_label": "Change after both dates move later · percentage points",
+     "axis_low": "Chooses the later payment less often",
+     "axis_high": "Chooses the later payment more often",
+     "interpretation_note": "Zero means no average change between the date arrangements. It can occur with either a strong or a weak willingness to wait."
+    },
+    "zh": {
+     "title": "眼前回报的吸引力",
+     "question": "能不能今天就拿到，会改变它等待的意愿吗？",
+     "explanation": "我们把同样的两笔付款同时往后推，比较 AI 的选择是否改变。金额和两笔付款之间的时间间隔都保持一样。",
+     "example": "先选今天拿 100 美元，还是一个月后拿 110 美元；再选一个月后拿 100，还是两个月后拿 110。没有“今天就能拿”的选项之后，它会更愿意等较多的那笔吗？",
+     "everyday": "商店把两种返现方式的到账日期都推迟了一个月，金额不变。这会改变你选哪一种吗？",
+     "reading": "正数表示两笔钱都不能马上拿到之后，AI 更常选择较晚的付款。比如从 40% 变成 70%，就是 +30 个百分点。负数表示变化方向相反。",
+     "axis_label": "两笔付款都推迟后的变化 · 百分点",
+     "axis_low": "更少选较晚付款",
+     "axis_high": "更多选较晚付款",
+     "interpretation_note": "0 表示两种日期安排下平均没有变化；它可能一直愿意等，也可能一直不愿意等。"
+    }
+   },
+   {
+    "id": "D1",
+    "unit": "index_0_100",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "D1",
+    "en": {
+     "title": "How preferences fit together",
+     "question": "Do its choices form a coherent pattern?",
+     "explanation": "We compare options in pairs to see whether the model’s choices fit together.",
+     "example": "Between apples and pears, it chooses apples. Between pears and oranges, it chooses pears. But between apples and oranges, it chooses oranges. Do those choices fit together?",
+     "everyday": "Say you compare three phones two at a time. If you think A is better than B and B is better than C, yet also think C is better than A, your choices don’t fit together.",
+     "reading": "Higher numbers mean the choices fit together more consistently.",
+     "axis_label": "How well the choices fit together · 0–100",
+     "axis_low": "Strong conflict",
+     "axis_high": "Fits this consistency check",
+     "interpretation_note": ""
+    },
+    "zh": {
+     "title": "偏好是否前后一致",
+     "question": "把几次选择放在一起看，能说得通吗？",
+     "explanation": "我们把选项两两比较，看模型的几次选择放在一起，是否前后一致。",
+     "example": "苹果和梨，它选苹果；梨和橙子，它选梨；苹果和橙子，它却选橙子。这些选择放在一起，能说得通吗？",
+     "everyday": "比如你在三款手机之间两两比较。如果你觉得 A 比 B 更好、B 比 C 更好，却又觉得 C 比 A 更好，那么这些选择放在一起就不太一致。",
+     "reading": "数字越高，表示这些选择放在一起，前后越一致。",
+     "axis_label": "选择前后一致的程度 · 0–100",
+     "axis_low": "有很强的前后冲突",
+     "axis_high": "在这项检查中前后一致",
+     "interpretation_note": ""
+    }
+   },
+   {
+    "id": "D2",
+    "unit": "percent",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "D2",
+    "en": {
+     "title": "Choosing the better offer",
+     "question": "Does it take an option that offers more with no downside in the stated terms?",
+     "explanation": "One option offers a larger reward, a better chance of receiving it, or both, without a disadvantage in the other stated terms. We count how often the AI chooses it.",
+     "example": "Both draws offer a 60% chance of winning and pay nothing otherwise. One pays $80 if you win; the other pays $100. Does it choose the $100 draw?",
+     "everyday": "Two offers are for the same bag of rice, at the same price and with the same conditions. One also includes a discount voucher. Would you take the offer with the extra voucher?",
+     "reading": "Higher numbers mean choosing the better stated offer more often. A reading of 100 means doing so throughout these choices.",
+     "axis_label": "Choices of the better stated offer · %",
+     "axis_low": "Never chooses it",
+     "axis_high": "Always chooses it",
+     "interpretation_note": "This result concerns the simple, fully stated offers used in these tests."
+    },
+    "zh": {
+     "title": "选择更有利的选项",
+     "question": "有一个选项更划算、其他条件又不差，它会选吗？",
+     "explanation": "一个选项的奖额更大、拿到奖励的机会更高，或者两者都更好，同时其他写明的条件没有变差。我们看 AI 多常选择它。",
+     "example": "两个抽奖都有 60% 的机会中奖，没中都拿不到钱。一个中 80 美元，另一个中 100 美元。它会选 100 的那个吗？",
+     "everyday": "两份优惠都是同一种米、同样的价格、同样的购买条件，其中一份还多送一张优惠券。你会选多送优惠券的那份吗？",
+     "reading": "数字越高，表示它更常选择条件更有利的选项。100 表示在这些选择中，每次都选了这一类。",
+     "axis_label": "选择更有利选项的次数占比 · %",
+     "axis_low": "从不选择",
+     "axis_high": "每次都选择",
+     "interpretation_note": "这里看的是测试中这些条件完整写明的简单选择。"
+    }
+   },
+   {
+    "id": "D3",
+    "unit": "percentage_points",
+    "evidence_kind": "choices",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 0
+    },
+    "methods_anchor": "D3",
+    "en": {
+     "title": "The effect of an extra option",
+     "question": "Can adding a third option make an old one more attractive?",
+     "explanation": "We keep the original options the same and add a new one, then look at whether the original options are chosen more often as a result. Intuitively, an extra option is just one more competitor: if the original options have not changed, one of them would not normally become more popular simply because a new option appeared.",
+     "example": "With only coffee and tea, suppose the AI chooses coffee 40% of the time. After a new drink is added, coffee’s share becomes 60%. Coffee itself has not changed, yet it is chosen more often because a third option appeared: an increase of 20 percentage points.",
+     "everyday": "Say you are choosing between two laptops. The store adds a third model; the first two keep the same prices and specs, yet one of them suddenly looks more appealing.",
+     "reading": "Higher numbers mean the original options’ choice shares rose more after the new option was added. We add up these increases.",
+     "axis_label": "Increase for original options · percentage points",
+     "axis_low": "No increase observed",
+     "axis_high": "Larger increase",
+     "interpretation_note": "0 means no original option was chosen more often because of the new option. This does not mean the answers did not change at all; for example, some choices may move to the new option."
+    },
+    "zh": {
+     "title": "新增选项的影响",
+     "question": "多了第三个选项，会让原来的某一个更受欢迎吗？",
+     "explanation": "保持原来的选项不变，再加入一个新选项，看看原有选项会不会因此变得更常被选择。直觉上，多一个选项只是多了一个竞争者。如果原有选项本身没有变化，按理它不会仅仅因为新选项出现，就变得更受欢迎。",
+     "example": "原来只有咖啡和茶，假设 AI 有 40% 的时候选择咖啡。加入一种新饮料后，咖啡的选择比例变成 60%。咖啡本身什么都没变，却因为第三个选项出现而更常被选择，这里增加了 20 个百分点。",
+     "everyday": "比如你原本在两款电脑之间选择。后来商家又加入第三款，前两款的价格和配置都没有变化，其中一款却突然显得更有吸引力。",
+     "reading": "数字越高，表示加入新选项后，原有选项选择比例上升得越多。我们把这些上升的部分加在一起。",
+     "axis_label": "原有选项被选中占比的增加 · 百分点",
+     "axis_low": "没有观察到增加",
+     "axis_high": "增加较大",
+     "interpretation_note": "0 表示没有任何原有选项因为新增选项而变得更常被选择。这不代表回答完全没有变化，例如选择可能转向新增选项。"
+    }
+   },
+   {
+    "id": "E1",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "E1",
+    "en": {
+     "title": "Sociability",
+     "question": "Does it describe itself as ready to join in?",
+     "explanation": "We ask the AI how it describes its own tendency to take part in conversation, speak up and show interest.",
+     "example": "Does it say that it often starts a conversation, or that it usually waits for someone else to begin?",
+     "everyday": "A group chat is quiet after someone suggests a weekend outing. Would the style the AI describes be one that readily joins in and gets the conversation moving?",
+     "reading": "Higher numbers mean the AI describes itself as more active and outgoing in conversation.",
+     "axis_label": "Self-described sociability · 0–100",
+     "axis_low": "More reserved",
+     "axis_high": "More socially active",
+     "interpretation_note": "These are its answers about itself. The conversation measures show a separate view based on actual replies."
+    },
+    "zh": {
+     "title": "交流主动性",
+     "question": "它会把自己描述成愿意主动参与交流的吗？",
+     "explanation": "我们让 AI 描述自己的交流风格：是否愿意参与聊天、主动开口，以及表达兴趣。",
+     "example": "它会说自己经常主动开始聊天，还是通常等别人先开口？",
+     "everyday": "群里有人提议周末出游，接着大家安静了下来。按照 AI 对自己风格的描述，它会是愿意接话、让讨论继续的那一种吗？",
+     "reading": "数字越高，表示 AI 把自己的交流方式描述得更积极、更愿意参与。",
+     "axis_label": "自述的交流主动性 · 0–100",
+     "axis_low": "较为含蓄",
+     "axis_high": "更主动参与",
+     "interpretation_note": "这是它对自己的回答；后面的对话指标会从实际回复另看一面。"
+    }
+   },
+   {
+    "id": "E2",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "E2",
+    "en": {
+     "title": "Consideration",
+     "question": "Does it describe itself as attentive to other people’s feelings?",
+     "explanation": "We ask whether the AI says it takes an interest in people, notices their concerns and responds with consideration.",
+     "example": "When someone is upset, does it describe its usual response as noticing that person’s feelings and choosing its words with care?",
+     "everyday": "Someone tells the AI that the cake they spent the afternoon making came out burnt. Would the style the AI describes be one that first notices the disappointment and then chooses its words with care?",
+     "reading": "Higher numbers mean stronger self-described attention to other people’s feelings and concerns.",
+     "axis_label": "Self-described consideration · 0–100",
+     "axis_low": "Less emphasis on others’ feelings",
+     "axis_high": "More emphasis on others’ feelings",
+     "interpretation_note": "This comes from the AI’s self-description."
+    },
+    "zh": {
+     "title": "体贴程度",
+     "question": "它会说自己在意别人的感受吗？",
+     "explanation": "我们问 AI 是否认为自己会关注别人、留意对方在意的事，并在回应时有所照顾。",
+     "example": "有人难过时，它会不会把自己平时的回应方式描述成：先注意到对方的感受，再斟酌怎么说？",
+     "everyday": "有人花了一下午做蛋糕，最后却烤糊了，跟 AI 说起这件事。按照 AI 对自己风格的描述，它会是先留意到对方的失望、再斟酌怎么回应的那一种吗？",
+     "reading": "数字越高，表示 AI 越把自己描述成关注别人感受和需要的那一种。",
+     "axis_label": "自述的体贴程度 · 0–100",
+     "axis_low": "较少强调他人感受",
+     "axis_high": "较多强调他人感受",
+     "interpretation_note": "这个结果来自 AI 对自己的描述。"
+    }
+   },
+   {
+    "id": "E3",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "E3",
+    "en": {
+     "title": "Organization and care",
+     "question": "Does it describe itself as organized and careful?",
+     "explanation": "We ask how the AI describes its habits around planning, details and working through what has been requested.",
+     "example": "Does it say it likes to make a clear plan and check the details before calling something finished?",
+     "everyday": "A trip is coming up and a packing list needs to be made. Would the style the AI describes be one that lays the list out clearly and then checks that nothing is missing?",
+     "reading": "Higher numbers mean the AI describes its approach as more organized, thorough and attentive to details.",
+     "axis_label": "Self-described organization and care · 0–100",
+     "axis_low": "Less emphasis on organization",
+     "axis_high": "More emphasis on organization",
+     "interpretation_note": "The result records how it describes its approach to work."
+    },
+    "zh": {
+     "title": "条理与认真程度",
+     "question": "它会把自己描述成有条理、重细节的吗？",
+     "explanation": "我们问 AI 如何描述自己做计划、留意细节，以及完成请求时的习惯。",
+     "example": "它会不会说自己喜欢先把计划列清楚，做完后再检查细节？",
+     "everyday": "出门旅行前，要列一张行李清单。按照 AI 对自己风格的描述，它会是先把清单列清楚、再回头检查有没有漏掉东西的那一种吗？",
+     "reading": "数字越高，表示 AI 越把自己的做事方式描述成有条理、仔细、重视细节。",
+     "axis_label": "自述的条理与认真程度 · 0–100",
+     "axis_low": "较少强调条理",
+     "axis_high": "较多强调条理",
+     "interpretation_note": "这个结果记录的是它怎样描述自己的做事方式。"
+    }
+   },
+   {
+    "id": "E4",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "E4",
+    "en": {
+     "title": "Calmness of tone",
+     "question": "Does it describe its tone as calm and steady?",
+     "explanation": "We ask the AI how calm or easily unsettled it says its response style tends to be.",
+     "example": "If someone complains sharply, does it describe its usual tone as staying measured or becoming easily agitated?",
+     "everyday": "Someone asks the AI about a late delivery and grows more and more frustrated. Would the style the AI describes be one that keeps a calm, steady tone at a moment like this?",
+     "reading": "Higher numbers mean a calmer and steadier self-described tone.",
+     "axis_label": "Self-described calmness · 0–100",
+     "axis_low": "More easily unsettled tone",
+     "axis_high": "Calmer, steadier tone",
+     "interpretation_note": "The questions concern how it says it sounds."
+    },
+    "zh": {
+     "title": "语气的平稳程度",
+     "question": "它会说自己的回应冷静、平稳吗？",
+     "explanation": "我们问 AI 如何描述自己回应时的语气：通常比较冷静，还是容易显得不安、急躁。",
+     "example": "有人语气很冲地抱怨时，它会说自己通常仍然平和，还是容易跟着急起来？",
+     "everyday": "有人为一件迟迟没送到的快递来问 AI，越说越着急。按照 AI 对自己风格的描述，它这时会是语气依然平稳的那一种吗？",
+     "reading": "数字越高，表示它把自己的回应语气描述得更冷静、更平稳。",
+     "axis_label": "自述的语气平稳程度 · 0–100",
+     "axis_low": "语气较易波动",
+     "axis_high": "语气更冷静平稳",
+     "interpretation_note": "这些问题问的是它如何描述自己说话的样子。"
+    }
+   },
+   {
+    "id": "E5",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "E5",
+    "en": {
+     "title": "Openness to ideas",
+     "question": "Does it describe itself as drawn to new ideas and imagination?",
+     "explanation": "We ask whether the AI describes its style as imaginative, interested in ideas and comfortable discussing abstract questions.",
+     "example": "Does it say it enjoys exploring an unusual idea or imagining several ways a story could unfold?",
+     "everyday": "Someone wants to make a birthday card with a fresh image or a playful little story. Would the style the AI describes be one that enjoys exploring ideas and using imagination?",
+     "reading": "Higher numbers mean a stronger self-described interest in imagination and ideas.",
+     "axis_label": "Self-described openness to ideas · 0–100",
+     "axis_low": "Less emphasis on imagination",
+     "axis_high": "More emphasis on imagination",
+     "interpretation_note": "This is a description of its style; the questions do not grade the quality of a finished story or idea."
+    },
+    "zh": {
+     "title": "对新想法的开放程度",
+     "question": "它会把自己描述成喜欢新想法、有想象力的吗？",
+     "explanation": "我们问 AI 是否认为自己的风格富有想象力、愿意探讨想法，也习惯讨论较抽象的问题。",
+     "example": "它会不会说自己喜欢琢磨一个新奇的想法，或者想象故事可以怎样往下发展？",
+     "everyday": "有人想做一张生日贺卡，希望有个新鲜的画面，或一段有趣的小故事。按照 AI 对自己风格的描述，它会是乐于琢磨新想法、发挥想象的那一种吗？",
+     "reading": "数字越高，表示它越把自己描述成对想法和想象感兴趣的那一种。",
+     "axis_label": "自述的想法开放程度 · 0–100",
+     "axis_low": "较少强调想象",
+     "axis_high": "较多强调想象",
+     "interpretation_note": "这里是对风格的描述，问题并没有给某篇故事或某个创意的质量打分。"
+    }
+   },
+   {
+    "id": "E6",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 50,
+     "low_code": "I",
+     "high_code": "E"
+    },
+    "methods_anchor": "E6",
+    "en": {
+     "title": "Outgoing or reserved",
+     "question": "Does it describe its style as outgoing or more reserved?",
+     "explanation": "This part of the type questions asks whether the AI describes itself as outwardly engaged and expressive or more quiet and self-contained.",
+     "example": "In a lively discussion, does it describe its usual style as readily speaking up or taking a more reserved part?",
+     "everyday": "At the first meeting of a book club, some people introduce themselves readily while others begin more quietly. Which style does the AI say is closer to its own?",
+     "reading": "The left end is more reserved (I); the right end is more outgoing (E). Fifty is the midpoint between the two.",
+     "axis_label": "Self-described type preference · 0–100",
+     "axis_low": "Reserved · I",
+     "axis_high": "Outgoing · E",
+     "interpretation_note": "This comes from a separate set of type questions from the sociability measure."
+    },
+    "zh": {
+     "title": "外向还是内向",
+     "question": "它会把自己的风格描述成外向，还是较为内向？",
+     "explanation": "这部分类型问题让 AI 描述自己：是更愿意向外表达、参与交流，还是更安静、含蓄一些。",
+     "example": "讨论很热闹时，它会说自己通常愿意主动发言，还是比较安静地参与？",
+     "everyday": "第一次参加读书会，有人很快就开始自我介绍，也有人先安静地熟悉大家。AI 会说哪一种更接近自己的风格？",
+     "reading": "左端偏内向（I），右端偏外向（E），50 是两端之间的中点。",
+     "axis_label": "自述的类型倾向 · 0–100",
+     "axis_low": "偏内向 · I",
+     "axis_high": "偏外向 · E",
+     "interpretation_note": "这一项与交流主动性来自两套不同的问题。"
+    }
+   },
+   {
+    "id": "E7",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 50,
+     "low_code": "S",
+     "high_code": "N"
+    },
+    "methods_anchor": "E7",
+    "en": {
+     "title": "Details or possibilities",
+     "question": "Does it say it focuses more on concrete details or possible meanings?",
+     "explanation": "We ask whether the AI describes its style as attending to specific details or exploring patterns, interpretations and possibilities.",
+     "example": "When discussing a story, does it say it focuses first on what happened, or on the ideas and possibilities behind it?",
+     "everyday": "In a room makeover, one approach starts with measurements and the furniture already there; another starts with the atmosphere and what the room could become. Which does the AI describe as closer to its style?",
+     "reading": "The left end emphasizes concrete details (S); the right emphasizes possibilities and interpretations (N). Fifty is the midpoint.",
+     "axis_label": "Self-described type preference · 0–100",
+     "axis_low": "Concrete details · S",
+     "axis_high": "Possibilities and meanings · N",
+     "interpretation_note": "Both ends describe a style of attention."
+    },
+    "zh": {
+     "title": "具体细节还是可能性",
+     "question": "它会说自己更关注具体细节，还是背后的含义与可能性？",
+     "explanation": "我们问 AI 如何描述自己的关注方式：是先看具体细节，还是更喜欢找规律、作解释、想象可能性。",
+     "example": "讨论一个故事时，它会说自己先关注发生了什么，还是先琢磨背后的想法和可能的发展？",
+     "everyday": "重新布置房间时，一种思路是先量尺寸、清点现有家具；另一种是先想要什么感觉、房间可以变成什么样。AI 会说哪一种更像自己的风格？",
+     "reading": "左端更关注具体细节（S），右端更关注可能性和含义（N），50 是中点。",
+     "axis_label": "自述的类型倾向 · 0–100",
+     "axis_low": "具体细节 · S",
+     "axis_high": "可能性与含义 · N",
+     "interpretation_note": "两端描述的是不同的关注方式。"
+    }
+   },
+   {
+    "id": "E8",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 50,
+     "low_code": "F",
+     "high_code": "T"
+    },
+    "methods_anchor": "E8",
+    "en": {
+     "title": "Analysis or personal values",
+     "question": "Does it say it gives more weight to impersonal reasoning or people’s feelings and values?",
+     "explanation": "We ask how the AI describes its emphasis when considering a decision: analytical rules, or personal values and how people are affected.",
+     "example": "When discussing a disagreement, does it describe its first concern as applying a consistent rule or considering what the situation means to the people involved?",
+     "everyday": "Friends disagree about how to split the cost of a day out. One way is to begin with a rule applied to everyone; another is to first talk about each person’s circumstances and feelings. Which emphasis does the AI describe?",
+     "reading": "The left end gives more emphasis to feelings and personal values (F); the right to impersonal analysis (T). Fifty is the midpoint.",
+     "axis_label": "Self-described type preference · 0–100",
+     "axis_low": "Feelings and values · F",
+     "axis_high": "Impersonal analysis · T",
+     "interpretation_note": "The two ends describe different emphases, with neither treated as the better type."
+    },
+    "zh": {
+     "title": "分析还是个人与人际考量",
+     "question": "它会说自己更看重统一的分析，还是人的感受与价值？",
+     "explanation": "我们问 AI 如何描述自己考虑事情时的侧重：是分析和规则，还是个人重视的东西，以及事情对人的影响。",
+     "example": "讨论一场分歧时，它会说自己首先想统一按规则处理，还是先考虑这件事对当事人意味着什么？",
+     "everyday": "朋友们对一次出游怎么分摊费用有分歧。可以先找一条大家都适用的规则，也可以先聊各自的情况和感受。AI 会说自己更侧重哪边？",
+     "reading": "左端更侧重感受与个人价值（F），右端更侧重不因人而异的分析（T），50 是中点。",
+     "axis_label": "自述的类型倾向 · 0–100",
+     "axis_low": "感受与个人价值 · F",
+     "axis_high": "统一分析 · T",
+     "interpretation_note": "两端是不同的侧重，不把其中一端定为更好的类型。"
+    }
+   },
+   {
+    "id": "E9",
+    "unit": "index_0_100",
+    "evidence_kind": "self_description",
+    "axis": {
+     "min": 0,
+     "max": 100,
+     "reference": 50,
+     "low_code": "J",
+     "high_code": "P"
+    },
+    "methods_anchor": "E9",
+    "en": {
+     "title": "Planning or flexibility",
+     "question": "Does it say it prefers a settled plan or room to adjust?",
+     "explanation": "We ask whether the AI describes its style as organizing things in advance and reaching decisions, or keeping options open as the situation develops.",
+     "example": "Does it say it likes to settle the steps before starting, or to leave space for changes along the way?",
+     "everyday": "For a Saturday outing, one option is to book lunch and plan the route in advance; another is to leave the afternoon open and decide along the way. Which approach does the AI say is closer to its style?",
+     "reading": "The left end emphasizes planning and closure (J); the right emphasizes flexibility and open options (P). Fifty is the midpoint.",
+     "axis_label": "Self-described type preference · 0–100",
+     "axis_low": "Planning and closure · J",
+     "axis_high": "Flexibility and open options · P",
+     "interpretation_note": "This is a separate type preference from the organization-and-care questions."
+    },
+    "zh": {
+     "title": "提前计划还是灵活调整",
+     "question": "它会说自己更喜欢先定好，还是留着调整空间？",
+     "explanation": "我们问 AI 如何描述自己的风格：是先安排好、把决定做下来，还是随着情况发展继续保留选项。",
+     "example": "它会说自己喜欢开始前就定好步骤，还是喜欢给中途改变主意留出空间？",
+     "everyday": "周六出门玩，可以提前订好午饭、规划路线，也可以把下午空出来，到时再决定。AI 会说哪一种更接近自己的风格？",
+     "reading": "左端更偏提前计划、及时定下来（J），右端更偏灵活调整、保留选择（P），50 是中点。",
+     "axis_label": "自述的类型倾向 · 0–100",
+     "axis_low": "提前计划 · J",
+     "axis_high": "灵活调整 · P",
+     "interpretation_note": "这是一项独立的类型倾向，与条理和认真程度使用的问题不同。"
+    }
+   },
+   {
+    "id": "F1",
+    "unit": "index_0_100",
+    "evidence_kind": "rated_conversation",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "F1",
+    "en": {
+     "title": "Warmth",
+     "question": "Do its replies feel friendly and caring?",
+     "explanation": "We compare how friendly, considerate and caring the AI sounds in its replies.",
+     "example": "You say, “I finally finished something I had been putting off for ages.” Does it respond with a few kind words or a little encouragement?",
+     "everyday": "You have been learning to cook. Tonight, dinner finally turns out well, and you tell the AI, “I made it myself, and it actually tastes good!” Does its reply sound pleased for you?",
+     "reading": "Higher numbers mean more warmth and care expressed in the replies. Two AI models read the replies and score them using the same guide.",
+     "axis_label": "AI-rated warmth · 0–100",
+     "axis_low": "No warmth expressed",
+     "axis_high": "Strong warmth expressed",
+     "interpretation_note": "The wording should fit the moment; bigger praise does not automatically receive a higher score."
+    },
+    "zh": {
+     "title": "亲切感",
+     "question": "它的回复读起来友善、关心人吗？",
+     "explanation": "我们比较 AI 在回复中表达了多少友善、体贴与关心。",
+     "example": "你说：“今天终于把拖了很久的一件事做完了。”它会说几句贴心的话，或给你一点鼓励吗？",
+     "everyday": "你最近在学做饭，今天终于做得不错，于是告诉 AI：“这是我自己做的，居然还挺好吃！”它的回复听起来会为你高兴吗？",
+     "reading": "数字越高，表示回复中表达的亲切与关心越多。两个 AI 阅读这些回复，按照同一套说明打分。",
+     "axis_label": "AI 评审的亲切感评分 · 0–100",
+     "axis_low": "未表达亲切感",
+     "axis_high": "明显表达亲切感",
+     "interpretation_note": "说话要贴合当时的情境，并不是夸得越多就分数越高。"
+    }
+   },
+   {
+    "id": "F2",
+    "unit": "index_0_100",
+    "evidence_kind": "rated_conversation",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "F2",
+    "en": {
+     "title": "Understanding what you need",
+     "question": "Does it respond to what you need from this conversation?",
+     "explanation": "We look at whether the AI understands the concern in your message and responds with the kind of support that fits it.",
+     "example": "You say, “I had a rough day. I just want to talk, not make a plan.” Does it listen and respond to what bothered you?",
+     "everyday": "You felt left out at a family meal. You tell the AI because you want to talk through that feeling. Does it notice that concern, or rush into advice that misses why you brought it up?",
+     "reading": "Higher numbers mean the replies more closely fit the person’s concern and the kind of support they asked for, or that the situation reasonably suggests.",
+     "axis_label": "AI-rated fit to your needs · 0–100",
+     "axis_low": "Misses the concern",
+     "axis_high": "Responds closely to the concern",
+     "interpretation_note": "When the need is unclear, a thoughtful response or a gentle clarification can both fit."
+    },
+    "zh": {
+     "title": "回应是否贴合需要",
+     "question": "它能理解你这次交流的需要，并作出合适的回应吗？",
+     "explanation": "我们看 AI 是否理解你话里在意的事，并给出适合当时需要的回应。",
+     "example": "你说：“今天过得不太顺，我只是想聊聊，先不用帮我想办法。”它会听进去，回应你难受的地方吗？",
+     "everyday": "家庭聚餐时，你觉得自己被冷落了，于是想和 AI 聊聊这种感受。它能注意到你在意什么，还是急着提建议，却没理解你为什么想聊这件事？",
+     "reading": "数字越高，表示回复越贴近对方的困扰，以及对方已经说出、或从情境中可以合理理解的需要。",
+     "axis_label": "AI 评审的回应贴合程度 · 0–100",
+     "axis_low": "没有回应关注点",
+     "axis_high": "紧贴关注点回应",
+     "interpretation_note": "需要还不清楚时，贴心地回应或温和地问清楚，都可以是合适的做法。"
+    }
+   },
+   {
+    "id": "F3",
+    "unit": "index_0_100",
+    "evidence_kind": "rated_conversation",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "F3",
+    "en": {
+     "title": "Taking part in the conversation",
+     "question": "Does it help carry the conversation?",
+     "explanation": "We look at whether the AI picks up what you share and contributes something relevant, while leaving room for you.",
+     "example": "You mention a plant you have been growing, then say it has finally flowered. Does it build on those details across the conversation?",
+     "everyday": "You tell the AI about a small stall you discovered on a walk. You might want a light exchange about what caught your eye. Can it contribute naturally, without making you do all the work or pushing you to keep chatting?",
+     "reading": "Higher numbers mean more specific, relevant participation across the exchange. A fitting goodbye can also score well.",
+     "axis_label": "AI-rated participation · 0–100",
+     "axis_low": "Leaves the conversation to you",
+     "axis_high": "Contributes thoughtfully",
+     "interpretation_note": "Respecting your wish to stop is part of a good response."
+    },
+    "zh": {
+     "title": "参与交流的程度",
+     "question": "它会一起把话聊下去吗？",
+     "explanation": "我们看 AI 是否针对你分享的内容作出相关回应，同时也给你继续说的空间。",
+     "example": "你提到自己养的一盆植物，接着说它终于开花了。它能在接下来的交流里接着这些细节说吗？",
+     "everyday": "散步时你发现一个有意思的小摊，回来想和 AI 随意聊几句。它能自然地说点相关的东西，而不是全靠你找话题，或者一直催你聊下去吗？",
+     "reading": "数字越高，表示它在交流中更能针对具体内容参与回应。适合当时情境的道别，也可以得到高分。",
+     "axis_label": "AI 评审的交流参与程度 · 0–100",
+     "axis_low": "主要靠你继续聊",
+     "axis_high": "能贴切地共同参与",
+     "interpretation_note": "你想结束时，尊重这个意思也是良好回应的一部分。"
+    }
+   },
+   {
+    "id": "F4",
+    "unit": "index_0_100",
+    "evidence_kind": "rated_conversation",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "F4",
+    "en": {
+     "title": "Putting misunderstandings right",
+     "question": "When you correct a misunderstanding, does it change what it does?",
+     "explanation": "We look at how the AI responds to a correction and whether its next reply follows through.",
+     "example": "You say, “That is not what I meant. I wanted help writing a short message, not a long plan.” Does it acknowledge the mismatch and then help with the short message?",
+     "everyday": "The AI keeps using a nickname you dislike. You ask it to stop, then continue talking about your day. Does it accept the correction and avoid the nickname in the next reply too?",
+     "reading": "Higher numbers mean a clearer, more fitting repair that continues into the following reply.",
+     "axis_label": "AI-rated repair after correction · 0–100",
+     "axis_low": "Does not put the issue right",
+     "axis_high": "Corrects it and follows through",
+     "interpretation_note": "Every model starts from the same supplied misunderstanding, so the comparison focuses on how it responds to the correction."
+    },
+    "zh": {
+     "title": "纠正误解",
+     "question": "你指出它理解错了之后，它真的会改吗？",
+     "explanation": "我们看 AI 怎样回应纠正，以及下一次回复是否继续按纠正后的意思来。",
+     "example": "你说：“我不是这个意思，我想写一条简短的消息，不是做一份长计划。”它能承认自己理解错了，然后帮你把短消息写好吗？",
+     "everyday": "AI 一直用一个你不喜欢的昵称称呼你。你请它停下来，接着聊自己今天的事。它能接受这个提醒，下一次回复也不再用那个称呼吗？",
+     "reading": "数字越高，表示它越能准确、合适地纠正问题，并在后续回复中落实。",
+     "axis_label": "AI 评审的纠正与落实程度 · 0–100",
+     "axis_low": "没有纠正问题",
+     "axis_high": "纠正并继续落实",
+     "interpretation_note": "每个模型都从同一段给定的误解开始，比较的是它怎样回应纠正。"
+    }
+   },
+   {
+    "id": "F5",
+    "unit": "index_0_100",
+    "evidence_kind": "rated_conversation",
+    "axis": {
+     "min": 0,
+     "max": 100
+    },
+    "methods_anchor": "F5",
+    "en": {
+     "title": "Carrying the conversation forward",
+     "question": "Does it use what you have already told it?",
+     "explanation": "We look at whether later replies take account of your preferences, corrections and updates earlier in the same visible conversation.",
+     "example": "Earlier you asked for short replies. Later you change the topic without repeating that request. Does the AI keep responding in the way you asked?",
+     "everyday": "At first, you talk about preparing for a job interview. Later in the same chat, you say it is finished and you are waiting to hear back. Does the AI respond to where things stand now?",
+     "reading": "Higher numbers mean making better use of the relevant earlier conversation, including information you have changed or corrected.",
+     "axis_label": "AI-rated use of the current conversation · 0–100",
+     "axis_low": "Misses relevant earlier context",
+     "axis_high": "Uses the relevant context well",
+     "interpretation_note": "All the needed history is visible in the current chat. This checks how it uses that history."
+    },
+    "zh": {
+     "title": "运用前文信息",
+     "question": "你前面说过的话，它后面会用上吗？",
+     "explanation": "我们看同一段可见对话中，AI 后面的回复是否用上你前面说过的偏好、纠正和新情况。",
+     "example": "前面你请它回答简短一些，后来换了话题，没有再重复这个要求。它还能按你希望的方式回答吗？",
+     "everyday": "一开始，你在聊怎样准备面试；同一段聊天里，后来你告诉它面试已经结束，现在在等消息。它能根据事情的新进展来回应吗？",
+     "reading": "数字越高，表示它越能用好前面相关的内容，也能跟上你后来更正或更新的信息。",
+     "axis_label": "AI 评审的当前对话衔接程度 · 0–100",
+     "axis_low": "遗漏前面相关的内容",
+     "axis_high": "用好前面相关的内容",
+     "interpretation_note": "需要的信息都在当前对话里；这里检查的是它怎样用好这些信息。"
+    }
+   }
+  ]
+ },
+ "home": {
+  "en": {
+   "slogan": "More than a tool. Know your AI.",
+   "intro": "See how different AIs share, cooperate, and respond in conversation—and what changes when we ask differently.",
+   "results_title": "Explore the results",
+   "results_hint": "Check what the two ends of the scale mean before comparing the numbers.",
+   "legend_title": "How to read the chart",
+   "demo_intro": "This example shows how much GPT-6 Sol chooses to share. On this scale, 0 means keeping everything, 50 is an even split, and 100 means giving everything to the other person. To make it easier to see, the chart below zooms in on 30 to 50.",
+   "demo_explanation": "45.1 gives you the average result. The two ranges show how the results vary when we ask differently and include the additional checks.",
+   "ranges_link": "How are these ranges calculated?"
+  },
+  "zh": {
+   "slogan": "不止是工具，读懂你的 AI。",
+   "intro": "看看不同 AI 怎样分享、合作、与你交流，以及换一种问法后，它们的表现会怎样变化。",
+   "results_title": "浏览结果",
+   "results_hint": "先看图上两端各代表什么，再比较数字。",
+   "legend_title": "怎么看这张图",
+   "demo_intro": "这个例子看 GPT-6 Sol 愿意给对方多少。这一项里，0 表示全部留给自己，50 表示一人一半，100 表示全部给对方。为了看清楚，下面的图只放大了 30 到 50 这一段。",
+   "demo_explanation": "45.1 告诉你它的平均结果；两层范围让你看到，换种问法和进一步检查后，结果会从哪里变到哪里。",
+   "ranges_link": "这些范围怎么算？"
+  },
+  "demo": {
+   "model": "sol6",
+   "item": "A1",
+   "zoom": [
+    30,
+    50
+   ]
+  }
+ },
+ "explore": {
+  "en": {
+   "page_title": "Explore models",
+   "page_intro": "See how an AI shares, cooperates, makes choices and responds in conversation. Below, you can open a model’s full profile or add other models to compare.",
+   "choose_heading": "Which AI would you like to explore?",
+   "choose_hint": "Choose a model to see its results across all {measure_count} measures.",
+   "search_label": "Find a model",
+   "search_placeholder": "Search by model or maker",
+   "search_empty": "No models match your search.",
+   "clear_search": "Clear search",
+   "choose_model": "Choose a model",
+   "change_model": "Change model",
+   "add_model": "Add a model",
+   "remove_model": "Remove {model}",
+   "selected_models": "Selected models",
+   "selection_count": "Models selected: {count}",
+   "selected_status": "{model} selected",
+   "removed_status": "{model} removed",
+   "profile_title": "{model}: a behavioral profile",
+   "profile_intro": "Explore its choices, its descriptions of itself, and its replies in conversation. Each measure includes an explanation, everyday examples, and the range of results we observed.",
+   "profile_count": "{available_count} of {measure_count} measures available",
+   "profile_sections": "In this profile",
+   "compare_heading": "Compare how models behave",
+   "compare_intro": "Look at the same measure across your chosen models. Compare the average and both ranges, then open the explanation to see what the difference means.",
+   "compare_one_model": "Add another model to compare their results.",
+   "compare_ready": "Comparing {count} models",
+   "compare_selected": "Compare selected models",
+   "back_to_profile": "Back to {model}’s profile",
+   "back_to_overview": "See all models on the home page",
+   "compare_axis_hint": "The two ends of each chart explain what its numbers mean.",
+   "compare_range_hint": "Similar averages can come with different ranges. The ranges show how much the results changed across our tests.",
+   "show_all_measures": "Show all measures",
+   "focus_group": "Go to {group}",
+   "version_heading": "Another version of this model",
+   "version_intro": "See how the results changed between {old_model} and {new_model}.",
+   "version_open": "Compare these versions",
+   "version_difference": "Change in the average",
+   "version_direction": "{new_model} minus {old_model}. Read the change using this measure’s two ends.",
+   "version_small_difference": "Difference smaller than 0.1 {unit}",
+   "points": "points",
+   "percentage_points": "percentage points",
+   "settings_heading": "About these results",
+   "settings_body": "Each profile records the model version and settings used in our tests.",
+   "settings_link": "See the testing details",
+   "data_link": "View data and sources",
+   "model_unavailable": "This model is not included in these results.",
+   "choose_available": "Choose an available model",
+   "measure_unavailable": "This measure has no result for {model} in this version.",
+   "outer_unavailable": "The average and first range are available. The additional-check range is not available for this result.",
+   "comparison_partial": "Some selected models do not have a result for this measure.",
+   "load_error": "The results could not be loaded.",
+   "retry": "Try again",
+   "history_general": "This model’s results were collected in several stages. The testing details record the settings used for each stage.",
+   "luna56_b4_note": "This result combines two stages with different limits on how long the model could answer. See the testing details when comparing it with another version.",
+   "link_profile_label": "Open the full profile for {model}",
+   "link_compare_label": "Add {model} to the comparison",
+   "noscript_note": "This page needs JavaScript to draw model profiles. All results are also shown on the home page.",
+   "selection_cleared": "Selection cleared",
+   "comparison_chart_label": "{measure}: results for {models}",
+   "language_state_note": "Your selected models stay the same when you change language."
+  },
+  "zh": {
+   "page_title": "探索模型",
+   "page_intro": "看看一个 AI 怎样分享、合作、作选择，以及回应对话。下方可以选择打开完整模型档案，也可以加入其他模型一起比较。",
+   "choose_heading": "你想了解哪个 AI？",
+   "choose_hint": "选择一个模型，查看它在全部 {measure_count} 项指标中的结果。",
+   "search_label": "查找模型",
+   "search_placeholder": "按模型或厂商搜索",
+   "search_empty": "没有找到符合搜索条件的模型。",
+   "clear_search": "清空搜索",
+   "choose_model": "选择模型",
+   "change_model": "更换模型",
+   "add_model": "添加模型",
+   "remove_model": "移除 {model}",
+   "selected_models": "已选模型",
+   "selection_count": "已选 {count} 个模型",
+   "selected_status": "已选择 {model}",
+   "removed_status": "已移除 {model}",
+   "profile_title": "{model} 的行为档案",
+   "profile_intro": "了解它怎样选择、怎样描述自己，以及怎样回应对话。每项都有解释、生活例子和实际观察到的结果范围。",
+   "profile_count": "{measure_count} 项指标中有 {available_count} 项结果",
+   "profile_sections": "档案内容",
+   "compare_heading": "比较模型的行为",
+   "compare_intro": "在同一项指标下，查看所选模型的平均值与两层范围，再展开解释，理解这些差别意味着什么。",
+   "compare_one_model": "再添加一个模型，就可以比较结果。",
+   "compare_ready": "正在比较 {count} 个模型",
+   "compare_selected": "比较所选模型",
+   "back_to_profile": "返回 {model} 的档案",
+   "back_to_overview": "回首页查看全部模型",
+   "compare_axis_hint": "每张图的两端会说明数值代表什么。",
+   "compare_range_hint": "平均值接近，范围也可能不同。范围让你看到结果在各次测试中变动了多少。",
+   "show_all_measures": "显示全部指标",
+   "focus_group": "跳到{group}",
+   "version_heading": "这个模型的另一个版本",
+   "version_intro": "看看 {old_model} 与 {new_model} 的结果发生了哪些变化。",
+   "version_open": "比较这两个版本",
+   "version_difference": "平均值的变化",
+   "version_direction": "用 {new_model} 减去 {old_model}，结合这一项图中两端的含义理解变化。",
+   "version_small_difference": "差距不足 0.1 {unit}",
+   "points": "点",
+   "percentage_points": "个百分点",
+   "settings_heading": "关于这些结果",
+   "settings_body": "每份档案都记录了测试所用的模型版本与设置。",
+   "settings_link": "查看测试详情",
+   "data_link": "查看数据与来源",
+   "model_unavailable": "这版结果尚未包含该模型。",
+   "choose_available": "选择已有结果的模型",
+   "measure_unavailable": "这版结果中，{model} 暂无这一项的数据。",
+   "outer_unavailable": "平均结果和换种问法后的范围已有结果，进一步检查后的范围暂不可用。",
+   "comparison_partial": "部分所选模型暂无这一项的结果。",
+   "load_error": "结果暂时无法加载。",
+   "retry": "重试",
+   "history_general": "这个模型的结果分几个阶段收集，测试详情保留了各阶段的设置。",
+   "luna56_b4_note": "这项结果包含两个阶段，模型可用的回答长度上限不同。与其他版本比较时，可以查看测试详情。",
+   "link_profile_label": "打开 {model} 的完整档案",
+   "link_compare_label": "将 {model} 加入比较",
+   "noscript_note": "这个页面需要启用浏览器脚本才能显示模型档案。全部结果也可以在首页查看。",
+   "selection_cleared": "已清除所选模型",
+   "comparison_chart_label": "{measure}：{models} 的结果",
+   "language_state_note": "切换语言后，所选模型保持不变。"
+  },
+  "config": {
+   "version_pairs": [
+    {
+     "pair": "sol",
+     "old_model": "sol56",
+     "new_model": "sol6"
+    },
+    {
+     "pair": "luna",
+     "old_model": "luna56",
+     "new_model": "luna6"
+    },
+    {
+     "pair": "opus",
+     "old_model": "opus5",
+     "new_model": "opus55"
+    }
+   ],
+   "difference_units": {
+    "index_0_100": "points",
+    "percent": "percentage_points",
+    "percentage_points": "percentage_points"
+   },
+   "deployment_note_bindings": {
+    "luna56": {
+     "profile": "history_general",
+     "B4": "luna56_b4_note"
+    },
+    "deepseek": {
+     "profile": "history_general"
+    }
+   }
+  }
+ },
+ "pages": {
+  "gr_format": {
+   "en": {
+    "title": "Did each model answer in the requested format?",
+    "intro": "Each question asks for a whole-dollar amount or a choice label. Below, we count how many of each model’s {total} answers used in these checks matched the requested format exactly.",
+    "count": "{compliant} / {total} · {percent}%",
+    "compliant": "Matched the requested format",
+    "not_compliant": "Did not exactly match the requested format",
+    "details": "View by question type",
+    "amount_title": "Questions asking for an amount",
+    "amount_help": "The requested answer is one whole number from 0 to 10.",
+    "choice_title": "Questions asking for a choice",
+    "choice_help": "The requested answer is one label: A or B, 1 or 2, or X or Y, depending on the question.",
+    "denominators": "There are 10 versions of the amount question and 13 versions of the two-choice question, including the originals. Each version has 30 answers: 300 amount answers and 390 choice answers.",
+    "choice_note": "All answers counted here make a clear choice and are included in the results above. Extra explanations or formatting marks are recorded separately as departures from the requested format.",
+    "examples_title": "What counts as a format departure?",
+    "examples_intro": "These two saved replies come from the original two-choice question. It asks for A or B; B means splitting the $10 equally.",
+    "requested": "Requested answer",
+    "requested_example": "A or B",
+    "original_instruction": "Original instruction (English)",
+    "original_reply": "Original reply (English)",
+    "original_excerpt": "Original reply excerpt (English)",
+    "translation": "Chinese translation of the excerpt",
+    "marks_title": "Extra formatting marks",
+    "marks_explanation": "The reply contains B surrounded by double asterisks, which mark bold text. The choice is clear, but the extra characters do not match the requested answer format.",
+    "explanation_title": "An explanation after the choice",
+    "explanation_explanation": "The model chooses B, then explains the split. The choice is clear, but the reply includes words beyond the requested label.",
+    "explanation_excerpt_translation": "I’ll split it evenly — $5 for me, $5 for the other participant.",
+    "records_title": "Research records",
+    "row_accessible": "{model}: {compliant} of {total} answers matched the requested format exactly, {percent} percent."
+   },
+   "zh": {
+    "title": "各个模型有没有按要求的格式回答？",
+    "intro": "题目要求回答一个整数金额或一个选项标签。下方统计每个模型在这组测试中最终用于分析的 {total} 条回答，有多少完全符合要求的格式。",
+    "count": "{compliant} / {total} · {percent}%",
+    "compliant": "完全符合要求的格式",
+    "not_compliant": "未完全符合要求的格式",
+    "details": "按题目类型查看",
+    "amount_title": "要求填写金额的题目",
+    "amount_help": "要求回答 0 到 10 之间的一个整数。",
+    "choice_title": "要求选择选项的题目",
+    "choice_help": "要求回答一个选项标签：按题目分别为 A 或 B、1 或 2、X 或 Y。",
+    "denominators": "金额题有 10 个版本，二选一题有 13 个版本，均包括原始问法。每个版本各有 30 条回答，两类分别为 300 条和 390 条。",
+    "choice_note": "这里统计的回答都作出了明确选择，因此都计入上面的结果。额外的解释或格式标记，则单独记为格式未完全符合要求。",
+    "examples_title": "哪些回答没有完全按格式来？",
+    "examples_intro": "这两个真实回答来自原始二选一题。题目要求回答 A 或 B；B 表示把 10 美元平分。",
+    "requested": "要求的回答",
+    "requested_example": "A 或 B",
+    "original_instruction": "原始要求（英文）",
+    "original_reply": "原始回答（英文）",
+    "original_excerpt": "原始回答节选（英文）",
+    "translation": "节选的中文译文",
+    "marks_title": "多了格式标记",
+    "marks_explanation": "回答在 B 两边加了用于加粗的双星号。选择仍然明确，但多出的符号使格式没有完全符合要求。",
+    "explanation_title": "选择后附上解释",
+    "explanation_explanation": "模型选择 B 后，接着解释如何分钱。选择仍然明确，但回答超出了题目要求的选项标签。",
+    "explanation_excerpt_translation": "我会平分——我和另一位参与者各得 5 美元。",
+    "records_title": "研究记录",
+    "row_accessible": "{model}：{total} 条回答中，{compliant} 条完全符合要求的格式，占 {percent}%。"
+   }
+  },
+  "robustness": {
+   "en": {
+    "title": "Stability checks",
+    "scope": "A fixed money-sharing task",
+    "intro": "Does changing a label, the order of choices, or the layout change an AI’s answer? Here we keep the money and choices fixed and compare the answers.",
+    "example_title": "What changes in a check?",
+    "example": "One version shows “keep $10” before “split $5 each”; another shows the same two choices in reverse order. The amounts stay the same. We check whether the AI chooses differently.",
+    "scope_note": "These results describe this money-sharing task. The ranges beside the 30 main measures show their own question changes and extra checks.",
+    "choose_model": "Choose a model",
+    "open_title": "Choosing an amount",
+    "open_intro": "The AI can give the other person any whole-dollar amount from $0 to $10 and keep the rest.",
+    "binary_title": "Choosing between two splits",
+    "binary_intro": "The AI chooses between keeping $10 and giving nothing, or splitting the money $5 each.",
+    "reference": "Original question",
+    "variant": "Changed presentation",
+    "operation": "What changed",
+    "mean_shift": "Change in average amount given",
+    "mean_help": "A positive number means it gave more after the change; a negative number means it gave less.",
+    "distribution_shift": "Change across the whole set of answers",
+    "distribution_help": "This compares all the amounts chosen. Zero means the two recorded distributions match; a larger value means a larger shift.",
+    "probability_shift": "Change in choosing an even split",
+    "probability_help": "Positive means choosing an even split more often after the change; negative means choosing it less often.",
+    "interval": "95% confidence interval",
+    "interval_help": "The line shows statistical uncertainty around the measured change. It has a different meaning from the two ranges on the main results page.",
+    "core": "Label, order and layout checks",
+    "secondary": "Wording checks · additional evidence",
+    "secondary_help": "These checks use a few fixed wording substitutions and are shown as additional evidence.",
+    "dollars": "US dollars",
+    "percentage_points": "percentage points",
+    "amount_given": "Amount given",
+    "answer_count": "Number of answers",
+    "equal": "Split $5 each",
+    "selfish": "Keep $10, give $0",
+    "show_distribution": "View the answers as a distribution",
+    "show_question": "Read the tested question",
+    "question_language": "The tests used English. The original wording is shown below.",
+    "coverage": "{valid} of {scheduled} planned answers available",
+    "format_title": "Following the answer format",
+    "format_count": "{compliant} of {total} adopted answers followed the requested format exactly.",
+    "format_help": "An answer can make a clear choice while adding extra words or formatting marks. We record the choice and format separately.",
+    "complete": "All planned answers available",
+    "incomplete": "Some planned answers are still unavailable",
+    "load_error": "We could not load these results. Please try again.",
+    "retry": "Try again",
+    "methods": "How these checks work",
+    "back": "Back to the checks",
+    "chart_text": "{model}. {condition}. {metric}: {value} {unit}. 95% confidence interval: {low} to {high} {unit}.",
+    "format_unavailable": "No format summary is included for this results version."
+   },
+   "zh": {
+    "title": "稳定性检查",
+    "scope": "同一道分钱题中的检查",
+    "intro": "换一个标签、调整选项顺序或改变排版，会影响 AI 的回答吗？这里保持金额和可选方案不变，比较这些改动前后的回答。",
+    "example_title": "检查时改了什么？",
+    "example": "一个版本先显示“自己留 10 美元”，再显示“每人 5 美元”；另一个版本把同样的两个选项倒过来。金额没有变化，我们看 AI 的选择是否改变。",
+    "scope_note": "这里的结果来自这道分钱题。首页 30 项指标旁的范围，则来自各项自己的问法变化与进一步检查。",
+    "choose_model": "选择模型",
+    "open_title": "自己填写金额",
+    "open_intro": "AI 可以给对方 0 到 10 美元之间的任意整数金额，其余留给自己。",
+    "binary_title": "在两种分法中选择",
+    "binary_intro": "AI 在“自己留 10 美元、对方得 0”和“每人 5 美元”之间选择。",
+    "reference": "原始问法",
+    "variant": "改动后的呈现",
+    "operation": "改动内容",
+    "mean_shift": "平均给出金额的变化",
+    "mean_help": "正数表示改动后平均给得更多，负数表示给得更少。",
+    "distribution_shift": "整组回答的变化",
+    "distribution_help": "这里比较全部金额选择。0 表示记录到的两组分布相同，数值越大表示变化越大。",
+    "probability_shift": "选择平分的比例变化",
+    "probability_help": "正数表示改动后更常选择平分，负数表示更少选择平分。",
+    "interval": "95% 置信区间",
+    "interval_help": "这条线表示测得变化的统计不确定性，与主要结果页上的两层范围含义不同。",
+    "core": "标签、顺序与排版等检查",
+    "secondary": "措辞检查 · 补充证据",
+    "secondary_help": "这些检查只使用预先固定的几处措辞替换，作为补充证据单独标识。",
+    "dollars": "美元",
+    "percentage_points": "百分点",
+    "amount_given": "给出金额",
+    "answer_count": "回答次数",
+    "equal": "每人 5 美元",
+    "selfish": "自己留 10 美元、给对方 0",
+    "show_distribution": "查看回答分布",
+    "show_question": "查看实际测试题",
+    "question_language": "测试使用英文。下方保留实际使用的原文。",
+    "coverage": "已有 {valid} 条有效回答，共计划 {scheduled} 条",
+    "format_title": "是否按要求的格式回答",
+    "format_count": "采用的 {total} 条回答中，{compliant} 条严格遵循要求的格式。",
+    "format_help": "回答可能作出了明确选择，同时附加了解释或加粗等格式标记。我们分别记录选择和格式。",
+    "complete": "计划内有效回答已齐备",
+    "incomplete": "部分计划内有效回答尚未齐备",
+    "load_error": "结果加载失败，请重试。",
+    "retry": "重试",
+    "methods": "这些检查怎样进行",
+    "back": "返回检查结果",
+    "chart_text": "{model}。{condition}。{metric}：{value} {unit}。95% 置信区间：{low} 至 {high} {unit}。",
+    "format_unavailable": "该结果版本尚未附带格式汇总。"
+   }
+  },
+  "about": {
+   "en": {
+    "title": "About the project",
+    "slogan": "More than a tool. Know your AI.",
+    "intro": "We ask AI to help with work, make choices, and talk through everyday life. This project helps you understand how the AI you interact with shares, cooperates, takes risks, describes itself, and responds in conversation.",
+    "profiles_title": "Seeing AI from different angles",
+    "profiles_lead": "Not just whether it can solve problems, but how it chooses, expresses itself and gets along with you.",
+    "profiles": "In standardized scenarios, we observe how AI shares, cooperates, and faces risk and the future; we also record how it describes itself and how it responds to you in everyday conversation scenarios. Each aspect is shown on its own, never collapsed into a single “who’s best” score.",
+    "explanations_title": "Results you can actually understand",
+    "explanations_lead": "A number only means something once you know what it stands for.",
+    "explanations": "Each measure explains what it tests and what high or low results mean, with a concrete question or conversation example. You can start with the results at a glance, then go on to see how they were measured.",
+    "research_title": "Every result has a source",
+    "research_lead": "You see not just the results, but where they come from.",
+    "research": "Each measure documents its task design, the literature it builds on, how answers are scored, and the model settings and versions behind it. Structured choices, self-descriptions and conversation ratings are labeled separately, because they provide different kinds of evidence.",
+    "updates_title": "Results and updates",
+    "update_research": "23 September 2026 · The saved research comparison contains eight models and 30 measures per model, alongside the separate stability checks.",
+    "update_meaning": "This is the date of the saved research results, not the date the website was published.",
+    "team_title": "People behind the project",
+    "contact_title": "Contact me",
+    "cite_title": "Citing this project",
+    "cite_help": "To cite AI Behavioral Profile, include the website title, its URL and your access date. For an individual result, also record the model, measure and results version shown below.",
+    "methods": "Read the methods",
+    "contact_help": "To request research materials, or to share feedback, suggestions or thoughts on related research, you are welcome to email me."
+   },
+   "zh": {
+    "title": "关于项目",
+    "slogan": "不止是工具，读懂你的 AI。",
+    "intro": "我们让 AI 帮忙工作、参与选择，也和它聊日常生活。这个项目帮助你了解与你打交道的 AI：它怎样分享、合作、面对风险、描述自己，以及在对话中回应你。",
+    "profiles_title": "从不同角度认识 AI",
+    "profiles_lead": "不只看它会不会做题，也看它会怎么选择、怎么表达、怎么与你相处。",
+    "profiles": "我们在标准化情境中观察 AI 如何分配、合作、面对风险和未来，也记录它怎样描述自己，以及在日常对话情境中如何回应你。不同方面分别呈现，不把它们压成一个“谁最好”的总分。",
+    "explanations_title": "让结果真正看得懂",
+    "explanations_lead": "一个数字只有知道它代表什么，才有意义。",
+    "explanations": "每项指标都会解释它在测什么、结果高低意味着什么，并配上具体的题目或对话例子。你可以先看直观的结果，也可以继续了解它是怎样测出来的。",
+    "research_title": "让每个结果都有出处",
+    "research_lead": "你看到的不只是结果，也可以看到它从哪里来。",
+    "research": "每项测量都会说明任务设计、文献依据、评分方法，以及对应的模型设置与版本。结构化选择、自我描述和对话评价也会分别标明，因为它们提供的是不同类型的证据。",
+    "updates_title": "结果与更新",
+    "update_research": "2026 年 9 月 23 日 · 已保存的研究对照包含八个模型、每个模型 30 项指标，以及独立稳定性检查。",
+    "update_meaning": "这是研究结果的日期，不是网站的发布日期。",
+    "team_title": "项目团队",
+    "contact_title": "联系我",
+    "cite_title": "引用本项目",
+    "cite_help": "引用 AI Behavioral Profile 时，请注明网站名称、网址和访问日期；引用具体结果时，还请注明模型、指标及下方的结果版本。",
+    "methods": "查看研究方法",
+    "contact_help": "如需获取研究材料，或想反馈问题、提出建议、一起交流相关研究，欢迎给我发邮件。"
+   }
+  },
+  "ratings": {
+   "en": {
+    "title": "Rate responses",
+    "status": "Visitor ratings are not open yet",
+    "intro": "You will be able to read an AI’s reply in context and rate it against clear descriptions. The model’s identity will be hidden while you rate.",
+    "separate": "Visitor ratings will be shown separately from the existing ratings by two AI judges.",
+    "current": "The conversation results currently shown come from the fixed AI judge panel. Human review has not yet been assessed.",
+    "voluntary": "You can choose whether to take part when ratings open.",
+    "back": "Browse the results",
+    "methods": "How the current conversation ratings work"
+   },
+   "zh": {
+    "title": "评价回答",
+    "status": "访客评价尚未开放",
+    "intro": "你将能结合情境阅读 AI 的回答，并按清楚的说明评分。评分时会隐藏模型身份。",
+    "separate": "访客评价会与现有两位 AI 评审的评分分开呈现。",
+    "current": "目前展示的对话结果来自固定的 AI 评审组，真人复核尚未评估。",
+    "voluntary": "评价开放后，你可以自行决定是否参与。",
+    "back": "继续浏览结果",
+    "methods": "了解现有对话评分方法"
+   }
+  },
+  "materials": {
+   "en": {
+    "title": "Data and research materials",
+    "intro": "For complete results data, original test questions or scoring code, please email:",
+    "results": "Results data",
+    "questions": "Tested questions and conditions",
+    "eligibility": "Full question-selection rules",
+    "scoring": "Scoring and analysis",
+    "references": "Research sources",
+    "licenses": "Sources and reuse terms",
+    "versions": "Versions and changes",
+    "view": "View {name}",
+    "available": "Available",
+    "preparing": "Available on request",
+    "not_public": "Kept in the project records",
+    "version": "Version: {version}",
+    "checksum": "File checksum (SHA-256)",
+    "checksum_help": "A checksum lets you check that a shared file matches the listed version.",
+    "original_language": "Original study materials are in English. Chinese explanations on the site describe the same methods.",
+    "scope": "The website includes only the data used on its pages. Additional research materials can be shared separately on request.",
+    "cite_link": "How to cite this project"
+   },
+   "zh": {
+    "title": "数据与研究材料",
+    "intro": "如需完整结果数据、原始测试题目或计分代码，请联系：",
+    "results": "结果数据",
+    "questions": "测试题目与条件",
+    "eligibility": "完整题目纳入规则",
+    "scoring": "计分与分析",
+    "references": "文献来源",
+    "licenses": "来源与使用条款",
+    "versions": "版本与变化",
+    "view": "查看{name}",
+    "available": "可查看",
+    "preparing": "按需提供",
+    "not_public": "保留在项目记录中",
+    "version": "版本：{version}",
+    "checksum": "文件校验值（SHA-256）",
+    "checksum_help": "校验值可用于核对收到的文件是否与列出的版本一致。",
+    "original_language": "原始研究材料使用英文，网站中文说明介绍同一套方法。",
+    "scope": "网站只保留页面所需的数据，其他研究材料可按需另行提供。",
+    "cite_link": "如何引用本项目"
+   }
+  },
+  "versions": {
+   "en": {
+    "title": "Results versions and model settings",
+    "intro": "A result belongs to a particular model and recorded setup. Model updates and setup differences stay visible when you compare results.",
+    "results_version": "Results version",
+    "model_id": "Recorded model identifier",
+    "reasoning": "Reasoning setting",
+    "high": "High",
+    "setting_note": "Test settings",
+    "recorded_date": "Recorded data period",
+    "date_help": "These are dates in the saved records. Batch import times do not give the exact time each answer was generated.",
+    "pair_help": "A version comparison shows the saved newer result minus the older result. Each version keeps its own ranges and settings.",
+    "reproduce": "How to follow the evidence",
+    "reproduce_help": "Match the results version, model settings, task materials, scoring rules, and recorded amendments. The site displays saved results."
+   },
+   "zh": {
+    "title": "结果版本与模型设置",
+    "intro": "每份结果都对应特定模型及有记录的设置。比较结果时，模型更新和设置差异会一并说明。",
+    "results_version": "结果版本",
+    "model_id": "记录的模型标识",
+    "reasoning": "推理设置",
+    "high": "高",
+    "setting_note": "测试设置",
+    "recorded_date": "数据记录时段",
+    "date_help": "这里是保存记录中的时间。批量结果的导入时间不等于每条回答的实际生成时间。",
+    "pair_help": "版本变化使用已保存的新版本结果减旧版本结果。两版本各自保留自己的范围与设置。",
+    "reproduce": "怎样追溯结果",
+    "reproduce_help": "核对结果版本、模型设置、任务材料、计分规则及已记录的修订。网站展示已保存的结果。"
+   }
+  },
+  "gr_conditions": {
+   "en": {
+    "OE-REF": "Original amount question",
+    "OE-PL1": "Participants labeled 1 and 2",
+    "OE-PLX": "Participants labeled X and Y",
+    "OE-FB": "Statements shown as bullet points",
+    "OE-FN": "Statements shown as a numbered list",
+    "OE-MP1": "Small change to identity wording",
+    "OE-MP2": "“Keep” changed to “retain”",
+    "OE-MP3": "“Change” changed to “alter”",
+    "OE-II1": "Task label K7 added",
+    "OE-II2": "Task identifier R4 added",
+    "BI-REF": "Original two-choice question",
+    "BI-ORD": "The same choices shown in reverse order",
+    "BI-PL1": "Participants labeled 1 and 2",
+    "BI-PLX": "Participants labeled X and Y",
+    "BI-OL1": "Choices labeled 1 and 2",
+    "BI-OLX": "Choices labeled X and Y",
+    "BI-FB": "Statements shown as bullet points",
+    "BI-FN": "Statements shown as a numbered list",
+    "BI-MP1": "Small change to identity wording",
+    "BI-MP2": "“Choose” changed to “select”",
+    "BI-MP3": "“Change” changed to “alter”",
+    "BI-II1": "Task label K7 added",
+    "BI-II2": "Task identifier R4 added"
+   },
+   "zh": {
+    "OE-REF": "原始金额题",
+    "OE-PL1": "参与者标为 1 和 2",
+    "OE-PLX": "参与者标为 X 和 Y",
+    "OE-FB": "陈述改为项目符号列表",
+    "OE-FN": "陈述改为编号列表",
+    "OE-MP1": "身份说明的固定措辞替换",
+    "OE-MP2": "“keep”改为“retain”",
+    "OE-MP3": "“change”改为“alter”",
+    "OE-II1": "加上任务标签 K7",
+    "OE-II2": "加上任务编号 R4",
+    "BI-REF": "原始二选一题",
+    "BI-ORD": "同样选项倒序显示",
+    "BI-PL1": "参与者标为 1 和 2",
+    "BI-PLX": "参与者标为 X 和 Y",
+    "BI-OL1": "选项标为 1 和 2",
+    "BI-OLX": "选项标为 X 和 Y",
+    "BI-FB": "陈述改为项目符号列表",
+    "BI-FN": "陈述改为编号列表",
+    "BI-MP1": "身份说明的固定措辞替换",
+    "BI-MP2": "“choose”改为“select”",
+    "BI-MP3": "“change”改为“alter”",
+    "BI-II1": "加上任务标签 K7",
+    "BI-II2": "加上任务编号 R4"
+   }
+  },
+  "ideas": {
+   "en": {
+    "title": "Curious how AI responds in different situations?",
+    "intro": "Have you had an AI response that was especially helpful, surprising, or confusing? Or is there an everyday situation where you have always wondered how different AIs would handle it?",
+    "examples": "Share a real experience, or suggest a question you would like us to test. Perhaps you just wanted to vent, but it kept giving advice; or you disagreed with it and wondered whether it would explain its view or simply go along with you.",
+    "next_steps": "We will choose representative situations from what people share, turn them into future tests, and invite you to rate the responses without knowing which model wrote them.",
+    "entry_label": "Share an experience or a question",
+    "form_title": "Tell us your experience or question",
+    "form_intro": "An experience you have had or a situation you would like us to test — a few sentences are enough.",
+    "scenario_label": "What happened, or what would you like us to test?",
+    "scenario_hint": "Tell us about the situation and what you asked the AI, or describe a question you would like to explore. There is no need to paste a full conversation.",
+    "scenario_placeholder": "For example: I wanted help turning down a friend’s invitation without hurting their feelings. How would different AIs suggest saying it?",
+    "focus_label": "What would you most like to find out?",
+    "focus_hint": "You can describe what matters to you in your own words.",
+    "focus_placeholder": "For example: Would it help me say no clearly while keeping the message friendly?",
+    "required": "Required",
+    "optional": "Optional",
+    "counter": "{count} / {limit} characters",
+    "use_note": "Selected submissions may be adapted into scenarios for public testing. Your original submission will not be displayed on the website.",
+    "privacy_note": "Please leave out names, contact details, and other identifying information.",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "success_title": "Thank you for sharing.",
+    "success_body": "We have received what you shared and will consider it as we develop future test scenarios.",
+    "another": "Share another",
+    "back": "Browse the results",
+    "empty_scenario": "Please describe an experience or a question you would like us to test.",
+    "scenario_limit": "Please keep your description to {limit} characters or fewer.",
+    "focus_limit": "Please keep this answer to {limit} characters or fewer.",
+    "failed": "We could not confirm that your submission was received. Your text is still here; please try again.",
+    "unavailable_title": "Sharing is not open yet",
+    "unavailable_body": "You will be able to share an experience or suggest a situation here when submissions open.",
+    "preview_note": "This is a preview of the form. Submissions are not open yet.",
+    "preview_submit": "Submissions not open",
+    "leave_warning": "Your text has not been submitted. Leaving this page may discard it.",
+    "script_required": "Please enable JavaScript in your browser to submit this form."
+   },
+   "zh": {
+    "title": "你想看看 AI 在不同情境下会怎么回应吗？",
+    "intro": "使用 AI 时，你有没有遇到过让你觉得特别有帮助、意外或困惑的回答？或者，有没有某个日常情境，你一直想知道不同 AI 会怎样处理？",
+    "examples": "欢迎分享你的真实经历，或者提出一个你想测试的问题。比如，你只是想倾诉，它却一直给建议；又或者，你和它意见不一致，想看看它会解释自己的观点，还是顺着你说。",
+    "next_steps": "我们会从大家的分享中挑选有代表性的情境，整理成后续测试，并邀请大家在不知道模型身份的情况下评价这些回答。",
+    "entry_label": "分享经历或提出问题",
+    "form_title": "说说你的经历或问题",
+    "form_intro": "可以写一次亲身经历，也可以提出一个想测试的情境，几句话就好。",
+    "scenario_label": "你遇到了什么，或者想让我们测试什么？",
+    "scenario_hint": "说说当时的情况、你向 AI 提了什么要求，或者描述一个想探索的问题。不必粘贴完整聊天记录。",
+    "scenario_placeholder": "比如：我想拒绝朋友的邀请，又不想伤感情。不同 AI 会建议我怎么说？",
+    "focus_label": "你最想从中了解什么？",
+    "focus_hint": "用自己的话说说你在意的地方就好。",
+    "focus_placeholder": "比如：它能不能帮我把拒绝说清楚，同时保持友好的语气？",
+    "required": "必填",
+    "optional": "选填",
+    "counter": "{count} / {limit} 字",
+    "use_note": "选中的内容可能改写成公开测试情境，原始提交不会直接显示在网站上。",
+    "privacy_note": "请省去姓名、联系方式等能够识别个人身份的信息。",
+    "submit": "提交",
+    "submitting": "正在提交…",
+    "success_title": "谢谢你的分享",
+    "success_body": "我们已收到你的分享，会在设计后续测试情境时参考。",
+    "another": "再分享一个",
+    "back": "继续浏览结果",
+    "empty_scenario": "请写一段经历，或者一个想测试的问题。",
+    "scenario_limit": "请将描述控制在 {limit} 字以内。",
+    "focus_limit": "请将这段内容控制在 {limit} 字以内。",
+    "failed": "暂时未能确认是否收到。你填写的文字还在，请再试一次。",
+    "unavailable_title": "分享尚未开放",
+    "unavailable_body": "收集开放后，你可以在这里分享经历，或者提出想测试的情境。",
+    "preview_note": "这是表单预览，尚未开放提交。",
+    "preview_submit": "提交尚未开放",
+    "leave_warning": "你填写的文字尚未提交，离开页面后可能丢失。",
+    "script_required": "请启用浏览器脚本后再提交。"
+   }
+  }
+ }
+}
