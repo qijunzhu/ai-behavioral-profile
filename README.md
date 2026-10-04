@@ -10,7 +10,7 @@
 
 We turn to AI for help with work, advice, and everyday conversation. AI is becoming part of more and more of our lives. While many benchmarks focus on AI’s capabilities, this site looks beyond those scores: how do different AIs make choices, share, cooperate, and respond to your needs?
 
-The site presents my comparison of nine AI models on 30 measures in six categories: Sharing and cooperation, Responding to others, Risk and waiting, How choices fit together, How it describes itself, and What conversation feels like. Separately, I also check whether the results stay stable when the question is asked differently.
+The site presents my comparison of ten AI models on 30 measures in six categories: Sharing and cooperation, Responding to others, Risk and waiting, How choices fit together, How it describes itself, and What conversation feels like. Separately, I also check whether the results stay stable when the question is asked differently.
 
 Each measure shows an average and two ranges: one from asking the question differently, and one after further checks, that is, after further changes to details such as the layout of the question or how the options are presented.
 

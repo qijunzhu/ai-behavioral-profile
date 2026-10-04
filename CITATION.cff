@@ -7,7 +7,7 @@ authors:
     given-names: "Qijun"
     affiliation: "George Mason University"
 license: MIT
-abstract: "A bilingual (English and Chinese) website that compares how AI models make choices, share, cooperate and respond to people's needs, beyond capability scores. It shows saved research results for nine models on 30 measures in six categories, each with an average and two observed ranges, plus separate stability checks, and documents every task, scoring formula and worked example on its Methods page."
+abstract: "A bilingual (English and Chinese) website that compares how AI models make choices, share, cooperate and respond to people's needs, beyond capability scores. It shows saved research results for ten models on 30 measures in six categories, each with an average and two observed ranges, plus separate stability checks, and documents every task, scoring formula and worked example on its Methods page."
 keywords:
   - large language models
   - AI behavior

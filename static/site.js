@@ -494,7 +494,11 @@
       }).join('');
     }
     function noticeHtml() { return notices.map(function (n) { return '<p class="notice">' + esc(n) + '</p>'; }).join(''); }
-    function pairFor(id) { return P.pairs.filter(function (p) { return p.old_model === id || p.new_model === id; })[0]; }
+    // every version pair a model belongs to, oldest first (a middle version has an older and a newer one)
+    function pairsFor(id) { return P.pairs.filter(function (p) { return p.old_model === id || p.new_model === id; }); }
+    function versionBox(pr) {
+      return '<div class="x-version"><div><h3>' + esc(X.version_heading) + '</h3><p>' + esc(fill(X.version_intro, { old_model: models[pr.old_model].name, new_model: models[pr.new_model].name })) + '</p></div><a class="btn-pill" href="' + esc(query([['pair', pr.pair]])) + '" data-version-open="' + esc(pr.pair) + '">' + esc(X.version_open) + '</a></div>';
+    }
 
     function renderProfile(id) {
       var mod = models[id];
@@ -512,10 +516,7 @@
         var eg = P.groups.filter(function (g) { return g.id === 'E'; })[0];
         h += '<p class="x-type"><span>' + esc(eg ? eg.second_block : '') + '</span><b>' + esc(mod.type.label) + '</b><span class="pill pill-e">' + esc(C.self_description) + '</span>' + (bnd ? '<span class="fine">* ' + esc(C.type_boundary) + '</span>' : '') + '</p>';
       }
-      var pr = pairFor(id);
-      if (pr) {
-        h += '<div class="x-version"><div><h3>' + esc(X.version_heading) + '</h3><p>' + esc(fill(X.version_intro, { old_model: models[pr.old_model].name, new_model: models[pr.new_model].name })) + '</p></div><a class="btn-pill" href="' + esc(query([['pair', pr.pair]])) + '" data-version-open="' + esc(pr.pair) + '">' + esc(X.version_open) + '</a></div>';
-      }
+      h += pairsFor(id).map(versionBox).join('');
       h += '<div class="x-toolbar"><button type="button" class="btn-pill" data-add-focus>' + esc(X.add_model) + '</button><a class="btn-pill" href="' + esc(P.home || '../') + '">' + esc(X.back_to_overview) + '</a><p class="fine">' + esc(X.compare_one_model) + '</p></div></header>';
       h += groupsHtml([id]);
       view.innerHTML = h;
@@ -528,7 +529,7 @@
       var notes = ids.filter(function (id) { return P.bindings[id] && P.bindings[id].profile && models[id]; });
       if (notes.length) h += '<div class="x-notes">' + notes.map(function (id) { return '<p class="x-note">' + esc(models[id].name + colon + X[P.bindings[id].profile]) + '</p>'; }).join('') + '</div>';
       var vp = ids.length === 2 ? P.pairs.filter(function (p) { return ids.indexOf(p.old_model) >= 0 && ids.indexOf(p.new_model) >= 0; })[0] : null;
-      if (vp) h += '<div class="x-version"><div><h3>' + esc(X.version_heading) + '</h3><p>' + esc(fill(X.version_intro, { old_model: models[vp.old_model].name, new_model: models[vp.new_model].name })) + '</p></div><a class="btn-pill" href="' + esc(query([['pair', vp.pair]])) + '" data-version-open="' + esc(vp.pair) + '">' + esc(X.version_open) + '</a></div>';
+      if (vp) h += versionBox(vp);
       h += '<div class="x-toolbar"><button type="button" class="btn-pill" data-add-focus>' + esc(X.add_model) + '</button></div></header>';
       h += groupsHtml(ids);
       view.innerHTML = h;
