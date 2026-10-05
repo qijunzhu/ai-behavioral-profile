@@ -5,8 +5,10 @@ type: software
 authors:
   - family-names: "Zhu"
     given-names: "Qijun"
-    affiliation: "George Mason University"
 license: MIT
+url: "https://aibehavioralprofile.com/"
+repository-code: "https://github.com/qijunzhu/ai-behavioral-profile"
+date-released: 2026-10-04
 abstract: "A bilingual (English and Chinese) website that compares how AI models make choices, share, cooperate and respond to people's needs, beyond capability scores. It shows saved research results for ten models on 30 measures in six categories, each with an average and two observed ranges, plus separate stability checks, and documents every task, scoring formula and worked example on its Methods page."
 keywords:
   - large language models

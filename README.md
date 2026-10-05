@@ -4,7 +4,7 @@
 
 **More than a tool. Know your AI.**
 
-**Status:** first release in preparation. The site has been reviewed locally; it is not yet online, and the form for sharing experiences and questions is not open yet.
+**Status:** online at https://aibehavioralprofile.com since 4 October 2026. The form for sharing experiences and questions is open; submissions are stored privately and are not shown on the site.
 
 ## What this is
 
@@ -27,7 +27,7 @@ The **Methods** page explains, for each measure, the task design, the input rule
 | `templates/`, `static/` | Page templates, styles, the in-browser behaviour, and the site's own copies of its fonts and of the KaTeX formula library. |
 | `content/` | Page text and the Methods text in both languages. |
 | `data/releases/<release>/` | The results the pages display (`results.json`), the answer-format summary (`gr-format.json`) and the release record with checksums (`RELEASE.json`). |
-| `functions/api/ideas.js`, `receiver/ideas_schema.sql` | The receiver for the visitor form (a Cloudflare Pages Function with a private D1 table). It is not in use yet. |
+| `functions/api/ideas.js`, `receiver/ideas_schema.sql` | The receiver for the visitor form (a Cloudflare Pages Function with a private D1 table). In use since 4 October 2026. |
 
 ## Building the site
 

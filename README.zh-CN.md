@@ -4,7 +4,7 @@
 
 **不止是工具，读懂你的 AI。**
 
-**状态：**第一个版本准备中。网站已在本地完成审查，尚未上线；分享经历与问题的表单尚未开放。
+**状态：**网站已于 2026 年 10 月 4 日上线：https://aibehavioralprofile.com 。分享经历与问题的表单已开放，投稿私下保存，不会显示在网站上。
 
 ## 这是什么
 
@@ -27,7 +27,7 @@
 | `templates/`、`static/` | 页面模板、样式、浏览器端的交互，以及网站自带的字体和 KaTeX 公式库。 |
 | `content/` | 中英文页面文字和研究方法正文。 |
 | `data/releases/<版本>/` | 页面显示的结果（`results.json`）、回答格式汇总（`gr-format.json`），以及带校验值的版本记录（`RELEASE.json`）。 |
-| `functions/api/ideas.js`、`receiver/ideas_schema.sql` | 访客表单的接收程序（Cloudflare Pages Function 加私有 D1 数据表），目前尚未启用。 |
+| `functions/api/ideas.js`、`receiver/ideas_schema.sql` | 访客表单的接收程序（Cloudflare Pages Function 加私有 D1 数据表），2026 年 10 月 4 日起启用。 |
 
 ## 生成网站
 

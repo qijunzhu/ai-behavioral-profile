@@ -11,9 +11,9 @@
  "citation": "Zhu, Qijun. 2026. AI Behavioral Profile. https://aibehavioralprofile.com/",
  "public_base_url": "https://aibehavioralprofile.com/",
  "idea_collection": {
-  "enabled": false,
-  "endpoint": null,
-  "preview": false,
+  "enabled": true,
+  "endpoint": "/api/ideas",
+  "preview": true,
   "copy_revision": "20261001-ideas-v2",
   "timeout_ms": 15000
  },
