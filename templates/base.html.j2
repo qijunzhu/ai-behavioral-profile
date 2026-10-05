@@ -4,10 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ cfg.brand }}{% endblock %}</title>
-<meta name="description" content="{{ S.extra.get('description_' ~ page) or S.extra.home_intro_lead }}">
+{% set meta_description = S.extra.get('description_' ~ page) or S.extra.home_intro_lead %}
+<meta name="description" content="{{ meta_description }}">
 <meta name="color-scheme" content="light dark">
+{% if cfg.byline %}<meta name="author" content="{{ cfg.byline }}">
+{% endif %}
+{% if public %}
+{# with the public address (config.json): the page's own address, its language versions, and what a link preview shows (Open Graph; X reads the same tags) #}
+<link rel="canonical" href="{{ public.canonical }}">
+{% for a in public.alternates %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ a.href }}">
+{% endfor %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ cfg.brand }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:url" content="{{ public.canonical }}">
+<meta property="og:image" content="{{ public.image }}">
+<meta property="og:image:width" content="{{ public.width }}">
+<meta property="og:image:height" content="{{ public.height }}">
+<meta property="og:image:alt" content="{{ public.image_alt }}">
+<meta property="og:locale" content="{{ public.locale }}">
+{% for l in public.locale_alt %}<meta property="og:locale:alternate" content="{{ l }}">
+{% endfor %}
+<meta name="twitter:card" content="summary_large_image">
+{% else %}
 {% for l in langs %}<link rel="alternate" hreflang="{{ l.html_lang }}" href="{{ l.href }}">
 {% endfor %}
+{% endif %}
 <link rel="icon" href="{{ base }}assets/favicon.svg" type="image/svg+xml">
 {# the fonts are served with the site (assets/fonts.css), not from an outside service #}
 <link rel="preload" href="{{ base }}assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>

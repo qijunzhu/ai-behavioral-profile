@@ -4,9 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ cfg.brand }}</title>
+{% set meta_description = S.en.home.slogan ~ " " ~ S.zh.home.slogan %}
+<meta name="description" content="{{ meta_description }}">
 <meta name="color-scheme" content="light dark">
+{% if cfg.byline %}<meta name="author" content="{{ cfg.byline }}">
+{% endif %}
+{% if public %}
+{# a link to the bare address is previewed from this page, so it carries both slogans and the two-language picture #}
+<link rel="canonical" href="{{ public.canonical }}">
+{% for a in public.alternates %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ a.href }}">
+{% endfor %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ cfg.brand }}">
+<meta property="og:title" content="{{ cfg.brand }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:url" content="{{ public.canonical }}">
+<meta property="og:image" content="{{ public.image }}">
+<meta property="og:image:width" content="{{ public.width }}">
+<meta property="og:image:height" content="{{ public.height }}">
+<meta property="og:image:alt" content="{{ public.image_alt }}">
+<meta name="twitter:card" content="summary_large_image">
+{% else %}
 {% for l in langs %}<link rel="alternate" hreflang="{{ l.html_lang }}" href="{{ l.code }}/">
 {% endfor %}
+{% endif %}
 <script>
 /* Open the home page in the saved language, else the browser's language. Keeps any query or anchor. */
 (function(){var l=null;try{l=localStorage.getItem('bp-lang');}catch(e){}

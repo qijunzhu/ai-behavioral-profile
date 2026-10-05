@@ -6,10 +6,10 @@
   "zh"
  ],
  "fallback_language": "en",
- "byline": null,
+ "byline": "Qijun Zhu",
  "contact": "zqj0966522453@gmail.com",
- "citation": null,
- "public_base_url": null,
+ "citation": "Zhu, Qijun. 2026. AI Behavioral Profile. https://aibehavioralprofile.com/",
+ "public_base_url": "https://aibehavioralprofile.com/",
  "idea_collection": {
   "enabled": false,
   "endpoint": null,

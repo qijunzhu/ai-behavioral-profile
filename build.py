@@ -46,6 +46,10 @@ MINUS = "−"
 DIST_MARKER = ".llm-behavioral-profile-dist"
 HEADERS = ("/*\n  X-Frame-Options: DENY\n  Content-Security-Policy: frame-ancestors 'none'\n  X-Content-Type-Options: nosniff\n"
            "  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n")
+# link previews and search engines, used only when config.json names the public address (see public_base)
+SHARE_IMAGE = {"en": "share/share-en.png", "zh": "share/share-zh.png", "root": "share/share.png"}   # in static/, made by tools/make_share_images.py
+SHARE_SIZE = (1200, 630)
+OG_LOCALE = {"en": "en_US", "zh": "zh_CN"}
 
 
 # --------------------------------------------------------------------------- inputs
@@ -806,6 +810,51 @@ def url_for(site_depth: int, lang: str, page: str, query: str = "", anchor: str 
     return "../" * site_depth + f"{lang}/" + PAGE_PATH[page] + (("?" + query) if query else "") + (("#" + anchor) if anchor else "")
 
 
+def public_base(cfg, fixture: bool):
+    """The public address with a trailing slash, or None. Without one (and always for a local fixture build) the pages
+    get no canonical links or share tags and no sitemap is written."""
+    base = (cfg.get("public_base_url") or "").strip()
+    if not base or fixture:
+        return None
+    if not base.startswith("https://"):
+        raise SystemExit(f"public_base_url must be an https address: {base}")
+    return base.rstrip("/") + "/"
+
+
+def page_address(pub: str, lang: str, page: str) -> str:
+    return f"{pub}{lang}/{PAGE_PATH[page]}"
+
+
+def language_alternates(pub: str, page: str, fallback: str) -> list:
+    """hreflang links for one page: each language, and x-default (the language chooser at the root for the home page,
+    the fallback language for the others)."""
+    alts = [{"hreflang": HTML_LANG[l], "href": page_address(pub, l, page)} for l in LANGS]
+    return alts + [{"hreflang": "x-default", "href": pub if page == "home" else page_address(pub, fallback, page)}]
+
+
+def public_meta(pub: str, lang: str, page: str, cfg, S) -> dict:
+    """Canonical address, language alternates and the share picture for one page (templates/base.html.j2)."""
+    return {"canonical": page_address(pub, lang, page), "alternates": language_alternates(pub, page, cfg["fallback_language"]),
+            "image": f"{pub}assets/{SHARE_IMAGE[lang]}", "image_alt": f"{cfg['brand']} · {S['home']['slogan']}",
+            "width": SHARE_SIZE[0], "height": SHARE_SIZE[1], "locale": OG_LOCALE[lang],
+            "locale_alt": [OG_LOCALE[l] for l in LANGS if l != lang]}
+
+
+def write_search_files(out: Path, pub: str, fallback: str) -> list:
+    """sitemap.xml (every page in both languages, each with its language versions) and robots.txt. No dates, so the
+    same inputs build the same files."""
+    entries = []
+    for page in PAGES:
+        links = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{a["hreflang"]}" href="{a["href"]}"/>'
+                        for a in language_alternates(pub, page, fallback))
+        entries += [f"  <url>\n    <loc>{page_address(pub, lang, page)}</loc>{links}\n  </url>" for lang in LANGS]
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+               'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(entries) + "\n</urlset>\n")
+    (out / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    (out / "robots.txt").write_text(f"User-agent: *\nDisallow: /api/\n\nSitemap: {pub}sitemap.xml\n", encoding="utf-8")
+    return [out / "sitemap.xml", out / "robots.txt"]
+
+
 def render_all(site: Site, out: Path):
     env = Environment(loader=FileSystemLoader(SITE / "templates"), autoescape=select_autoescape(["html", "j2"]),
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
@@ -813,6 +862,7 @@ def render_all(site: Site, out: Path):
     env.filters["story"] = lambda s: Markup(markdown.markdown(s, extensions=["sane_lists"], output_format="html"))   # About essay: paragraphs, list, pull quotes
     env.filters["tojson_script"] = lambda o: Markup(json.dumps(o, ensure_ascii=False).replace("</", "<\\/"))
     cfg = site.cfg
+    pub = public_base(cfg, site.fixture)
     written = []
     for lang in LANGS:
         S = site.strings(lang)
@@ -829,6 +879,7 @@ def render_all(site: Site, out: Path):
                 "langs": [{"code": l, "name": AUTONYM[l], "html_lang": HTML_LANG[l], "href": url_for(depth, l, page), "current": l == lang} for l in LANGS],
                 "models": [{"id": k, **{f: site.models[k].get(f) for f in ("name", "provider", "model_id", "reasoning_effort")}} for k in site.model_ids],
                 "measures": measures, "groups": groups,
+                "public": public_meta(pub, lang, page, cfg, S) if pub else None,
             }
             if page == "home":
                 demo = site.copy["home"]["demo"]
@@ -855,8 +906,12 @@ def render_all(site: Site, out: Path):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(tpl.render(**ctx), encoding="utf-8")
             written.append(path)
+    slogans = " · ".join(site.strings(l)["home"]["slogan"] for l in LANGS)
+    root_public = {"canonical": pub, "alternates": language_alternates(pub, "home", cfg["fallback_language"]),
+                   "image": f"{pub}assets/{SHARE_IMAGE['root']}", "image_alt": f"{cfg['brand']} · {slogans}",
+                   "width": SHARE_SIZE[0], "height": SHARE_SIZE[1]} if pub else None
     root = env.get_template("root.html.j2").render(cfg=cfg, langs=[{"code": l, "name": AUTONYM[l], "html_lang": HTML_LANG[l]} for l in LANGS],
-                                                  S={l: site.strings(l) for l in LANGS})
+                                                  S={l: site.strings(l) for l in LANGS}, public=root_public)
     (out / "index.html").write_text(root, encoding="utf-8")
     (out / "404.html").write_text(env.get_template("404.html.j2").render(cfg=cfg, S={l: site.strings(l) for l in LANGS}, langs=LANGS), encoding="utf-8")
     written += [out / "index.html", out / "404.html"]
@@ -894,12 +949,14 @@ def main():
         (out / "build-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
     # security headers for Cloudflare Pages (other hosts ignore the file): no framing by other sites, no MIME sniffing
     (out / "_headers").write_text(HEADERS, encoding="utf-8")
+    pub = public_base(site.cfg, site.fixture)
+    search = write_search_files(out, pub, site.cfg["fallback_language"]) if pub else []
     missing = site.font_gaps()
     if missing:
         print(f"note: {len(missing)} Chinese characters are not in the site's fonts and fall back to a system font: "
               f"{''.join(missing)} (run tools/subset_fonts.py)")
     now = {p for p in out.rglob("*") if p.is_file()}
-    produced = set(written) | extras | {data_dir / "results.json", out / "_headers"} | {
+    produced = set(written) | extras | set(search) | {data_dir / "results.json", out / "_headers"} | {
         out / "assets" / p.relative_to(SITE / "static") for p in (SITE / "static").rglob("*") if p.is_file()}
     for stale in sorted((before | now) - produced):     # files from an earlier build that this build no longer makes
         try:

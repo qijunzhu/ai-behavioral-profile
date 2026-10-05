@@ -61,6 +61,9 @@ static/katex/fonts/KaTeX_Typewriter-Regular.woff2
 static/katex/katex.min.css
 static/katex/katex.min.js
 static/site.css
+static/share/share-en.png
+static/share/share-zh.png
+static/share/share.png
 static/site.js
 templates/404.html.j2
 templates/about.html.j2
