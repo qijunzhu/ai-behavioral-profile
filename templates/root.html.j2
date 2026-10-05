@@ -9,6 +9,9 @@
 <meta name="color-scheme" content="light dark">
 {% if cfg.byline %}<meta name="author" content="{{ cfg.byline }}">
 {% endif %}
+{# search engines' ownership checks read the site root (Baidu: meta tag; Google and Bing use DNS records) #}
+{% for k, v in (cfg.get('site_verification') or {}).items() %}<meta name="{{ k }}" content="{{ v }}">
+{% endfor %}
 {% if public %}
 {# a link to the bare address is previewed from this page, so it carries both slogans and the two-language picture #}
 <link rel="canonical" href="{{ public.canonical }}">

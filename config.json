@@ -10,6 +10,9 @@
  "contact": "zqj0966522453@gmail.com",
  "citation": "Zhu, Qijun. 2026. AI Behavioral Profile. https://aibehavioralprofile.com/",
  "public_base_url": "https://aibehavioralprofile.com/",
+ "site_verification": {
+  "baidu-site-verification": "codeva-Vpwiv91opA"
+ },
  "idea_collection": {
   "enabled": true,
   "endpoint": "/api/ideas",
