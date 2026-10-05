@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23150529.svg)](https://doi.org/10.5281/zenodo.23150529)
+
 **不止是工具，读懂你的 AI。**
 
 **状态：**网站已于 2026 年 10 月 4 日上线：https://aibehavioralprofile.com 。分享经历与问题的表单已开放，投稿私下保存，不会显示在网站上。
@@ -49,7 +51,9 @@ python -m http.server 8000 --directory dist
 
 ## 引用
 
-见 [CITATION.cff](CITATION.cff)。每个存档版本都会有自己的 DOI；引用具体结果时，请注明模型、指标，以及网站上显示的结果版本。
+每个 release 都由 Zenodo 存档：上方徽章和下面引用里的 DOI 永远指向最新版本，每一版在 Zenodo 上也有自己的 DOI。引用具体结果时，还请注明模型、指标，以及网站上显示的结果版本。GitHub 页面上的“Cite this repository”按钮给出同一条引用的其他格式；它读取的是 [CITATION.cff](CITATION.cff)。
+
+> Zhu, Qijun. 2026. AI Behavioral Profile. https://aibehavioralprofile.com/. https://doi.org/10.5281/zenodo.23150529
 
 ## 联系
 

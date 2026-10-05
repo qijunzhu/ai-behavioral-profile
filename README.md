@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23150529.svg)](https://doi.org/10.5281/zenodo.23150529)
+
 **More than a tool. Know your AI.**
 
 **Status:** online at https://aibehavioralprofile.com since 4 October 2026. The form for sharing experiences and questions is open; submissions are stored privately and are not shown on the site.
@@ -49,7 +51,9 @@ The code and configuration are under the MIT License; see [LICENSE](LICENSE). Th
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). Each archived release will have its own DOI; when citing a specific result, please give the model, the measure and the results version shown on the site.
+Zenodo archives every release: the DOI in the badge above and in the reference below always resolves to the latest version, and each release also has its own DOI on Zenodo. When citing a specific result, please also give the model, the measure and the results version shown on the site. GitHub's "Cite this repository" button gives the same reference in other formats; it reads [CITATION.cff](CITATION.cff).
+
+> Zhu, Qijun. 2026. AI Behavioral Profile. https://aibehavioralprofile.com/. https://doi.org/10.5281/zenodo.23150529
 
 ## Contact
 
