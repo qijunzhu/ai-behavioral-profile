@@ -142,7 +142,7 @@
     {% for m in gr.models %}
     <details class="gm{% if m.all_same %} is-all-same{% endif %}" id="gr-{{ m.id }}" data-gr-model="{{ m.id }}">
       <summary>
-        <span class="gm-name"><b>{{ m.name }}</b><span class="gm-prov">{{ m.provider }}</span></span>
+        <span class="gm-name"><b>{{ m.name }}</b><span class="gm-prov">{{ m.provider }}</span>{% if m.note %}<span class="gm-note">{{ m.note }}</span>{% endif %}</span>
         {% for b in m.branches %}
         <span class="gm-cell" data-branch="{{ b.id }}">
           <span class="gm-label">{{ b.title }}</span>
@@ -153,6 +153,8 @@
         <span class="gm-more-hint"><span class="gm-details">{{ E.gr_details }}</span>{{ ui.chev() }}</span>
       </summary>
       <div class="gm-body">
+      {# an answer that made no choice: what happened and the number of valid answers its version is compared with #}
+      {% if m.note_text %}<div class="gm-annot">{% for p in m.note_text %}<p>{{ p }}</p>{% endfor %}</div>{% endif %}
       {% if m.unavailable %}
         <p class="notice">{{ R.load_error }}</p>
       {% elif m.all_same %}
@@ -190,7 +192,7 @@
     {% if r.branches %}
     <details class="fm" data-gr-format="{{ r.id }}">
       <summary>
-        <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span></span>
+        <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span>{% if r.note %}<span class="gm-note">{{ r.note }}</span>{% endif %}</span>
         <span class="fm-bar" aria-hidden="true"><i style="width:{{ r.width }}%"></i></span>
         <span class="fm-count" aria-hidden="true">{{ r.count }}</span>
         <span class="sr">{{ r.sr }}</span>
@@ -208,13 +210,14 @@
     </details>
     {% else %}
     <div class="fm fm-plain" data-gr-format="{{ r.id }}">
-      <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span></span>
+      <span class="gm-name"><b>{{ r.name }}</b><span class="gm-prov">{{ r.provider }}</span>{% if r.note %}<span class="gm-note">{{ r.note }}</span>{% endif %}</span>
       {% if r.unavailable %}<span class="fm-text">{{ r.text }}</span>
       {% else %}<span class="fm-bar" aria-hidden="true"><i style="width:{{ r.width }}%"></i></span><span class="fm-count" aria-hidden="true">{{ r.count }}</span><span class="sr">{{ r.sr }}</span>{% endif %}
     </div>
     {% endif %}
     {% endfor %}
     {% if fmt.details %}<p class="fine fm-denominators">{{ F.denominators }}</p>{% endif %}
+    {% for n in fmt.notes %}<p class="fine fm-note-line">{{ n }}</p>{% endfor %}
     <p class="fm-note">{{ F.choice_note }}</p>
     {% if fmt.examples %}
     <details class="fm-examples">

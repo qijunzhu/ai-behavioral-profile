@@ -539,6 +539,9 @@
       var h = noticeHtml() + '<header class="x-head"><p class="kicker">' + esc(X.version_heading) + '</p><h2 id="x-title">' + esc(o.name) + ' → ' + esc(n.name) + '</h2><p class="x-intro">' + esc(fill(X.version_intro, { old_model: o.name, new_model: n.name })) + '</p>';
       h += '<div class="x-hints"><p>' + esc(fill(X.version_direction, { old_model: o.name, new_model: n.name })) + '</p><p>' + esc(V.pair_help) + '</p></div>';
       [pr.old_model, pr.new_model].forEach(function (id) { var b = P.bindings[id]; if (b && b.profile) h += '<div class="x-notes"><p class="x-note">' + esc(models[id].name + colon + X[b.profile]) + '</p></div>'; });
+      // the two versions' conversation results (F) were rated by different AI judge panels: say so before the differences
+      if (P.f_panel && P.f_panel[pr.old_model] !== undefined && P.f_panel[pr.new_model] !== undefined && P.f_panel[pr.old_model] !== P.f_panel[pr.new_model])
+        h += '<div class="x-notes"><p class="x-note" data-panel-note>' + esc(fill(X.version_panel_note, { old_model: o.name, new_model: n.name })) + '</p></div>';
       h += '</header>';
       h += groupsHtml([pr.old_model, pr.new_model], { delta: function (m) {
         var g = ch[m.id]; if (!g) return '';

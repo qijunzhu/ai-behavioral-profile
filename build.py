@@ -336,6 +336,10 @@ class Site:
         self.changes = {}
         for g in self.results.get("generation_changes", []):
             self.changes.setdefault(g["pair"], {})[g["item"]] = g
+        # which AI judge panel rated each model's F results (f_evidence.judge_panels, from the twelve-model release on);
+        # the Explore version view notes a pair whose two versions were rated by different panels
+        panels = (self.results.get("f_evidence") or {}).get("judge_panels") or []
+        self.f_panel = {k: i for i, p in enumerate(panels) for k in p.get("models", [])}
 
     # ------------------------------------------------------------------ strings
     def strings(self, lang):
@@ -549,13 +553,16 @@ class Site:
         branch = c["branch"]
         if not ref or not self.gr_complete(c, branch) or not self.gr_complete(ref, branch):
             state = "missing"
-        elif c["n"] == ref["n"] and c["distribution"] == ref["distribution"]:
-            state = "same"          # every answer appeared the same number of times as in the original question
+        elif all(c["distribution"][a] * ref["n"] == ref["distribution"][a] * c["n"] for a in self.GR_KEYS[branch]):
+            # every answer made up the same share as in the original question: with 30 answers each, the same counts
+            # (a version with fewer valid answers, gr-valid-answer-denominator-v1, is compared by its own n)
+            state = "same"
         else:
             state = "different"
         chk = {"id": c["condition_id"], "label": S["gr_conditions"].get(c["condition_id"], c["condition_id"]), "branch": branch,
                "secondary": c.get("evidence_class") == "secondary", "state": state, "answer_keys": self.GR_KEYS[branch],
-               "dist": c.get("distribution") or {}, "ref_dist": (ref or {}).get("distribution") or {}, "share": None}
+               "dist": c.get("distribution") or {}, "ref_dist": (ref or {}).get("distribution") or {}, "share": None,
+               "shares": state == "same" and c["n"] != ref["n"]}
         sides = []
         if branch == "open_ended":
             chk["metrics"] = [
@@ -582,6 +589,31 @@ class Site:
         chk["before"], chk["after"] = sides
         return chk
 
+    def gr_note(self, gr, name, S):
+        """The note for a model with an answer that made no choice (gr-valid-answer-denominator-v1): a short flag under its
+        name, and in its details which version, what happened, the number of valid answers it is compared with, and how
+        often two-choice replies made no choice before a re-ask. The wording fits one such position (no clear choice first,
+        then two refusals) in a two-choice version, so the build stops if a saved record differs."""
+        unanswered = gr.get("positions_without_valid_choice") or []
+        if not unanswered:
+            return {"note": None, "note_text": []}
+        E = S["extra"]
+        cov = gr.get("coverage", [])
+        verdicts = [[a.get("review_verdict") for a in u.get("attempts", [])] for u in unanswered]
+        short = [c for c in cov if c.get("valid") != c.get("scheduled")]
+        if (len(unanswered) != 1 or verdicts != [["no_explicit_choice", "refusal", "refusal"]] or len(short) != 1
+                or short[0]["condition_id"] != unanswered[0]["condition_id"] or short[0]["valid"] != short[0]["scheduled"] - 1
+                or not unanswered[0]["condition_id"].startswith("BI-")):
+            raise SystemExit(f"the GR note does not fit the saved record of {name}")
+        invalid = {p: sum(c.get("invalid_output_attempts", 0) for c in cov if c["condition_id"].startswith(p)) for p in ("OE-", "BI-")}
+        if invalid["OE-"]:
+            raise SystemExit(f"the GR note says the amount questions always had a choice ({name})")
+        cid = unanswered[0]["condition_id"]
+        return {"note": E["gr_note_flag"],
+                "note_text": [fill(E["gr_note_text"], scheduled=sum(c["scheduled"] for c in cov), valid=sum(c["valid"] for c in cov),
+                                   condition=S["gr_conditions"].get(cid, cid), short=short[0]["valid"]),
+                              fill(E["gr_note_tries"], invalid=invalid["BI-"])]}
+
     def gr_page(self, lang):
         """Robustness page: eight-model summary, per-model changed checks, one shared record of format and settings."""
         S = self.strings(lang)
@@ -592,7 +624,8 @@ class Site:
         for k in self.model_ids:
             m = self.models[k]
             gr = m.get("general_robustness")
-            row = {"id": k, "name": m["name"], "provider": m.get("provider", ""), "branches": [], "unavailable": not gr}
+            row = {"id": k, "name": m["name"], "provider": m.get("provider", ""), "branches": [], "unavailable": not gr,
+                   "note": None, "note_text": []}
             if not gr:
                 models.append(row)
                 continue
@@ -617,10 +650,13 @@ class Site:
                                         "incomplete": [ch for ch in checks if ch["state"] == "missing"], **n})
             tot = {st: sum(br[st] for br in row["branches"]) for st in ("same", "different", "missing")}
             total = sum(len(br["checks"]) for br in row["branches"])
+            shares = any(ch["shares"] for br in row["branches"] for ch in br["checks"])   # some "same" compares unequal counts
             row.update(tot, total=total, all_same=total > 0 and tot["same"] == total,
-                       all_same_text=fill(E["gr_all_same"], total=total), other_same_text=fill(E["gr_other_same"], same=tot["same"]),
+                       all_same_text=fill(E["gr_all_same_shares" if shares else "gr_all_same"], total=total),
+                       other_same_text=fill(E["gr_other_same_shares" if shares else "gr_other_same"], same=tot["same"]),
                        diff_heading=fill(E["gr_diff_heading"], different=tot["different"]),
                        missing_heading=fill(E["gr_missing_heading"], missing=tot["missing"]))
+            row.update(self.gr_note(gr, m["name"], S))
             models.append(row)
             cov = gr.get("coverage", [])
             fs = gr.get("format_summary")
@@ -643,10 +679,17 @@ class Site:
                 "transport": E.get(f"transport_{transport}", transport) if transport else None,
                 "dates": start + (f" – {end}" if end and end != start else ""),
             })
-        uniform = (records and all(r["complete"] for r in records) and len({(r["scheduled"], r["versions"]) for r in records}) == 1
-                   and all(len(r["per_version"]) == 1 for r in records) and len({next(iter(r["per_version"])) for r in records}) == 1)
-        coverage_text = fill(E["gr_coverage_all"], scheduled=records[0]["scheduled"], versions=records[0]["versions"],
-                             n=next(iter(records[0]["per_version"]))) if uniform else None
+        same_plan = (records and len({(r["scheduled"], r["versions"]) for r in records}) == 1
+                     and all(len(r["per_version"]) == 1 for r in records) and len({next(iter(r["per_version"])) for r in records}) == 1)
+        short = [r for r in records if not r["complete"]]
+        noted = {m["id"] for m in models if m.get("note")}
+        plan = dict(scheduled=records[0]["scheduled"], versions=records[0]["versions"], n=next(iter(records[0]["per_version"]))) if same_plan else {}
+        if same_plan and not short:
+            coverage_text = fill(E["gr_coverage_all"], **plan)
+        elif same_plan and len(short) == 1 and short[0]["id"] in noted:   # one model with an answer that made no choice
+            coverage_text = fill(E["gr_coverage_except"], model=short[0]["name"], valid=short[0]["valid"], **plan)
+        else:
+            coverage_text = None
         for r in records:
             r["coverage"] = f"{r['valid']} / {r['scheduled']}"
         heads = [{"id": b, "title": titles[b], "count": fill(E["gr_checks_count"], count=next(iter(sizes[b]))) if len(sizes[b]) == 1 else None}
@@ -663,23 +706,30 @@ class Site:
         """Answer-format section: each model's total from results.json (the supplement must agree), its two question
         types and the two literal replies from the supplement. A model without data shows the unavailable text, never zero."""
         S = self.strings(lang)
-        F, R = S["gr_format"], S["robustness"]
+        F, R, E = S["gr_format"], S["robustness"], S["extra"]
         if not F:
             return None
         detail = self.gr_format.get("models", {})
         kinds = {"open_ended": (F["amount_title"], F["amount_help"]), "binary": (F["choice_title"], F["choice_help"])}
-        rows, totals = [], set()
+        rows, totals, notes = [], set(), []
         for k in self.model_ids:
             m = self.models[k]
             fs = (m.get("general_robustness") or {}).get("format_summary")
             d = detail.get(k)
             row = {"id": k, "name": m["name"], "provider": m.get("provider", ""), "unavailable": not fs, "branches": None,
-                   "text": R["format_unavailable"]}
+                   "text": R["format_unavailable"], "note": None}
             if fs:
                 if d and any(d["summary"][f] != fs[f] for f in self.FORMAT_COUNTS):
                     raise SystemExit(f"answer-format details for {k} disagree with results.json")
                 n, t = fs["strictly_compliant"], fs["denominator"]
-                totals.add(t)
+                if (m.get("general_robustness") or {}).get("positions_without_valid_choice"):
+                    # an answer without a choice is not in the denominator: this row keeps its own total, noted under the name
+                    row["note"] = E["gr_note_flag"]
+                    if d:
+                        notes.append(fill(E["gr_format_note"], model=m["name"], total=t,
+                                          binary=next(x["denominator"] for x in d["branches"] if x["branch"] == "binary")))
+                else:
+                    totals.add(t)
                 pct = share_text(n, t)
                 row.update(compliant=n, total=t, width=round(100 * n / t, 2), count=fill(F["count"], compliant=n, total=t, percent=pct),
                            sr=fill(F["row_accessible"], model=m["name"], compliant=n, total=t, percent=pct))
@@ -706,7 +756,7 @@ class Site:
                              "reply_label": F["original_excerpt"] if e["is_excerpt"] else F["original_reply"],
                              "translation": F[tr] if tr and lang != e["language"] else None})
         return {"rows": rows, "examples": examples, "intro": fill(F["intro"], total=next(iter(totals))) if totals else None,
-                "details": bool(detail)}
+                "details": bool(detail), "notes": notes}
 
     # ------------------------------------------------------------------ ratings page: visitor ideas
     IDEA_LIMITS = {"scenario": 3000, "focus": 500}   # Unicode characters after trimming, as in static/site.js and receiver/ideas_schema.sql
@@ -798,7 +848,7 @@ class Site:
                           "ticks": m["ax"]["ticks"], "poles": m["ax"]["poles"], "percent": m["ax"]["percent"],
                           "copy": m["text"]} for m in measures],
             "groups": [{"id": g["id"], **g[lang]} for g in self.groups],
-            "pairs": self.pairs, "diff_units": self.diff_units, "bindings": self.bindings,
+            "pairs": self.pairs, "diff_units": self.diff_units, "bindings": self.bindings, "f_panel": self.f_panel,
             "S": {k: S[k] for k in ("common", "explore", "extra", "versions")},
         }
 

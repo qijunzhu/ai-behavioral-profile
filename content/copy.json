@@ -1,5 +1,5 @@
 {
- "release_id": "twelve-model-comparison-20261016-v1",
+ "release_id": "thirteen-model-comparison-20261019-v3",
  "measures": {
   "common": {
    "en": {
@@ -39,7 +39,7 @@
     "self_description_help": "These results come from how the AI rated statements about its own response style.",
     "conversation_evidence": "Two AI models scored these replies",
     "judges_label": "AI judges",
-    "judges": "GPT-5.6 Sol and Claude Opus 5; Claude Haiku 5.5 and Doubao Seed 2.1 Pro were rated by GPT-6.1 Sol and Claude Opus 5.5 (all at the high reasoning setting)",
+    "judges": "GPT-5.6 Sol and Claude Opus 5; Claude Haiku 5.5, Doubao Seed 2.1 Pro and Gemini 4 Argon were rated by GPT-6.1 Sol and Claude Opus 5.5 (all at the high reasoning setting)",
     "human_review": "Human review: not yet assessed",
     "human_review_help": "Human reviewers have not yet assessed these AI ratings. Future visitor ratings will appear separately.",
     "type_boundary": "This range reaches the midpoint, so the type label may change across the tested questions or checks.",
@@ -107,7 +107,7 @@
     "self_description_help": "这些结果来自模型对自身回答风格的描述。",
     "conversation_evidence": "由两个 AI 阅读回复并打分",
     "judges_label": "AI 评审",
-    "judges": "GPT-5.6 Sol、Claude Opus 5；Claude Haiku 5.5 和 Doubao Seed 2.1 Pro 由 GPT-6.1 Sol、Claude Opus 5.5 评分（均为高推理设置）",
+    "judges": "GPT-5.6 Sol、Claude Opus 5；Claude Haiku 5.5、Doubao Seed 2.1 Pro 和 Gemini 4 Argon 由 GPT-6.1 Sol、Claude Opus 5.5 评分（均为高推理设置）",
     "human_review": "真人复核：尚未评估",
     "human_review_help": "这些 AI 评分尚未经过真人复核。之后收集的访客评分会单独呈现。",
     "type_boundary": "这条范围触及中点，类型标签可能随测试中的问法或检查方式变化。",
@@ -1321,6 +1321,7 @@
    "version_difference": "Change in the average",
    "version_direction": "{new_model} minus {old_model}. Read the change using this measure’s two ends.",
    "version_small_difference": "Difference smaller than 0.1 {unit}",
+   "version_panel_note": "Conversation results (category F) for {old_model} and {new_model} were rated by different AI judge panels; see “AI judges” under each measure. Part of each F difference between these versions may come from the change of judges.",
    "points": "points",
    "percentage_points": "percentage points",
    "settings_heading": "About these results",
@@ -1381,6 +1382,7 @@
    "version_difference": "平均值的变化",
    "version_direction": "用 {new_model} 减去 {old_model}，结合这一项图中两端的含义理解变化。",
    "version_small_difference": "差距不足 0.1 {unit}",
+   "version_panel_note": "{old_model} 和 {new_model} 的对话表现（F 类）由不同的评审组评分，见各项下方的“AI 评审”。这两个版本 F 类的差值，可能有一部分来自评审组不同。",
    "points": "点",
    "percentage_points": "个百分点",
    "settings_heading": "关于这些结果",
@@ -1424,6 +1426,11 @@
      "pair": "opus",
      "old_model": "opus5",
      "new_model": "opus55"
+    },
+    {
+     "pair": "gemini4",
+     "old_model": "gemini",
+     "new_model": "gemini4"
     }
    ],
    "difference_units": {
@@ -1616,9 +1623,10 @@
     "research_lead": "You see not just the results, but where they come from.",
     "research": "Each measure documents its task design, the literature it builds on, how answers are scored, and the model settings and versions behind it. Structured choices, self-descriptions and conversation ratings are labeled separately, because they provide different kinds of evidence.",
     "updates_title": "Results and updates",
-    "update_research": "16 October 2026 · Added Claude Haiku 5.5 and Doubao Seed 2.1 Pro; the saved research comparison now contains twelve models and 30 measures per model, alongside the separate stability checks.",
+    "update_research": "19 October 2026 · Added Gemini 4 Argon; the saved research comparison now contains thirteen models and 30 measures per model, alongside the separate stability checks.",
     "update_meaning": "This is the date of the saved research results, not the date the website was published.",
     "update_history": [
+     "16 October 2026 · Added Claude Haiku 5.5 and Doubao Seed 2.1 Pro; the saved research comparison now contains twelve models and 30 measures per model, alongside the separate stability checks.",
      "4 October 2026 · The saved research comparison contains ten models and 30 measures per model, alongside the separate stability checks."
     ],
     "team_title": "Author",
@@ -1642,9 +1650,10 @@
     "research_lead": "你看到的不只是结果，也可以看到它从哪里来。",
     "research": "每项测量都会说明任务设计、文献依据、评分方法，以及对应的模型设置与版本。结构化选择、自我描述和对话评价也会分别标明，因为它们提供的是不同类型的证据。",
     "updates_title": "结果与更新",
-    "update_research": "2026 年 10 月 16 日 · 加入 Claude Haiku 5.5 和 Doubao Seed 2.1 Pro，已保存的研究对照现包含十二个模型、每个模型 30 项指标，以及独立稳定性检查。",
+    "update_research": "2026 年 10 月 19 日 · 加入 Gemini 4 Argon，已保存的研究对照现包含十三个模型、每个模型 30 项指标，以及独立稳定性检查。",
     "update_meaning": "这是研究结果的日期，不是网站的发布日期。",
     "update_history": [
+     "2026 年 10 月 16 日 · 加入 Claude Haiku 5.5 和 Doubao Seed 2.1 Pro，已保存的研究对照现包含十二个模型、每个模型 30 项指标，以及独立稳定性检查。",
      "2026 年 10 月 4 日 · 已保存的研究对照包含十个模型、每个模型 30 项指标，以及独立稳定性检查。"
     ],
     "team_title": "作者",

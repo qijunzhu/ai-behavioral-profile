@@ -23,6 +23,9 @@ data/releases/ten-model-comparison-20261004-v1/results.json
 data/releases/twelve-model-comparison-20261016-v1/RELEASE.json
 data/releases/twelve-model-comparison-20261016-v1/gr-format.json
 data/releases/twelve-model-comparison-20261016-v1/results.json
+data/releases/thirteen-model-comparison-20261019-v3/RELEASE.json
+data/releases/thirteen-model-comparison-20261019-v3/gr-format.json
+data/releases/thirteen-model-comparison-20261019-v3/results.json
 functions/api/ideas.js
 receiver/ideas_schema.sql
 requirements.txt
